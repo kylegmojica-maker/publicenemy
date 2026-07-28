@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PUBLIC ENEMY</title>
+
+    <meta name="description" content="PUBLIC ENEMY - THREAT TO EVERYONE">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- PARTICLES -->
+    <canvas id="particles"></canvas>
+
+    <!-- CUSTOM CURSOR -->
+    <div class="cursor"></div>
+
+    <!-- CLICK TO ENTER -->
+    <div id="enter-screen">
+        <div class="enter-content">
+            <div class="enter-logo">PUBLIC ENEMY</div>
+            <div class="enter-subtitle">THREAT TO EVERYONE</div>
+
+            <button id="enter-button">
+                ENTER
+            </button>
+        </div>
+    </div>
+
+
+    <!-- MAIN WEBSITE -->
+    <main id="website">
+
+        <!-- TOP NAV -->
+        <header class="navbar">
+
+            <div class="nav-left">
+                PUBLIC ENEMY
+            </div>
+
+            <div class="nav-right">
+
+                <a href="#home">
+                    HOME
+                </a>
+
+                <a href="https://discord.gg/PJ6S48X5Qq"
+                   target="_blank">
+                    DISCORD
+                </a>
+
+                <div class="views">
+                    VIEWS:
+                    <span id="view-count">0</span>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- HERO -->
+        <section id="home" class="hero">
+
+            <div class="hero-content">
+
+                <img
+                    src="assets/profile.jpg"
+                    class="main-profile"
+                    alt="PUBLIC ENEMY"
+                >
+
+                <h1>PUBLIC ENEMY</h1>
+
+                <div class="small-title">
+                    ENEMY
+                </div>
+
+                <p>
+                    THREAT TO EVERYONE
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- INFO PANEL -->
+        <section class="info-panel">
+
+            <div class="info-box">
+
+                <h3>ABOUT</h3>
+
+                <p>
+                    PUBLIC ENEMY
+                </p>
+
+                <span>
+                    THREAT TO EVERYONE
+                </span>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <h3>DISCORD</h3>
+
+                <a
+                    class="discord-button"
+                    href="https://discord.gg/PJ6S48X5Qq"
+                    target="_blank"
+                >
+                    JOIN SERVER
+                </a>
+
+            </div>
+
+
+            <div class="info-box">
+
+                <h3>STATUS</h3>
+
+                <div class="status-display">
+
+                    <span class="status-dot online"></span>
+
+                    <span>
+                        PUBLIC ENEMY
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- PEOPLE -->
+        <section class="people-section">
+
+            <div class="section-title">
+
+                <span></span>
+
+                <h2>
+                    GODFATHER
+                </h2>
+
+                <span></span>
+
+            </div>
+
+
+            <div
+                class="people-grid"
+                id="godfather-list"
+            >
+            </div>
+
+
+            <div class="section-title highcouncil-title">
+
+                <span></span>
+
+                <h2>
+                    HIGHCOUNCIL
+                </h2>
+
+                <span></span>
+
+            </div>
+
+
+            <div
+                class="people-grid"
+                id="highcouncil-list"
+            >
+            </div>
+
+        </section>
+
+
+        <!-- PROFILE MODAL -->
+        <div
+            id="profile-modal"
+            class="modal hidden"
+        >
+
+            <div class="modal-content">
+
+                <button
+                    id="close-modal"
+                    class="close-button"
+                >
+                    ×
+                </button>
+
+                <img
+                    id="modal-avatar"
+                    src=""
+                    alt="Profile"
+                >
+
+                <h2 id="modal-name">
+                    User
+                </h2>
+
+                <p id="modal-username">
+                    @username
+                </p>
+
+                <div class="modal-status">
+
+                    <span
+                        id="modal-status-dot"
+                        class="status-dot"
+                    ></span>
+
+                    <span id="modal-status">
+                        Offline
+                    </span>
+
+                </div>
+
+                <div class="modal-id">
+                    Discord ID:
+                    <span id="modal-discord-id">
+                        -
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- FOOTER -->
+        <footer>
+
+            <p>
+                © 2026 PUBLIC ENEMY
+            </p>
+
+            <span>
+                THREAT TO EVERYONE
+            </span>
+
+        </footer>
+
+    </main>
+
+
+    <!-- AUDIO -->
+    <audio
+        id="background-music"
+        loop
+    >
+        <source
+            src="assets/music.mp3"
+            type="audio/mpeg"
+        >
+    </audio>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
