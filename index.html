@@ -1,120 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>PUBLIC ENEMY</title>
 
-    <meta name="description" content="PUBLIC ENEMY - THREAT TO EVERYONE">
+    <meta
+        name="description"
+        content="PUBLIC ENEMY"
+    >
 
-    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
+
 
 <body>
 
+
     <!-- PARTICLES -->
+
     <canvas id="particles"></canvas>
 
+
     <!-- CUSTOM CURSOR -->
+
     <div class="cursor"></div>
 
+
     <!-- CLICK TO ENTER -->
+
     <div id="enter-screen">
+
         <div class="enter-content">
-            <div class="enter-logo">PUBLIC ENEMY</div>
-            <div class="enter-subtitle">THREAT TO EVERYONE</div>
+
+            <div class="enter-label">
+                WELCOME
+            </div>
+
+            <h1>
+                PUBLIC ENEMY
+            </h1>
 
             <button id="enter-button">
                 ENTER
             </button>
+
         </div>
+
     </div>
 
 
+
     <!-- MAIN WEBSITE -->
+
     <main id="website">
 
-        <!-- TOP NAV -->
+
+        <!-- NAVIGATION -->
+
         <header class="navbar">
 
-            <div class="nav-left">
+
+            <div class="nav-logo">
+
                 PUBLIC ENEMY
+
             </div>
 
-            <div class="nav-right">
+
+            <nav>
 
                 <a href="#home">
                     HOME
                 </a>
 
-                <a href="https://discord.gg/PJ6S48X5Qq"
-                   target="_blank">
+                <a
+                    href="https://discord.gg/PJ6S48X5Qq"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
                     DISCORD
                 </a>
 
                 <div class="views">
-                    VIEWS:
-                    <span id="view-count">0</span>
+
+                    <span>
+                        VIEWS
+                    </span>
+
+                    <strong id="view-count">
+                        0
+                    </strong>
+
                 </div>
 
-            </div>
+            </nav>
+
 
         </header>
 
 
+
         <!-- HERO -->
-        <section id="home" class="hero">
+
+        <section
+            id="home"
+            class="hero"
+        >
+
 
             <div class="hero-content">
 
-                <img
-                    src="assets/profile.jpg"
-                    class="main-profile"
-                    alt="PUBLIC ENEMY"
-                >
 
-                <h1>PUBLIC ENEMY</h1>
+                <!-- MAIN PROFILE IMAGE -->
 
-                <div class="small-title">
-                    ENEMY
+                <div class="profile-wrapper">
+
+                    <div class="profile-ring"></div>
+
+                    <img
+                        src="https://lh3.googleusercontent.com/gg/ACRwjaslGDUQb_PqbeKxJpiXVgDxMSJhiS-fijwf963KhhHTVkoYz2nS9EjiEdAFxa3zp07ZipYnkqU7HD5m9_7JKNi4-jDuQmzzOEWCtWNdaqiKRJi5fjvcQt6RfrzfjxGH90RKwwVi_G-4xdDbk_ORYGrl0geNFSZV13bmWSr3OWhctadSnL5--tKKk0BDeFVtaUe0x0YbcjHGsb9-5qVCdHKtuQrp0aiQSQ5Zpef5mj0UJhPqQKjze2livcjdFZfY1QnxlPY7kB1a4JO6YnnYYc-wxlj5us5c8FvtzXgWpU16ppiTjK01HJHIKPZyK9mbXR1wDwdKERpvQ1ymatpbTjg=s1600"
+                        class="main-profile"
+                        alt="PUBLIC ENEMY"
+                    >
+
                 </div>
 
-                <p>
-                    THREAT TO EVERYONE
-                </p>
+
+                <h1 class="main-title">
+
+                    PUBLIC ENEMY
+
+                </h1>
+
+
+                <div class="title-line"></div>
+
 
             </div>
+
 
         </section>
 
 
-        <!-- INFO PANEL -->
+
+        <!-- INFO -->
+
         <section class="info-panel">
+
 
             <div class="info-box">
 
-                <h3>ABOUT</h3>
-
-                <p>
-                    PUBLIC ENEMY
-                </p>
-
-                <span>
-                    THREAT TO EVERYONE
+                <span class="info-label">
+                    IDENTITY
                 </span>
+
+                <h3>
+                    ENEMY
+                </h3>
 
             </div>
 
 
             <div class="info-box">
 
-                <h3>DISCORD</h3>
+                <span class="info-label">
+                    DISCORD
+                </span>
 
                 <a
-                    class="discord-button"
                     href="https://discord.gg/PJ6S48X5Qq"
                     target="_blank"
+                    rel="noopener noreferrer"
+                    class="discord-button"
                 >
                     JOIN SERVER
                 </a>
@@ -124,25 +207,31 @@
 
             <div class="info-box">
 
-                <h3>STATUS</h3>
+                <span class="info-label">
+                    STATUS
+                </span>
 
                 <div class="status-display">
 
                     <span class="status-dot online"></span>
 
                     <span>
-                        PUBLIC ENEMY
+                        ACTIVE
                     </span>
 
                 </div>
 
             </div>
 
+
         </section>
 
 
-        <!-- PEOPLE -->
+
+        <!-- GODFATHER -->
+
         <section class="people-section">
+
 
             <div class="section-title">
 
@@ -160,9 +249,11 @@
             <div
                 class="people-grid"
                 id="godfather-list"
-            >
-            </div>
+            ></div>
 
+
+
+            <!-- HIGHCOUNCIL -->
 
             <div class="section-title highcouncil-title">
 
@@ -180,19 +271,23 @@
             <div
                 class="people-grid"
                 id="highcouncil-list"
-            >
-            </div>
+            ></div>
+
 
         </section>
 
 
+
         <!-- PROFILE MODAL -->
+
         <div
             id="profile-modal"
             class="modal hidden"
         >
 
+
             <div class="modal-content">
+
 
                 <button
                     id="close-modal"
@@ -201,19 +296,23 @@
                     ×
                 </button>
 
+
                 <img
                     id="modal-avatar"
                     src=""
-                    alt="Profile"
+                    alt="Discord Profile"
                 >
+
 
                 <h2 id="modal-name">
                     User
                 </h2>
 
+
                 <p id="modal-username">
                     @username
                 </p>
+
 
                 <div class="modal-status">
 
@@ -228,47 +327,61 @@
 
                 </div>
 
+
                 <div class="modal-id">
+
                     Discord ID:
+
                     <span id="modal-discord-id">
                         -
                     </span>
+
                 </div>
 
+
             </div>
+
 
         </div>
 
 
+
         <!-- FOOTER -->
+
         <footer>
 
+            <div class="footer-line"></div>
+
             <p>
-                © 2026 PUBLIC ENEMY
+                THREAT TO EVERYONE
             </p>
 
             <span>
-                THREAT TO EVERYONE
+                © 2026 PUBLIC ENEMY
             </span>
 
         </footer>
 
+
     </main>
 
 
-    <!-- AUDIO -->
-    <audio
-        id="background-music"
-        loop
-    >
-        <source
-            src="assets/music.mp3"
-            type="audio/mpeg"
-        >
-    </audio>
+
+    <!-- BACKGROUND MUSIC -->
+
+    <!--
+    Music is currently disabled because
+    Spotify links cannot be used directly
+    as an MP3 audio source.
+
+    We can add your music later when you
+    have a usable audio file.
+    -->
 
 
     <script src="script.js"></script>
 
+
 </body>
+
 </html>
