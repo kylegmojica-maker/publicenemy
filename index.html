@@ -3,38 +3,21 @@
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>PUBLIC ENEMY</title>
+<title>PUBLIC ENEMY</title>
 
-    <meta
-        name="description"
-        content="PUBLIC ENEMY"
-    >
+<meta name="description" content="PUBLIC ENEMY">
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.googleapis.com">
 
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap"
-        rel="stylesheet"
-    >
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
+<link rel="stylesheet" href="style.css">
 
 </head>
 
@@ -42,355 +25,338 @@
 <body>
 
 
-    <!-- PARTICLES -->
-
-    <canvas id="particles"></canvas>
+<canvas id="particles"></canvas>
 
 
-    <!-- CUSTOM CURSOR -->
-
-    <div class="cursor"></div>
+<div class="cursor"></div>
 
 
-    <!-- CLICK TO ENTER -->
 
-    <div id="enter-screen">
+<!-- ENTER SCREEN -->
 
-        <div class="enter-content">
+<div id="enter-screen">
 
-            <div class="enter-label">
-                WELCOME
-            </div>
+    <div class="enter-content">
 
-            <h1>
-                PUBLIC ENEMY
-            </h1>
-
-            <button id="enter-button">
-                ENTER
-            </button>
-
+        <div class="enter-label">
+            WELCOME
         </div>
 
-    </div>
+        <button id="enter-button">
+            ENTER
+        </button>
 
-
-
-    <!-- MAIN WEBSITE -->
-
-    <main id="website">
-
-
-        <!-- NAVIGATION -->
-
-        <header class="navbar">
-
-
-            <div class="nav-logo">
-
-                PUBLIC ENEMY
-
-            </div>
-
-
-            <nav>
-
-                <a href="#home">
-                    HOME
-                </a>
-
-                <a
-                    href="https://discord.gg/PJ6S48X5Qq"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    DISCORD
-                </a>
-
-                <div class="views">
-
-                    <span>
-                        VIEWS
-                    </span>
-
-                    <strong id="view-count">
-                        0
-                    </strong>
-
-                </div>
-
-            </nav>
-
-
-        </header>
-
-
-
-        <!-- HERO -->
-
-        <section
-            id="home"
-            class="hero"
-        >
-
-
-            <div class="hero-content">
-
-
-                <!-- MAIN PROFILE IMAGE -->
-
-                <div class="profile-wrapper">
-
-                    <div class="profile-ring"></div>
-
-                    <img
-                        src="https://media.discordapp.net/attachments/1489145774569951332/1508056143463710870/image-56.png?ex=6a73bafa&is=6a72697a&hm=81631db6f7b730b7ef8215a569b21e62ae67189cecedd90c6108031620fabf6b&=&format=webp&quality=lossless"
-                        class="main-profile"
-                        alt="PUBLIC ENEMY"
-                    >
-
-                </div>
-
-
-                <h1 class="main-title">
-
-                    PUBLIC ENEMY
-
-                </h1>
-
-
-                <div class="title-line"></div>
-
-
-            </div>
-
-
-        </section>
-
-
-
-        <!-- INFO -->
-
-        <section class="info-panel">
-
-
-            <div class="info-box">
-
-                <span class="info-label">
-                    IDENTITY
-                </span>
-
-                <h3>
-                    ENEMY
-                </h3>
-
-            </div>
-
-
-            <div class="info-box">
-
-                <span class="info-label">
-                    DISCORD
-                </span>
-
-                <a
-                    href="https://discord.gg/PJ6S48X5Qq"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="discord-button"
-                >
-                    JOIN SERVER
-                </a>
-
-            </div>
-
-
-<div class="info-box">
-
-    <span class="info-label">
-        STATUS
-    </span>
-
-    <div class="status-display">
-
-        <span 
-            id="bot-status-dot"
-            class="status-dot online">
-        </span>
-
-        <span id="bot-status">
-            Loading...
-        </span>
-
-    </div>
-
-
-    <div 
-        id="server-members"
-        style="margin-top: 10px;"
-    >
-        Loading members...
     </div>
 
 </div>
 
 
-        </section>
+
+<main id="website">
 
 
 
-        <!-- GODFATHER -->
+<header class="navbar">
 
-        <section class="people-section">
-
-
-            <div class="section-title">
-
-                <span></span>
-
-                <h2>
-                    GODFATHER
-                </h2>
-
-                <span></span>
-
-            </div>
+    <div class="nav-logo">
+        PE
+    </div>
 
 
-            <div
-                class="people-grid"
-                id="godfather-list"
-            ></div>
+    <nav>
+
+        <a href="#home">
+            HOME
+        </a>
 
 
-
-            <!-- HIGHCOUNCIL -->
-
-            <div class="section-title highcouncil-title">
-
-                <span></span>
-
-                <h2>
-                    HIGHCOUNCIL
-                </h2>
-
-                <span></span>
-
-            </div>
+        <a href="https://discord.gg/PJ6S48X5Qq"
+        target="_blank">
+            DISCORD
+        </a>
 
 
-            <div
-                class="people-grid"
-                id="highcouncil-list"
-            ></div>
+        <div class="views">
 
+            <span>
+                VIEWS
+            </span>
 
-        </section>
-
-
-
-        <!-- PROFILE MODAL -->
-
-        <div
-            id="profile-modal"
-            class="modal hidden"
-        >
-
-
-            <div class="modal-content">
-
-
-                <button
-                    id="close-modal"
-                    class="close-button"
-                >
-                    ×
-                </button>
-
-
-                <img
-                    id="modal-avatar"
-                    src=""
-                    alt="Discord Profile"
-                >
-
-
-                <h2 id="modal-name">
-                    User
-                </h2>
-
-
-                <p id="modal-username">
-                    @username
-                </p>
-
-
-                <div class="modal-status">
-
-                    <span
-                        id="modal-status-dot"
-                        class="status-dot"
-                    ></span>
-
-                    <span id="modal-status">
-                        Offline
-                    </span>
-
-                </div>
-
-
-                <div class="modal-id">
-
-                    Discord ID:
-
-                    <span id="modal-discord-id">
-                        -
-                    </span>
-
-                </div>
-
-
-            </div>
-
+            <strong id="view-count">
+                0
+            </strong>
 
         </div>
 
 
-
-        <!-- FOOTER -->
-
-        <footer>
-
-            <div class="footer-line"></div>
-
-            <p>
-                THREAT TO EVERYONE
-            </p>
-
-            <span>
-                © 2026 PUBLIC ENEMY
-            </span>
-
-        </footer>
+    </nav>
 
 
-    </main>
+</header>
 
 
 
-    <!-- BACKGROUND MUSIC -->
 
-    <!--
-    Music is currently disabled because
-    Spotify links cannot be used directly
-    as an MP3 audio source.
-
-    We can add your music later when you
-    have a usable audio file.
-    -->
+<section id="home" class="hero">
 
 
-    <script src="script.js"></script>
+<div class="hero-content">
+
+
+<div class="profile-wrapper">
+
+
+<div class="profile-ring"></div>
+
+
+<img
+src="https://media.discordapp.net/attachments/1489145774569951332/1508056143463710870/image-56.png?ex=6a73bafa&is=6a72697a&hm=81631db6f7b730b7ef8215a569b21e62ae67189cecedd90c6108031620fabf6b&=&format=webp&quality=lossless"
+class="main-profile"
+alt="Profile">
+
+
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+<section class="info-panel">
+
+
+<div class="info-box">
+
+<span class="info-label">
+IDENTITY
+</span>
+
+<h3>
+ENEMY
+</h3>
+
+</div>
+
+
+
+
+<div class="info-box">
+
+<span class="info-label">
+DISCORD
+</span>
+
+
+<a href="https://discord.gg/PJ6S48X5Qq"
+target="_blank"
+class="discord-button">
+
+JOIN SERVER
+
+</a>
+
+
+</div>
+
+
+
+
+<div class="info-box">
+
+
+<span class="info-label">
+STATUS
+</span>
+
+
+<div class="status-display">
+
+
+<span id="bot-status-dot"
+class="status-dot online">
+</span>
+
+
+<span id="bot-status">
+Loading...
+</span>
+
+
+</div>
+
+
+<div id="server-members">
+Loading members...
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<section class="people-section">
+
+
+
+<div class="section-title">
+
+<span></span>
+
+<h2>
+GODFATHER
+</h2>
+
+<span></span>
+
+
+</div>
+
+
+
+<div class="people-grid"
+id="godfather-list">
+
+</div>
+
+
+
+
+<div class="section-title highcouncil-title">
+
+<span></span>
+
+<h2>
+HIGHCOUNCIL
+</h2>
+
+<span></span>
+
+
+</div>
+
+
+
+
+<div class="people-grid"
+id="highcouncil-list">
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+<div id="profile-modal"
+class="modal hidden">
+
+
+<div class="modal-content">
+
+
+<button id="close-modal"
+class="close-button">
+
+×
+
+</button>
+
+
+
+<img id="modal-avatar"
+src="">
+
+
+<h2 id="modal-name">
+User
+</h2>
+
+
+<p id="modal-username">
+@username
+</p>
+
+
+
+<div class="modal-status">
+
+<span id="modal-status-dot"
+class="status-dot">
+
+</span>
+
+
+<span id="modal-status">
+Offline
+</span>
+
+
+</div>
+
+
+
+<div class="modal-id">
+
+Discord ID:
+
+<span id="modal-discord-id">
+-
+</span>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<footer>
+
+
+<div class="footer-line"></div>
+
+
+<p>
+THREAT TO EVERYONE
+</p>
+
+
+<span>
+© 2026 PUBLIC ENEMY
+</span>
+
+
+</footer>
+
+
+
+</main>
+
+
+
+<script src="script.js"></script>
 
 
 </body>
