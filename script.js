@@ -581,25 +581,17 @@ fetch("https://public-enemy-bot-cw8m.onrender.com/members")
 .then(res => res.json())
 .then(members => {
 
-
     const godfatherList =
     document.getElementById("godfather-list");
-
 
     const highcouncilList =
     document.getElementById("highcouncil-list");
 
-
-
     members.forEach(member => {
 
-
-        const card =
-        document.createElement("div");
-
+        const card = document.createElement("div");
 
         card.className = "person-card";
-
 
         card.innerHTML = `
 
@@ -614,7 +606,6 @@ fetch("https://public-enemy-bot-cw8m.onrender.com/members")
         `;
 
 
-
         card.onclick = () => {
 
             document.querySelectorAll(".person-card")
@@ -627,13 +618,11 @@ fetch("https://public-enemy-bot-cw8m.onrender.com/members")
         };
 
 
-
         if(member.group === "godfather"){
 
             godfatherList.appendChild(card);
 
         }
-
 
         else if(member.group === "highcouncil"){
 
@@ -641,16 +630,7 @@ fetch("https://public-enemy-bot-cw8m.onrender.com/members")
 
         }
 
-
-        else{
-
-            // normal members if you add a section later
-
-        }
-
-
     });
-
 
 })
 .catch(err => {
@@ -661,10 +641,3 @@ fetch("https://public-enemy-bot-cw8m.onrender.com/members")
     );
 
 });
-
-
-/* ==========================================
-   START WEBSITE
-========================================== */
-
-loadPeople();
