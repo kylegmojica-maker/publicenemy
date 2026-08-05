@@ -3,6 +3,9 @@
    GUNS.LOL INSPIRED STYLE
 ========================================== */
 
+body {
+    border: 20px solid red !important;
+}
 
 * {
     margin: 0;
