@@ -5,29 +5,10 @@
 
 
 /* ==========================================
-   DISCORD USERS
+   DISCORD PROFILE DATA
 ========================================== */
 
-
-/*
-    IMPORTANT:
-
-    These are currently placeholder avatars.
-
-    Your Discord bot can later replace these
-    with real avatars and live statuses.
-
-    Status options:
-
-    online
-    idle
-    dnd
-    offline
-*/
-
-
 const godfather = [
-
     {
         name: "Sal",
         username: "@salvatore.am",
@@ -35,8 +16,6 @@ const godfather = [
         status: "online",
         avatar: "https://cdn.discordapp.com/embed/avatars/0.png"
     },
-
-
     {
         name: "Jinu",
         username: "@usjrjinu",
@@ -44,8 +23,6 @@ const godfather = [
         status: "online",
         avatar: "https://cdn.discordapp.com/embed/avatars/1.png"
     },
-
-
     {
         name: "Yole",
         username: "@noki202",
@@ -53,8 +30,6 @@ const godfather = [
         status: "online",
         avatar: "https://cdn.discordapp.com/embed/avatars/2.png"
     },
-
-
     {
         name: "Toshi",
         username: "@yoshiiixzz",
@@ -62,8 +37,6 @@ const godfather = [
         status: "online",
         avatar: "https://cdn.discordapp.com/embed/avatars/3.png"
     },
-
-
     {
         name: "$",
         username: "@leywannafck",
@@ -71,13 +44,10 @@ const godfather = [
         status: "online",
         avatar: "https://cdn.discordapp.com/embed/avatars/4.png"
     }
-
 ];
 
 
-
 const highcouncil = [
-
     {
         name: "Hudas",
         username: "@anescheese",
@@ -85,8 +55,6 @@ const highcouncil = [
         status: "online",
         avatar: "https://cdn.discordapp.com/embed/avatars/0.png"
     },
-
-
     {
         name: "taygs",
         username: "@drix08522",
@@ -94,8 +62,6 @@ const highcouncil = [
         status: "online",
         avatar: "https://cdn.discordapp.com/embed/avatars/1.png"
     },
-
-
     {
         name: "Johnrey",
         username: "@johnrey103",
@@ -103,8 +69,6 @@ const highcouncil = [
         status: "online",
         avatar: "https://cdn.discordapp.com/embed/avatars/2.png"
     },
-
-
     {
         name: "wayne",
         username: "@diablo058_39987",
@@ -112,137 +76,84 @@ const highcouncil = [
         status: "online",
         avatar: "https://cdn.discordapp.com/embed/avatars/3.png"
     }
-
 ];
 
 
 
 /* ==========================================
-   STATUS
+   STATUS FUNCTIONS
 ========================================== */
 
+function getStatusClass(status){
 
-function getStatusClass(status) {
-
-    if (status === "online") {
-
-        return "online";
-
-    }
-
-    if (status === "idle") {
-
-        return "idle";
-
-    }
-
-    if (status === "dnd") {
-
-        return "dnd";
-
-    }
+    if(status === "online") return "online";
+    if(status === "idle") return "idle";
+    if(status === "dnd") return "dnd";
 
     return "offline";
-
 }
 
 
+function getStatusText(status){
 
-function getStatusText(status) {
-
-    if (status === "online") {
-
-        return "Online";
-
-    }
-
-    if (status === "idle") {
-
-        return "Idle";
-
-    }
-
-    if (status === "dnd") {
-
-        return "Do Not Disturb";
-
-    }
+    if(status === "online") return "Online";
+    if(status === "idle") return "Idle";
+    if(status === "dnd") return "Do Not Disturb";
 
     return "Offline";
-
 }
 
 
 
 /* ==========================================
-   CREATE PERSON CARD
+   CREATE PROFILE CARD
 ========================================== */
 
+function createPersonCard(person){
 
-function createPersonCard(person) {
+    const card = document.createElement("div");
 
-
-    const card =
-        document.createElement("div");
-
-
-    card.className =
-        "person-card";
+    card.className = "person-card";
 
 
     card.innerHTML = `
 
-        <div class="person-avatar-wrapper">
+    <div class="person-avatar-wrapper">
 
-            <img
+        <img 
+        class="person-avatar"
+        src="${person.avatar}"
+        alt="${person.name}">
 
-                class="person-avatar"
+        <span class="person-status status-dot ${getStatusClass(person.status)}"></span>
 
-                src="${person.avatar}"
-
-                alt="${person.name}"
-
-            >
-
-
-            <span
-
-                class="person-status status-dot ${getStatusClass(person.status)}"
-
-            ></span>
-
-        </div>
+    </div>
 
 
-        <div class="person-name">
-
-            ${person.name}
-
-        </div>
+    <div class="person-name">
+        ${person.name}
+    </div>
 
 
-        <div class="person-username">
-
-            ${person.username}
-
-        </div>
+    <div class="person-username">
+        ${person.username}
+    </div>
 
     `;
 
 
+    card.addEventListener("click",()=>{
 
-    card.addEventListener(
+        openProfile(person);
 
-        "click",
 
-        function () {
+        document.querySelectorAll(".person-card")
+        .forEach(item=>item.classList.remove("active"));
 
-            openProfile(person);
 
-        }
+        card.classList.add("active");
 
-    );
-
+    });
 
 
     return card;
@@ -252,388 +163,194 @@ function createPersonCard(person) {
 
 
 /* ==========================================
-   LOAD USERS
+   LOAD PROFILES
 ========================================== */
 
-
-function loadPeople() {
-
+function loadPeople(){
 
     const godfatherList =
-
-        document.getElementById(
-
-            "godfather-list"
-
-        );
-
+    document.getElementById("godfather-list");
 
 
     const highcouncilList =
-
-        document.getElementById(
-
-            "highcouncil-list"
-
-        );
+    document.getElementById("highcouncil-list");
 
 
 
-    godfather.forEach(
+    if(godfatherList){
 
-        function (person) {
+        godfather.forEach(person=>{
 
             godfatherList.appendChild(
-
                 createPersonCard(person)
-
             );
 
-        }
+        });
 
-    );
+    }
 
 
 
-    highcouncil.forEach(
+    if(highcouncilList){
 
-        function (person) {
+        highcouncil.forEach(person=>{
 
             highcouncilList.appendChild(
-
                 createPersonCard(person)
-
             );
 
-        }
+        });
 
-    );
+    }
 
 }
 
 
 
 /* ==========================================
-   MODAL
+   PROFILE MODAL
 ========================================== */
 
+const modal = document.getElementById("profile-modal");
 
-const modal =
+const modalAvatar = document.getElementById("modal-avatar");
 
-    document.getElementById(
+const modalName = document.getElementById("modal-name");
 
-        "profile-modal"
+const modalUsername = document.getElementById("modal-username");
 
-    );
+const modalStatus = document.getElementById("modal-status");
 
+const modalStatusDot = document.getElementById("modal-status-dot");
 
-
-const modalAvatar =
-
-    document.getElementById(
-
-        "modal-avatar"
-
-    );
+const modalDiscordId = document.getElementById("modal-discord-id");
 
 
 
-const modalName =
+function openProfile(person){
 
-    document.getElementById(
-
-        "modal-name"
-
-    );
+    if(!modal) return;
 
 
+    modalAvatar.src = person.avatar;
 
-const modalUsername =
+    modalName.textContent = person.name;
 
-    document.getElementById(
-
-        "modal-username"
-
-    );
-
-
-
-const modalStatus =
-
-    document.getElementById(
-
-        "modal-status"
-
-    );
-
-
-
-const modalStatusDot =
-
-    document.getElementById(
-
-        "modal-status-dot"
-
-    );
-
-
-
-const modalDiscordId =
-
-    document.getElementById(
-
-        "modal-discord-id"
-
-    );
-
-
-
-function openProfile(person) {
-
-
-    modalAvatar.src =
-
-        person.avatar;
-
-
-
-    modalName.textContent =
-
-        person.name;
-
-
-
-    modalUsername.textContent =
-
-        person.username;
-
-
+    modalUsername.textContent = person.username;
 
     modalStatus.textContent =
-
-        getStatusText(
-
-            person.status
-
-        );
-
+    getStatusText(person.status);
 
 
     modalStatusDot.className =
-
-        "status-dot " +
-
-        getStatusClass(
-
-            person.status
-
-        );
-
+    "status-dot " + getStatusClass(person.status);
 
 
     modalDiscordId.textContent =
-
-        person.id;
-
+    person.id;
 
 
-    modal.classList.remove(
-
-        "hidden"
-
-    );
+    modal.classList.remove("hidden");
 
 }
 
 
 
-/* CLOSE MODAL */
+const closeModal =
+document.getElementById("close-modal");
 
 
-document
+if(closeModal){
 
-    .getElementById(
+    closeModal.onclick = ()=>{
 
-        "close-modal"
+        modal.classList.add("hidden");
 
-    )
+    };
 
-    .addEventListener(
-
-        "click",
-
-        function () {
-
-            modal.classList.add(
-
-                "hidden"
-
-            );
-
-        }
-
-    );
+}
 
 
 
-/* CLICK OUTSIDE MODAL */
+if(modal){
 
+    modal.onclick = (e)=>{
 
-modal.addEventListener(
+        if(e.target === modal){
 
-    "click",
-
-    function (event) {
-
-
-        if (
-
-            event.target === modal
-
-        ) {
-
-
-            modal.classList.add(
-
-                "hidden"
-
-            );
-
+            modal.classList.add("hidden");
 
         }
 
-    }
+    };
 
-);
+}
 
 
 
 /* ==========================================
-   CLICK TO ENTER
+   ENTER SCREEN
 ========================================== */
+
+const enterButton =
+document.getElementById("enter-button");
 
 
 const enterScreen =
-
-    document.getElementById(
-
-        "enter-screen"
-
-    );
-
-
-
-const enterButton =
-
-    document.getElementById(
-
-        "enter-button"
-
-    );
-
+document.getElementById("enter-screen");
 
 
 const website =
-
-    document.getElementById(
-
-        "website"
-
-    );
+document.getElementById("website");
 
 
 
-enterButton.addEventListener(
+if(enterButton){
 
-    "click",
+    enterButton.onclick = ()=>{
 
-    function () {
+        enterScreen.classList.add("hidden");
 
+        website.classList.add("visible");
 
-        enterScreen.classList.add(
+    };
 
-            "hidden"
-
-        );
-
-
-        website.classList.add(
-
-            "visible"
-
-        );
-
-
-    }
-
-);
-
-
+}
 
 /* ==========================================
    VIEW COUNTER
 ========================================== */
 
-
-/*
-    This is a local browser counter.
-
-    It is NOT a global counter.
-
-    A real global counter requires
-    an external database or service.
-*/
+let views = localStorage.getItem("publicEnemyViews");
 
 
-let views =
-
-    localStorage.getItem(
-
-        "publicEnemyViews"
-
-    );
-
-
-
-if (!views) {
-
+if(!views){
 
     views = 1;
 
+}else{
 
-} else {
-
-
-    views =
-
-        parseInt(views) + 1;
-
+    views = parseInt(views) + 1;
 
 }
 
 
-
 localStorage.setItem(
-
     "publicEnemyViews",
-
     views
-
 );
 
 
 
-document
+const viewCount =
+document.getElementById("view-count");
 
-    .getElementById(
 
-        "view-count"
+if(viewCount){
 
-    )
+    viewCount.textContent = views;
 
-    .textContent =
-
-    views;
+}
 
 
 
@@ -641,37 +358,24 @@ document
    CUSTOM CURSOR
 ========================================== */
 
-
 const cursor =
-
-    document.querySelector(
-
-        ".cursor"
-
-    );
+document.querySelector(".cursor");
 
 
+if(cursor){
 
-document.addEventListener(
-
-    "mousemove",
-
-    function (event) {
-
+    document.addEventListener("mousemove",(event)=>{
 
         cursor.style.left =
-
-            event.clientX + "px";
+        event.clientX + "px";
 
 
         cursor.style.top =
+        event.clientY + "px";
 
-            event.clientY + "px";
+    });
 
-
-    }
-
-);
+}
 
 
 
@@ -679,324 +383,287 @@ document.addEventListener(
    PARTICLES
 ========================================== */
 
-
 const canvas =
-
-    document.getElementById(
-
-        "particles"
-
-    );
+document.getElementById("particles");
 
 
+if(canvas){
 
-const ctx =
-
-    canvas.getContext(
-
-        "2d"
-
-    );
+    const ctx =
+    canvas.getContext("2d");
 
 
-
-let particles = [];
-
+    let particles = [];
 
 
-function resizeCanvas() {
+    function resizeCanvas(){
 
-
-    canvas.width =
-
+        canvas.width =
         window.innerWidth;
 
 
-    canvas.height =
-
+        canvas.height =
         window.innerHeight;
-
-
-}
-
-
-
-resizeCanvas();
-
-
-
-window.addEventListener(
-
-    "resize",
-
-    resizeCanvas
-
-);
-
-
-
-function createParticles() {
-
-
-    particles = [];
-
-
-
-    for (
-
-        let i = 0;
-
-        i < 45;
-
-        i++
-
-    ) {
-
-
-        particles.push({
-
-
-            x:
-
-                Math.random() *
-
-                canvas.width,
-
-
-            y:
-
-                Math.random() *
-
-                canvas.height,
-
-
-            size:
-
-                Math.random() *
-
-                1.5 + 0.5,
-
-
-            speed:
-
-                Math.random() *
-
-                0.2 + 0.05
-
-
-        });
-
 
     }
 
-}
+
+    resizeCanvas();
 
 
-
-createParticles();
-
-
-
-function animateParticles() {
-
-
-    ctx.clearRect(
-
-        0,
-
-        0,
-
-        canvas.width,
-
-        canvas.height
-
+    window.addEventListener(
+        "resize",
+        resizeCanvas
     );
 
 
 
-    particles.forEach(
+    function createParticles(){
 
-        function (particle) {
+        particles = [];
+
+
+        for(let i = 0; i < 45; i++){
+
+            particles.push({
+
+                x: Math.random() * canvas.width,
+
+                y: Math.random() * canvas.height,
+
+                size: Math.random() * 1.5 + .5,
+
+                speed: Math.random() * .2 + .05
+
+            });
+
+        }
+
+    }
+
+
+    createParticles();
+
+
+
+    function animateParticles(){
+
+        ctx.clearRect(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+
+
+        particles.forEach(particle=>{
 
 
             ctx.beginPath();
 
 
-
             ctx.arc(
-
                 particle.x,
-
                 particle.y,
-
                 particle.size,
-
                 0,
-
                 Math.PI * 2
-
             );
 
 
-
             ctx.fillStyle =
-
-                "rgba(255,255,255,0.25)";
-
+            "rgba(255,255,255,0.25)";
 
 
             ctx.fill();
 
 
 
-            particle.y -=
-
-                particle.speed;
+            particle.y -= particle.speed;
 
 
 
-            if (
-
-                particle.y < 0
-
-            ) {
-
+            if(particle.y < 0){
 
                 particle.y =
-
-                    canvas.height;
-
+                canvas.height;
 
             }
 
 
-        }
-
-    );
+        });
 
 
+        requestAnimationFrame(
+            animateParticles
+        );
 
-    requestAnimationFrame(
+    }
 
-        animateParticles
 
-    );
+    animateParticles();
 
 }
 
 
 
-animateParticles();
-
 /* ==========================================
-   DISCORD BOT LIVE DATA
+   DISCORD BOT LIVE STATS
 ========================================== */
 
-
-const DISCORD_API = "https://public-enemy-bot-cw8m.onrender.com/stats";
-
-
-fetch(DISCORD_API)
-
-.then(response => response.json())
-
-.then(data => {
-
-    const botStatus = document.getElementById(
-        "bot-status"
-    );
-
-    const serverMembers = document.getElementById(
-        "server-members"
-    );
+const DISCORD_STATS =
+"https://public-enemy-bot-cw8m.onrender.com/stats";
 
 
-    if (data.online) {
+fetch(DISCORD_STATS)
 
-        if (botStatus) {
-            botStatus.textContent = "🟢 Online";
+.then(res=>res.json())
+
+.then(data=>{
+
+
+    const botStatus =
+    document.getElementById("bot-status");
+
+
+    const serverMembers =
+    document.getElementById("server-members");
+
+
+
+    if(data.online){
+
+
+        if(botStatus){
+
+            botStatus.textContent =
+            "🟢 Online";
+
         }
 
 
-        if (serverMembers) {
+
+        if(serverMembers){
+
             serverMembers.textContent =
             `${data.members} Members`;
+
         }
+
 
     }
 
+
 })
 
-.catch(error => {
+.catch(err=>{
 
     console.log(
         "Discord API Error:",
-        error
+        err
     );
 
 });
 
-document.querySelectorAll(".person-card").forEach(card => {
 
-    card.addEventListener("click", () => {
 
-        document.querySelectorAll(".person-card")
-        .forEach(item => item.classList.remove("active"));
+/* ==========================================
+   LOAD REAL DISCORD PROFILES
+========================================== */
 
-        card.classList.add("active");
 
-    });
+const DISCORD_MEMBERS_API =
+"https://public-enemy-bot-cw8m.onrender.com/members";
 
-});
 
-<<<<<<< HEAD
-fetch("https://public-enemy-bot-cw8m.onrender.com")
-.then(res => res.json())
-.then(members => {
 
-    const container = document.querySelector(".people-grid");
+fetch(DISCORD_MEMBERS_API)
+
+.then(res=>res.json())
+
+.then(members=>{
+
+
+    const container =
+    document.querySelector(".people-grid");
+
+
+
+    if(!container) return;
+
+
 
     container.innerHTML = "";
 
-    members.forEach(member => {
 
-        container.innerHTML += `
-        <div class="person-card">
-            <img class="person-avatar" src="${member.avatar}">
-            <h3>${member.username}</h3>
-        </div>
+
+    members.forEach(member=>{
+
+
+        const card =
+        document.createElement("div");
+
+
+        card.className =
+        "person-card";
+
+
+
+        card.innerHTML = `
+
+        <img 
+        class="person-avatar"
+        src="${member.avatar}">
+
+
+        <h3>
+        ${member.username}
+        </h3>
+
         `;
+
+
+
+        card.addEventListener("click",()=>{
+
+
+            document.querySelectorAll(".person-card")
+            .forEach(item=>{
+
+                item.classList.remove("active");
+
+            });
+
+
+
+            card.classList.add("active");
+
+
+        });
+
+
+
+        container.appendChild(card);
+
 
     });
 
+
+})
+
+.catch(err=>{
+
+    console.log(
+        "Member API Error:",
+        err
+    );
+
 });
 
-=======
->>>>>>> 9cc54f59d8b915008442a0d457f5dd065e1c89ce
+
+
 /* ==========================================
    START WEBSITE
 ========================================== */
 
-
 loadPeople();
-
-fetch("https://public-enemy-bot-cw8m.onrender.com/members")
-.then(res => res.json())
-.then(members => {
-
-    const container = document.querySelector(".people-grid");
-
-    container.innerHTML = "";
-
-    members.forEach(member => {
-
-        container.innerHTML += `
-        <div class="person-card">
-            <img class="person-avatar" src="${member.avatar}">
-            <h3>${member.username}</h3>
-        </div>
-        `;
-
-    });
-
-});
