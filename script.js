@@ -390,8 +390,6 @@ err
 
 
 
-
-
 /* ==========================================
    LOAD DISCORD PROFILES
 ========================================== */
@@ -399,95 +397,141 @@ err
 
 fetch("https://public-enemy-bot-cw8m.onrender.com/members")
 
-.then(res=>res.json())
+.then(res => res.json())
 
-.then(members=>{
-
-
-const godfatherList =
-document.getElementById("godfather-list");
+.then(members => {
 
 
-const highcouncilList =
-document.getElementById("highcouncil-list");
+    const godfatherList =
+    document.getElementById("godfather-list");
 
 
-
-members.forEach(member=>{
-
-
-const card =
-document.createElement("div");
-
-
-card.className =
-"person-card";
+    const highcouncilList =
+    document.getElementById("highcouncil-list");
 
 
 
-card.innerHTML = `
-
-<img 
-class="person-avatar"
-src="${member.avatar}">
+    members.forEach(member => {
 
 
-<h3>
-${member.username}
-</h3>
+        const card =
+        document.createElement("div");
 
-`;
+
+        card.className =
+        "person-card";
 
 
 
-card.onclick = ()=>{
+        card.innerHTML = `
 
-document.querySelectorAll(".person-card")
-.forEach(item=>{
-
-item.classList.remove("active");
-
-});
+        <div class="person-avatar-wrapper">
 
 
-card.classList.add("active");
+            <img
+
+            class="person-avatar"
+
+            src="${member.avatar}"
+
+            alt="${member.username}"
+
+            >
 
 
-openProfile(member);
-
-
-};
-
-
-
-
-if(member.group === "godfather"){
-
-godfatherList.appendChild(card);
-
-}
+        </div>
 
 
 
-else if(member.group === "highcouncil"){
+        <div class="person-name">
 
-highcouncilList.appendChild(card);
+            ${member.username}
 
-}
+        </div>
 
 
 
-});
+        <div class="person-username">
+
+            @${member.username}
+
+        </div>
+
+        `;
+
+
+
+        card.addEventListener("click", ()=>{
+
+
+            document.querySelectorAll(".person-card")
+
+            .forEach(item=>{
+
+                item.classList.remove("active");
+
+            });
+
+
+
+            card.classList.add("active");
+
+
+
+            openProfile({
+
+                id: member.id,
+
+                username: member.username,
+
+                avatar: member.avatar,
+
+                status: "online"
+
+            });
+
+
+        });
+
+
+
+
+        if(member.group === "godfather") {
+
+
+            godfatherList.appendChild(card);
+
+
+        }
+
+
+
+        else if(member.group === "highcouncil") {
+
+
+            highcouncilList.appendChild(card);
+
+
+        }
+
+
+
+    });
 
 
 })
 
 
-.catch(err=>{
+.catch(err => {
 
-console.log(
-"Member API Error:",
-err
-);
+
+    console.log(
+
+        "Member API Error:",
+
+        err
+
+    );
+
 
 });
