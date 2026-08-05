@@ -577,36 +577,19 @@ const DISCORD_MEMBERS_API =
 
 
 
-fetch(DISCORD_MEMBERS_API)
+fetch("https://public-enemy-bot-cw8m.onrender.com/members")
+.then(res => res.json())
+.then(members => {
 
-.then(res=>res.json())
-
-.then(members=>{
-
-
-    const container =
-    document.querySelector(".people-grid");
+    const godfatherList = document.getElementById("godfather-list");
+    const highcouncilList = document.getElementById("highcouncil-list");
 
 
+    members.forEach((member, index) => {
 
-    if(!container) return;
+        const card = document.createElement("div");
 
-
-
-    container.innerHTML = "";
-
-
-
-    members.forEach(member=>{
-
-
-        const card =
-        document.createElement("div");
-
-
-        card.className =
-        "person-card";
-
+        card.className = "person-card";
 
 
         card.innerHTML = `
@@ -615,51 +598,39 @@ fetch(DISCORD_MEMBERS_API)
         class="person-avatar"
         src="${member.avatar}">
 
-
-        <h3>
-        ${member.username}
-        </h3>
+        <h3>${member.username}</h3>
 
         `;
 
 
-
-        card.addEventListener("click",()=>{
-
+        card.onclick = () => {
 
             document.querySelectorAll(".person-card")
-            .forEach(item=>{
-
-                item.classList.remove("active");
-
-            });
-
-
+            .forEach(item => item.classList.remove("active"));
 
             card.classList.add("active");
 
-
-        });
-
+        };
 
 
-        container.appendChild(card);
+        if(index < 5){
 
+            godfatherList.appendChild(card);
+
+        } else {
+
+            highcouncilList.appendChild(card);
+
+        }
 
     });
 
-
 })
+.catch(err => {
 
-.catch(err=>{
-
-    console.log(
-        "Member API Error:",
-        err
-    );
+    console.log("Member API Error:", err);
 
 });
-
 
 
 /* ==========================================
