@@ -581,54 +581,84 @@ fetch("https://public-enemy-bot-cw8m.onrender.com/members")
 .then(res => res.json())
 .then(members => {
 
-    const godfatherList = document.getElementById("godfather-list");
-    const highcouncilList = document.getElementById("highcouncil-list");
+
+    const godfatherList =
+    document.getElementById("godfather-list");
 
 
-    members.forEach((member, index) => {
+    const highcouncilList =
+    document.getElementById("highcouncil-list");
 
-        const card = document.createElement("div");
+
+
+    members.forEach(member => {
+
+
+        const card =
+        document.createElement("div");
+
 
         card.className = "person-card";
 
 
         card.innerHTML = `
 
-        <img 
+        <img
         class="person-avatar"
         src="${member.avatar}">
 
-        <h3>${member.username}</h3>
+        <h3>
+        ${member.username}
+        </h3>
 
         `;
+
 
 
         card.onclick = () => {
 
             document.querySelectorAll(".person-card")
-            .forEach(item => item.classList.remove("active"));
+            .forEach(item =>
+                item.classList.remove("active")
+            );
 
             card.classList.add("active");
 
         };
 
 
-        if(index < 5){
+
+        if(member.group === "godfather"){
 
             godfatherList.appendChild(card);
 
-        } else {
+        }
+
+
+        else if(member.group === "highcouncil"){
 
             highcouncilList.appendChild(card);
 
         }
 
+
+        else{
+
+            // normal members if you add a section later
+
+        }
+
+
     });
+
 
 })
 .catch(err => {
 
-    console.log("Member API Error:", err);
+    console.log(
+        "Member API Error:",
+        err
+    );
 
 });
 
