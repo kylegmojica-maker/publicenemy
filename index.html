@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PUBLIC ENEMY</title>
+
+<meta name="description" content="PUBLIC ENEMY">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<canvas id="particles"></canvas>
+
+
+<div class="cursor"></div>
+
+
+
+<!-- ENTER SCREEN -->
+
+<div id="enter-screen">
+
+    <div class="enter-content">
+
+        <div class="enter-label">
+            WELCOME
+        </div>
+
+        <button id="enter-button">
+            ENTER
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<main id="website">
+
+
+
+<header class="navbar">
+
+    <div class="nav-logo">
+        PE
+    </div>
+
+
+    <nav>
+
+        <a href="#home">
+            HOME
+        </a>
+
+
+        <a href="https://discord.gg/PJ6S48X5Qq"
+        target="_blank">
+            DISCORD
+        </a>
+
+
+        <div class="views">
+
+            <span>
+                VIEWS
+            </span>
+
+            <strong id="view-count">
+                0
+            </strong>
+
+        </div>
+
+
+    </nav>
+
+
+</header>
+
+
+
+
+<section id="home" class="hero">
+
+
+<div class="hero-content">
+
+
+<div class="profile-wrapper">
+
+
+<div class="profile-ring"></div>
+
+
+<img
+src="https://media.discordapp.net/attachments/1489145774569951332/1508056143463710870/image-56.png?ex=6a73bafa&is=6a72697a&hm=81631db6f7b730b7ef8215a569b21e62ae67189cecedd90c6108031620fabf6b&=&format=webp&quality=lossless"
+class="main-profile"
+alt="Profile">
+
+
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+<section class="info-panel">
+
+
+<div class="info-box">
+
+<span class="info-label">
+IDENTITY
+</span>
+
+<h3>
+ENEMY
+</h3>
+
+</div>
+
+
+
+
+<div class="info-box">
+
+<span class="info-label">
+DISCORD
+</span>
+
+
+<a href="https://discord.gg/PJ6S48X5Qq"
+target="_blank"
+class="discord-button">
+
+JOIN SERVER
+
+</a>
+
+
+</div>
+
+
+
+
+<div class="info-box">
+
+
+<span class="info-label">
+STATUS
+</span>
+
+
+<div class="status-display">
+
+
+<span id="bot-status-dot"
+class="status-dot online">
+</span>
+
+
+<span id="bot-status">
+Loading...
+</span>
+
+
+</div>
+
+
+<div id="server-members">
+Loading members...
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+<section class="people-section">
+
+
+
+<div class="section-title">
+
+<span></span>
+
+<h2>
+GODFATHER
+</h2>
+
+<span></span>
+
+
+</div>
+
+
+
+<div class="people-grid"
+id="godfather-list">
+
+</div>
+
+
+
+
+<div class="section-title highcouncil-title">
+
+<span></span>
+
+<h2>
+HIGHCOUNCIL
+</h2>
+
+<span></span>
+
+
+</div>
+
+
+
+
+<div class="people-grid"
+id="highcouncil-list">
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+<div id="profile-modal"
+class="modal hidden">
+
+
+<div class="modal-content">
+
+
+<button id="close-modal"
+class="close-button">
+
+×
+
+</button>
+
+
+
+<img id="modal-avatar"
+src="">
+
+
+<h2 id="modal-name">
+User
+</h2>
+
+
+<p id="modal-username">
+@username
+</p>
+
+
+
+<div class="modal-status">
+
+<span id="modal-status-dot"
+class="status-dot">
+
+</span>
+
+
+<span id="modal-status">
+Offline
+</span>
+
+
+</div>
+
+
+
+<div class="modal-id">
+
+Discord ID:
+
+<span id="modal-discord-id">
+-
+</span>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<footer>
+
+
+<div class="footer-line"></div>
+
+
+<p>
+THREAT TO EVERYONE
+</p>
+
+
+<span>
+© 2026 PUBLIC ENEMY
+</span>
+
+
+</footer>
+
+
+
+</main>
+
+
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
