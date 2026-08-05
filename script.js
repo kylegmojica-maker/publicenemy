@@ -949,6 +949,7 @@ document.querySelectorAll(".person-card").forEach(card => {
 
 });
 
+<<<<<<< HEAD
 fetch("https://public-enemy-bot-cw8m.onrender.com")
 .then(res => res.json())
 .then(members => {
@@ -970,6 +971,8 @@ fetch("https://public-enemy-bot-cw8m.onrender.com")
 
 });
 
+=======
+>>>>>>> 9cc54f59d8b915008442a0d457f5dd065e1c89ce
 /* ==========================================
    START WEBSITE
 ========================================== */
