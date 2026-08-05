@@ -979,3 +979,24 @@ fetch("https://public-enemy-bot-cw8m.onrender.com")
 
 
 loadPeople();
+
+fetch("https://public-enemy-bot-cw8m.onrender.com/members")
+.then(res => res.json())
+.then(members => {
+
+    const container = document.querySelector(".people-grid");
+
+    container.innerHTML = "";
+
+    members.forEach(member => {
+
+        container.innerHTML += `
+        <div class="person-card">
+            <img class="person-avatar" src="${member.avatar}">
+            <h3>${member.username}</h3>
+        </div>
+        `;
+
+    });
+
+});
