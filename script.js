@@ -388,3 +388,6 @@ err
 
 });
 
+/* START WEBSITE */
+
+loadPeople();
