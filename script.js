@@ -936,6 +936,18 @@ fetch(DISCORD_API)
 
 });
 
+document.querySelectorAll(".person-card").forEach(card => {
+
+    card.addEventListener("click", () => {
+
+        document.querySelectorAll(".person-card")
+        .forEach(item => item.classList.remove("active"));
+
+        card.classList.add("active");
+
+    });
+
+});
 
 /* ==========================================
    START WEBSITE
