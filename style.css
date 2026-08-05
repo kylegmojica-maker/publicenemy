@@ -1,3 +1,8 @@
+/* ==========================================
+   PUBLIC ENEMY
+   WEBSITE STYLE
+========================================== */
+
 * {
     margin: 0;
     padding: 0;
@@ -12,22 +17,24 @@ html {
 
 body {
 
+    font-family: "Inter", sans-serif;
+
     min-height: 100vh;
 
-    background: #050505;
+    color: white;
 
-    color: #ffffff;
+    background-image: url("https://media.discordapp.net/attachments/1526941627418152970/1533885730936590438/Gemini_Generated_Image_cmvzocmvzocmvzoc.png?ex=6a741828&is=6a72c6a8&hm=be9aaeff57a0e8029ac7e77c109b7ea0268024439b3c0c10366f52057a4ebb63&=&format=webp&quality=lossless&width=1024&height=572");
 
-    font-family: "Inter", sans-serif;
+    background-size: cover;
+
+    background-position: center;
+
+    background-attachment: fixed;
 
     overflow-x: hidden;
 
 }
 
-
-/* =================================
-   BACKGROUND
-================================= */
 
 body::before {
 
@@ -37,103 +44,67 @@ body::before {
 
     inset: 0;
 
-    background-image:
-
-        linear-gradient(
-            rgba(0, 0, 0, 0.78),
-            rgba(0, 0, 0, 0.88)
-        ),
-
-        url("https://media.discordapp.net/attachments/1526941627418152970/1533885730936590438/Gemini_Generated_Image_cmvzocmvzocmvzoc.png?ex=6a741828&is=6a72c6a8&hm=be9aaeff57a0e8029ac7e77c109b7ea0268024439b3c0c10366f52057a4ebb63&=&format=webp&quality=lossless");
-
-    background-size: cover;
-
-    background-position: center;
-
-    background-repeat: no-repeat;
-
-    z-index: -3;
-
-}
-
-
-/* Extra dark overlay */
-
-body::after {
-
-    content: "";
-
-    position: fixed;
-
-    inset: 0;
-
-    background:
-
-        radial-gradient(
-            circle at center,
-            transparent 20%,
-            rgba(0, 0, 0, 0.45) 100%
-        );
-
-    pointer-events: none;
-
-    z-index: -2;
-
-}
-
-
-/* =================================
-   PARTICLES
-================================= */
-
-#particles {
-
-    position: fixed;
-
-    inset: 0;
-
-    width: 100%;
-
-    height: 100%;
-
-    pointer-events: none;
+    background: rgba(0,0,0,0.65);
 
     z-index: -1;
 
 }
 
 
-/* =================================
+/* ==========================================
+   PARTICLES
+========================================== */
+
+
+#particles {
+
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    z-index: 0;
+
+    pointer-events: none;
+
+}
+
+
+/* ==========================================
    CURSOR
-================================= */
+========================================== */
+
 
 .cursor {
 
     position: fixed;
 
-    width: 9px;
+    width: 20px;
 
-    height: 9px;
+    height: 20px;
 
-    border: 1px solid white;
+    border: 2px solid white;
 
     border-radius: 50%;
 
     pointer-events: none;
 
-    transform:
-        translate(-50%, -50%);
-
     z-index: 9999;
 
-    mix-blend-mode: difference;
+    transform: translate(-50%, -50%);
 
 }
 
 
-/* =================================
-   CLICK TO ENTER
-================================= */
+/* ==========================================
+   CLICK ENTER
+========================================== */
+
 
 #enter-screen {
 
@@ -143,28 +114,14 @@ body::after {
 
     display: flex;
 
-    align-items: center;
-
     justify-content: center;
 
-    background:
+    align-items: center;
 
-        linear-gradient(
-            rgba(0, 0, 0, 0.88),
-            rgba(0, 0, 0, 0.94)
-        ),
+    background: black;
 
-        url("https://media.discordapp.net/attachments/1526941627418152970/1533885730936590438/Gemini_Generated_Image_cmvzocmvzocmvzoc.png?ex=6a741828&is=6a72c6a8&hm=be9aaeff57a0e8029ac7e77c109b7ea0268024439b3c0c10366f52057a4ebb63&=&format=webp&quality=lossless");
+    z-index: 999;
 
-    background-size: cover;
-
-    background-position: center;
-
-    z-index: 1000;
-
-    transition:
-        opacity 0.8s ease,
-        visibility 0.8s ease;
 
 }
 
@@ -173,7 +130,9 @@ body::after {
 
     opacity: 0;
 
-    visibility: hidden;
+    pointer-events: none;
+
+    transition: 0.8s;
 
 }
 
@@ -187,53 +146,37 @@ body::after {
 
 .enter-label {
 
-    color: #777;
+    letter-spacing: 5px;
 
-    font-size: 10px;
-
-    letter-spacing: 8px;
-
-    margin-bottom: 25px;
+    opacity: .7;
 
 }
 
 
 .enter-content h1 {
 
-    font-family: "Oswald", sans-serif;
+    font-family: "Oswald";
 
-    font-size: clamp(
-        35px,
-        7vw,
-        80px
-    );
+    font-size: 70px;
 
-    letter-spacing: 12px;
-
-    font-weight: 600;
+    margin: 20px;
 
 }
 
 
 #enter-button {
 
-    margin-top: 45px;
-
-    padding:
-        13px 40px;
+    padding: 14px 45px;
 
     background: transparent;
 
+    border: 1px solid white;
+
     color: white;
 
-    border:
-        1px solid #555;
+    cursor: pointer;
 
-    font-size: 10px;
-
-    letter-spacing: 5px;
-
-    transition: 0.3s;
+    transition: .3s;
 
 }
 
@@ -244,52 +187,38 @@ body::after {
 
     color: black;
 
-    border-color: white;
-
-    box-shadow:
-        0 0 25px
-        rgba(255,255,255,0.2);
-
 }
 
 
-/* =================================
+
+/* ==========================================
    WEBSITE
-================================= */
+========================================== */
+
 
 #website {
 
-    opacity: 0;
+    position: relative;
 
-    transition:
-        opacity 1s ease;
-
-}
-
-
-#website.visible {
-
-    opacity: 1;
+    z-index: 2;
 
 }
 
 
-/* =================================
+.visible {
+
+    display: block;
+
+}
+
+
+
+/* ==========================================
    NAVBAR
-================================= */
+========================================== */
+
 
 .navbar {
-
-    position: fixed;
-
-    top: 0;
-
-    left: 0;
-
-    width: 100%;
-
-    padding:
-        25px 5%;
 
     display: flex;
 
@@ -297,525 +226,91 @@ body::after {
 
     align-items: center;
 
-    z-index: 100;
-
-    background:
-        rgba(0,0,0,0.2);
-
-    backdrop-filter:
-        blur(12px);
-
-    border-bottom:
-        1px solid
-        rgba(255,255,255,0.06);
+    padding: 30px 8%;
 
 }
 
 
 .nav-logo {
 
-    font-size: 10px;
+    font-family: "Oswald";
 
-    letter-spacing: 5px;
-
-    color: #aaa;
-
-}
-
-
-.navbar nav {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 30px;
-
-}
-
-
-.navbar nav a {
-
-    color: #888;
-
-    text-decoration: none;
-
-    font-size: 10px;
+    font-size: 25px;
 
     letter-spacing: 3px;
 
-    transition: 0.3s;
+}
+
+
+nav {
+
+    display: flex;
+
+    gap: 25px;
+
+    align-items: center;
 
 }
 
 
-.navbar nav a:hover {
+nav a {
 
     color: white;
+
+    text-decoration: none;
 
 }
 
 
 .views {
 
-    display: flex;
+    border-left: 1px solid white;
 
-    gap: 8px;
-
-    align-items: center;
-
-    padding:
-        9px 15px;
-
-    border:
-        1px solid
-        rgba(255,255,255,0.15);
-
-    border-radius: 30px;
-
-    font-size: 9px;
-
-    letter-spacing: 2px;
-
-    color: #777;
+    padding-left: 20px;
 
 }
 
 
-.views strong {
 
-    color: white;
-
-}
-
-
-/* =================================
+/* ==========================================
    HERO
-================================= */
+========================================== */
+
 
 .hero {
 
-    min-height: 100vh;
+    min-height: 80vh;
 
     display: flex;
 
-    align-items: center;
-
     justify-content: center;
 
-    text-align: center;
+    align-items: center;
 
 }
 
 
 .hero-content {
 
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
+    text-align: center;
 
 }
 
-
-/* PROFILE */
 
 .profile-wrapper {
 
     position: relative;
 
-    width: 210px;
+    width: 220px;
 
-    height: 210px;
-
-}
-
-
-.main-profile {
-
-    width: 210px;
-
-    height: 210px;
-
-    object-fit: cover;
-
-    border-radius: 50%;
-
-    border:
-        1px solid
-        rgba(255,255,255,0.7);
-
-    position: relative;
-
-    z-index: 2;
-
-    box-shadow:
-
-        0 0 35px
-        rgba(0,0,0,0.8);
-
-}
-
-
-.profile-ring {
-
-    position: absolute;
-
-    inset: -10px;
-
-    border:
-        1px solid
-        rgba(255,255,255,0.15);
-
-    border-radius: 50%;
-
-    animation:
-        rotateRing 12s
-        linear infinite;
-
-}
-
-
-@keyframes rotateRing {
-
-    from {
-
-        transform:
-            rotate(0deg);
-
-    }
-
-    to {
-
-        transform:
-            rotate(360deg);
-
-    }
-
-}
-
-
-/* TITLE */
-
-.main-title {
-
-    margin-top: 35px;
-
-    font-family: "Oswald", sans-serif;
-
-    font-size: clamp(
-        35px,
-        6vw,
-        70px
-    );
-
-    font-weight: 600;
-
-    letter-spacing: 12px;
-
-}
-
-
-.title-line {
-
-    width: 80px;
-
-    height: 1px;
-
-    background: white;
-
-    margin-top: 25px;
-
-    opacity: 0.4;
-
-}
-
-
-/* =================================
-   INFO PANEL
-================================= */
-
-.info-panel {
-
-    width: 85%;
-
-    max-width: 1000px;
-
-    margin:
-        0 auto 130px;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(3, 1fr);
-
-    background:
-        rgba(0,0,0,0.4);
-
-    backdrop-filter:
-        blur(15px);
-
-    border:
-        1px solid
-        rgba(255,255,255,0.1);
-
-    border-radius: 18px;
-
-    overflow: hidden;
-
-}
-
-
-.info-box {
-
-    padding: 35px;
-
-    text-align: center;
-
-    border-right:
-        1px solid
-        rgba(255,255,255,0.08);
-
-}
-
-
-.info-box:last-child {
-
-    border-right: none;
-
-}
-
-
-.info-label {
-
-    display: block;
-
-    color: #666;
-
-    font-size: 9px;
-
-    letter-spacing: 4px;
-
-    margin-bottom: 15px;
-
-}
-
-
-.info-box h3 {
-
-    font-size: 14px;
-
-    letter-spacing: 4px;
-
-}
-
-
-.discord-button {
-
-    display: inline-block;
-
-    color: white;
-
-    text-decoration: none;
-
-    border:
-        1px solid #555;
-
-    padding:
-        10px 20px;
-
-    font-size: 9px;
-
-    letter-spacing: 3px;
-
-    transition: 0.3s;
-
-}
-
-
-.discord-button:hover {
-
-    background: white;
-
-    color: black;
-
-}
-
-
-.status-display {
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    gap: 10px;
-
-    font-size: 11px;
-
-    letter-spacing: 2px;
-
-}
-
-
-/* =================================
-   STATUS
-================================= */
-
-.status-dot {
-
-    width: 9px;
-
-    height: 9px;
-
-    border-radius: 50%;
-
-    display: inline-block;
-
-}
-
-
-.status-dot.online {
-
-    background: #bdbdbd;
-
-    box-shadow:
-        0 0 8px
-        rgba(255,255,255,0.5);
-
-}
-
-
-.status-dot.idle {
-
-    background: #777;
-
-}
-
-
-.status-dot.dnd {
-
-    background: #444;
-
-}
-
-
-.status-dot.offline {
-
-    background: #222;
-
-}
-
-
-/* =================================
-   PEOPLE
-================================= */
-
-.people-section {
-
-    width: 90%;
-
-    max-width: 1200px;
+    height: 220px;
 
     margin: auto;
 
 }
 
 
-.section-title {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 25px;
-
-    margin-bottom: 55px;
-
-}
-
-
-.section-title span {
-
-    flex: 1;
-
-    height: 1px;
-
-    background:
-        rgba(255,255,255,0.12);
-
-}
-
-
-.section-title h2 {
-
-    font-family: "Oswald", sans-serif;
-
-    font-size: 18px;
-
-    font-weight: 500;
-
-    letter-spacing: 7px;
-
-}
-
-
-.people-grid {
-
-    display: flex;
-
-    justify-content: center;
-
-    flex-wrap: wrap;
-
-    gap: 45px;
-
-    margin-bottom: 120px;
-
-}
-
-
-/* PERSON */
-
-.person-card {
-
-    width: 140px;
-
-    text-align: center;
-
-    cursor: pointer;
-
-    transition:
-        transform 0.3s ease;
-
-}
-
-
-.person-card:hover {
-
-    transform:
-        translateY(-8px);
-
-}
-
-
-.person-avatar-wrapper {
-
-    position: relative;
-
-    width: 105px;
-
-    height: 105px;
-
-    margin:
-        0 auto 18px;
-
-}
-
-
-.person-avatar {
+.main-profile {
 
     width: 100%;
 
@@ -825,397 +320,336 @@ body::after {
 
     border-radius: 50%;
 
-    background: #111;
+    position: relative;
 
-    border:
-        1px solid
-        rgba(255,255,255,0.4);
-
-    transition: 0.3s;
+    z-index: 2;
 
 }
 
 
-.person-card:hover
-.person-avatar {
 
-    border-color: white;
-
-    box-shadow:
-        0 0 25px
-        rgba(255,255,255,0.15);
-
-}
-
-
-.person-status {
+.profile-ring {
 
     position: absolute;
 
-    right: 3px;
+    inset: -10px;
 
-    bottom: 3px;
+    border-radius: 50%;
 
-    width: 16px;
+    border: 2px solid white;
 
-    height: 16px;
-
-    border:
-        3px solid
-        #050505;
+    animation: rotate 8s linear infinite;
 
 }
+
+
+
+@keyframes rotate {
+
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+
+}
+
+
+
+.main-title {
+
+    font-family: "Oswald";
+
+    font-size: 70px;
+
+    margin-top: 30px;
+
+    letter-spacing: 5px;
+
+}
+
+
+.title-line {
+
+    width: 120px;
+
+    height: 2px;
+
+    background: white;
+
+    margin: 20px auto;
+
+}
+
+
+
+/* ==========================================
+   INFO PANEL
+========================================== */
+
+
+.info-panel {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 25px;
+
+    flex-wrap: wrap;
+
+}
+
+
+.info-box {
+
+    background: rgba(0,0,0,.5);
+
+    border: 1px solid rgba(255,255,255,.2);
+
+    padding: 25px;
+
+    width: 250px;
+
+    text-align: center;
+
+    backdrop-filter: blur(10px);
+
+}
+
+
+.info-label {
+
+    font-size: 12px;
+
+    letter-spacing: 3px;
+
+    opacity: .6;
+
+}
+
+
+.discord-button {
+
+    display: inline-block;
+
+    margin-top: 15px;
+
+    color:white;
+
+    border:1px solid white;
+
+    padding:10px 20px;
+
+    text-decoration:none;
+
+}
+
+
+
+/* ==========================================
+   PEOPLE CARDS
+========================================== */
+
+
+.people-section {
+
+    padding: 80px 8%;
+
+}
+
+
+.section-title {
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    justify-content:center;
+
+    margin:50px;
+
+}
+
+
+.section-title span {
+
+    height:1px;
+
+    width:100px;
+
+    background:white;
+
+}
+
+
+
+.people-grid {
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+
+    gap:20px;
+
+}
+
+
+
+.person-card {
+
+    background:rgba(0,0,0,.5);
+
+    padding:20px;
+
+    text-align:center;
+
+    border:1px solid rgba(255,255,255,.2);
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+.person-card:hover {
+
+    transform:translateY(-8px);
+
+}
+
+
+
+.person-avatar {
+
+    width:90px;
+
+    height:90px;
+
+    border-radius:50%;
+
+}
+
 
 
 .person-name {
 
-    font-size: 12px;
+    margin-top:15px;
 
-    font-weight: 600;
-
-    letter-spacing: 2px;
+    font-weight:bold;
 
 }
+
 
 
 .person-username {
 
-    margin-top: 7px;
-
-    color: #666;
-
-    font-size: 9px;
+    opacity:.6;
 
 }
 
 
-/* =================================
+
+/* ==========================================
    MODAL
-================================= */
+========================================== */
+
 
 .modal {
 
-    position: fixed;
+    position:fixed;
 
-    inset: 0;
+    inset:0;
 
-    display: flex;
+    background:rgba(0,0,0,.8);
 
-    align-items: center;
+    display:flex;
 
-    justify-content: center;
+    justify-content:center;
 
-    background:
-        rgba(0,0,0,0.8);
+    align-items:center;
 
-    backdrop-filter:
-        blur(15px);
-
-    z-index: 500;
+    z-index:999;
 
 }
+
 
 
 .modal.hidden {
 
-    display: none;
+    display:none;
 
 }
 
 
 .modal-content {
 
-    width: 90%;
+    background:#111;
 
-    max-width: 400px;
+    padding:40px;
 
-    padding:
-        50px 35px;
+    text-align:center;
 
-    text-align: center;
-
-    position: relative;
-
-    background:
-        rgba(10,10,10,0.95);
-
-    border:
-        1px solid
-        rgba(255,255,255,0.2);
-
-    border-radius: 20px;
+    border:1px solid white;
 
 }
+
+
+.modal-content img {
+
+    width:120px;
+
+    height:120px;
+
+    border-radius:50%;
+
+}
+
 
 
 .close-button {
 
-    position: absolute;
+    background:none;
 
-    top: 15px;
+    border:none;
 
-    right: 20px;
+    color:white;
 
-    background: none;
+    font-size:30px;
 
-    border: none;
-
-    color: #777;
-
-    font-size: 28px;
+    cursor:pointer;
 
 }
 
 
-#modal-avatar {
 
-    width: 120px;
-
-    height: 120px;
-
-    object-fit: cover;
-
-    border-radius: 50%;
-
-    border:
-        1px solid #777;
-
-    margin-bottom: 20px;
-
-}
-
-
-#modal-name {
-
-    font-family: "Oswald", sans-serif;
-
-    letter-spacing: 3px;
-
-}
-
-
-#modal-username {
-
-    color: #666;
-
-    margin-top: 8px;
-
-}
-
-
-.modal-status {
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    gap: 10px;
-
-    margin-top: 25px;
-
-    font-size: 11px;
-
-}
-
-
-.modal-id {
-
-    margin-top: 25px;
-
-    padding-top: 20px;
-
-    border-top:
-        1px solid
-        rgba(255,255,255,0.1);
-
-    color: #555;
-
-    font-size: 9px;
-
-}
-
-
-/* =================================
+/* ==========================================
    FOOTER
-================================= */
+========================================== */
+
 
 footer {
 
-    text-align: center;
+    text-align:center;
 
-    padding:
-        80px 20px 45px;
+    padding:50px;
+
+    opacity:.7;
 
 }
 
 
 .footer-line {
 
-    width: 100px;
+    height:1px;
 
-    height: 1px;
+    background:white;
 
-    background: #444;
-
-    margin:
-        0 auto 30px;
-
-}
-
-
-footer p {
-
-    font-family: "Oswald", sans-serif;
-
-    font-size: 18px;
-
-    letter-spacing: 8px;
-
-    color: #aaa;
-
-}
-
-
-footer span {
-
-    display: block;
-
-    margin-top: 15px;
-
-    color: #444;
-
-    font-size: 9px;
-
-    letter-spacing: 3px;
-
-}
-
-
-/* =================================
-   MOBILE
-================================= */
-
-@media (max-width: 700px) {
-
-
-    .navbar {
-
-        padding:
-            20px;
-
-    }
-
-
-    .nav-logo {
-
-        display: none;
-
-    }
-
-
-    .navbar nav {
-
-        width: 100%;
-
-        justify-content: center;
-
-        gap: 15px;
-
-    }
-
-
-    .navbar nav a {
-
-        font-size: 8px;
-
-        letter-spacing: 2px;
-
-    }
-
-
-    .views {
-
-        font-size: 8px;
-
-    }
-
-
-    .profile-wrapper {
-
-        width: 160px;
-
-        height: 160px;
-
-    }
-
-
-    .main-profile {
-
-        width: 160px;
-
-        height: 160px;
-
-    }
-
-
-    .main-title {
-
-        font-size: 32px;
-
-        letter-spacing: 7px;
-
-    }
-
-
-    .info-panel {
-
-        grid-template-columns: 1fr;
-
-    }
-
-
-    .info-box {
-
-        border-right: none;
-
-        border-bottom:
-            1px solid
-            rgba(255,255,255,0.08);
-
-    }
-
-
-    .info-box:last-child {
-
-        border-bottom: none;
-
-    }
-
-
-    .people-grid {
-
-        gap: 30px;
-
-    }
-
-
-    .section-title h2 {
-
-        font-size: 13px;
-
-        letter-spacing: 5px;
-
-    }
-
-
-    footer p {
-
-        font-size: 14px;
-
-        letter-spacing: 5px;
-
-    }
+    margin-bottom:20px;
 
 }
