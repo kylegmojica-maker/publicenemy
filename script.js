@@ -888,7 +888,61 @@ function animateParticles() {
 
 animateParticles();
 
+/* ==========================================
+   DISCORD BOT LIVE DATA
+========================================== */
 
+
+const DISCORD_API = "YOUR_RENDER_URL/stats";
+
+
+fetch(DISCORD_API)
+
+.then(response => response.json())
+
+.then(data => {
+
+    const botStatus = document.getElementById(
+        "bot-status"
+    );
+
+    const serverMembers = document.getElementById(
+        "server-members"
+    );
+
+
+    if (data.online) {
+
+        if (botStatus) {
+            botStatus.textContent = "🟢 Online";
+        }
+
+
+        if (serverMembers) {
+            serverMembers.textContent =
+            `${data.members} Members`;
+        }
+
+    }
+
+})
+
+.catch(error => {
+
+    console.log(
+        "Discord API Error:",
+        error
+    );
+
+});
+
+
+/* ==========================================
+   START WEBSITE
+========================================== */
+
+
+loadPeople();
 
 /* ==========================================
    START WEBSITE
