@@ -1103,3 +1103,15 @@ footer {
     transform: scale(1.08);
 
 }
+
+.person-avatar {
+    clip-path: circle(50%);
+    -webkit-clip-path: circle(50%);
+    background: none !important;
+}
+
+.person-card img {
+    border-radius: 50% !important;
+    object-fit: cover;
+    overflow: hidden;
+}
