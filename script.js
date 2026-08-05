@@ -893,7 +893,7 @@ animateParticles();
 ========================================== */
 
 
-const DISCORD_API = "YOUR_RENDER_URL/stats";
+const DISCORD_API = "https://public-enemy-bot-cw8m.onrender.com/stats";
 
 
 fetch(DISCORD_API)
@@ -936,13 +936,6 @@ fetch(DISCORD_API)
 
 });
 
-
-/* ==========================================
-   START WEBSITE
-========================================== */
-
-
-loadPeople();
 
 /* ==========================================
    START WEBSITE
