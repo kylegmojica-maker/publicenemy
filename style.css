@@ -2,6 +2,9 @@
    PUBLIC ENEMY WEBSITE STYLE
 ========================================== */
 
+body {
+    background: red !important;
+}
 
 * {
     margin: 0;
