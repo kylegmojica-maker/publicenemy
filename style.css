@@ -788,3 +788,202 @@ footer {
     }
 
 }
+/* ==========================================
+   CLEAN SLEEK PUBLIC ENEMY DESIGN
+========================================== */
+
+
+/* Remove large title */
+
+.main-title,
+.title-line {
+
+    display:none;
+
+}
+
+
+
+/* Move profile section slightly cleaner */
+
+.hero {
+
+    min-height:65vh;
+
+}
+
+
+
+/* Sleek Discord button */
+
+.discord-button {
+
+    display:inline-flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+
+    padding:10px 22px;
+
+
+    color:white !important;
+
+    text-decoration:none;
+
+
+    font-size:13px;
+
+    font-weight:600;
+
+    letter-spacing:1px;
+
+
+    border-radius:10px;
+
+
+    border:1px solid rgba(255,255,255,.25);
+
+
+    background:rgba(255,255,255,.08);
+
+
+    backdrop-filter:blur(12px);
+
+
+    transition:.35s ease;
+
+
+}
+
+
+
+.discord-button:hover {
+
+
+    background:white;
+
+
+    color:black !important;
+
+
+    transform:translateY(-4px);
+
+
+    box-shadow:
+
+    0 0 25px rgba(255,255,255,.5);
+
+
+}
+
+
+
+/* Cleaner info cards */
+
+
+.info-box {
+
+
+    height:170px;
+
+
+    display:flex;
+
+
+    flex-direction:column;
+
+
+    justify-content:center;
+
+
+    align-items:center;
+
+
+}
+
+
+
+/* Make identity text cleaner */
+
+
+.info-box h3 {
+
+
+    margin-top:10px;
+
+
+    font-size:22px;
+
+
+    letter-spacing:2px;
+
+
+}
+
+
+
+/* Status cleaner */
+
+
+.status-display {
+
+
+    margin-top:15px;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:10px;
+
+
+}
+
+
+
+/* Smooth glass effect */
+
+
+.info-box,
+.person-card {
+
+
+    background:
+
+    rgba(0,0,0,.45);
+
+
+    backdrop-filter:blur(15px);
+
+
+}
+
+
+
+/* Keep profile premium */
+
+
+.profile-wrapper {
+
+
+    transform:scale(.95);
+
+
+}
+
+
+
+.main-profile {
+
+
+    box-shadow:
+
+    0 0 50px rgba(255,255,255,.35);
+
+
+}
