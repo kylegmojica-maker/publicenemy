@@ -589,6 +589,20 @@ document.addEventListener(
             document.getElementById("background-music");
 
 
+        /* ==================================
+           MUSIC SOURCE
+           
+           ONLY THIS PART WAS CHANGED
+        ================================== */
+
+        if (music) {
+
+            music.src =
+                "https://raw.githubusercontent.com/pbe-wrld/publicenemy/main/lv_0_20260809194350.mp4";
+
+        }
+
+
         if (enterButton) {
 
             enterButton.addEventListener(
