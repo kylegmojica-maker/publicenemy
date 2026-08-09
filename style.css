@@ -491,7 +491,6 @@ nav a:hover {
 
 /* ==========================================
    MEMBERS AUTO SCROLLER
-   SMOOTH + SEAMLESS INFINITE LOOP
 ========================================== */
 
 #members-list {
@@ -504,11 +503,9 @@ nav a:hover {
     display: flex !important;
     flex-direction: column !important;
 
-    gap: 18px;
+    gap: 20px;
 
     padding: 20px 0 !important;
-
-    position: relative;
 }
 
 
@@ -516,14 +513,13 @@ nav a:hover {
 
 #members-list .member-scroll-row {
     display: flex !important;
-
     flex-direction: row !important;
+
     align-items: center;
 
     gap: 35px;
 
     width: max-content !important;
-    min-width: max-content;
 
     margin: 0;
     padding: 5px 0;
@@ -531,104 +527,70 @@ nav a:hover {
     flex-shrink: 0;
 
     will-change: transform;
-
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
 }
 
 
-/* ==========================================
-   ROW 1
-========================================== */
+/* ROW 1 */
 
 #members-list .member-row-1 {
-    animation:
-        membersScrollLeft
-        22s
-        linear
-        infinite;
-
-    animation-timing-function: linear;
+    animation: membersScrollLeft 30s linear infinite;
 }
 
 
-/* ==========================================
-   ROW 2
-========================================== */
+/* ROW 2 */
 
 #members-list .member-row-2 {
-    animation:
-        membersScrollRight
-        25s
-        linear
-        infinite;
-
-    animation-timing-function: linear;
+    animation: membersScrollRight 30s linear infinite;
 }
 
 
-/* ==========================================
-   SMOOTH INFINITE LOOP
-========================================== */
+/* PAUSE */
 
-@keyframes membersScrollLeft {
-
-    from {
-        transform: translate3d(0, 0, 0);
-    }
-
-    to {
-        transform: translate3d(-50%, 0, 0);
-    }
-
+#members-list.scroll-paused .member-scroll-row {
+    animation-play-state: paused !important;
 }
 
 
-@keyframes membersScrollRight {
-
-    from {
-        transform: translate3d(-50%, 0, 0);
-    }
-
-    to {
-        transform: translate3d(0, 0, 0);
-    }
-
-}
-
-
-/* ==========================================
-   MEMBER CARDS
-========================================== */
+/* MEMBER */
 
 #members-list .scroll-member {
-    flex: 0 0 auto !important;
+    flex: 0 0 150px !important;
 
     width: 150px;
     min-width: 150px;
 
     cursor: pointer;
 
-    transform: translateZ(0);
-
-    transition:
-        transform 0.3s ease;
+    transition: transform 0.3s ease;
 }
 
-
 #members-list .scroll-member:hover {
-    transform:
-        translateY(-6px)
-        scale(1.04);
+    transform: translateY(-6px) scale(1.04);
 }
 
 
 /* ==========================================
-   PAUSE WHEN HOVERING
+   LOOP
 ========================================== */
 
-#members-list.scroll-paused .member-scroll-row {
-    animation-play-state: paused !important;
+@keyframes membersScrollLeft {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes membersScrollRight {
+    from {
+        transform: translateX(-50%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
 }
 
 
@@ -644,40 +606,14 @@ nav a:hover {
     }
 
     #members-list .member-scroll-row {
-        gap: 22px;
-    }
-
-    #members-list .scroll-member {
-        width: 120px;
-        min-width: 120px;
-    }
-
-}
-
-/* ==========================================
-   MOBILE
-========================================== */
-
-@media (max-width: 700px) {
-
-    #members-list {
-        gap: 10px;
-
-        padding: 15px 0 !important;
-    }
-
-
-    #members-list .member-scroll-row {
         gap: 20px;
     }
 
-
     #members-list .scroll-member {
+        flex-basis: 120px !important;
         width: 120px;
-
         min-width: 120px;
     }
-
 }
 
 /* ==========================================
