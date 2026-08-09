@@ -23,144 +23,11 @@
         rel="stylesheet"
     >
 
-    <style>
-
-        body {
-            background-image: url("https://media.discordapp.net/attachments/1526941627418152970/1533885730936590438/Gemini_Generated_Image_cmvzocmvzocmvzoc.png?ex=6a795e28&is=6a780ca8&hm=024de590d97683448564e054e4e06023ea920e80f8ab28a134c23f11dca822e0&format=webp&quality=lossless&width=1024&height=572");
-
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
-
-        /* ==========================================
-           ENTER SCREEN
-        ========================================== */
-
-        #enter-screen {
-            position: fixed;
-            inset: 0;
-
-            width: 100vw;
-            height: 100vh;
-
-            z-index: 999999;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            opacity: 1;
-            visibility: visible;
-
-            pointer-events: auto;
-
-            transition:
-                opacity 0.6s ease,
-                visibility 0.6s ease;
-        }
-
-        #enter-screen .enter-content {
-            position: relative;
-
-            z-index: 1000000;
-
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-
-            pointer-events: auto;
-        }
-
-        #enter-button {
-            position: relative;
-
-            z-index: 1000001;
-
-            pointer-events: auto;
-
-            cursor: pointer;
-
-            user-select: none;
-            -webkit-user-select: none;
-        }
-
-        #enter-screen.entered {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-
-        /* ==========================================
-           MEMBERS SCROLLER
-        ========================================== */
-
-        .members-scroller {
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-            padding: 10px 0 20px;
-        }
-
-        .member-scroll-row {
-            display: flex;
-            width: max-content;
-            gap: 25px;
-            margin: 12px 0;
-            will-change: transform;
-        }
-
-        .member-row-1 {
-            animation: membersScrollLeft 28s linear infinite;
-        }
-
-        .member-row-2 {
-            animation: membersScrollRight 32s linear infinite;
-        }
-
-        .members-scroller.scroll-paused .member-scroll-row {
-            animation-play-state: paused;
-        }
-
-        .scroll-member {
-            flex: 0 0 auto;
-            min-width: 150px;
-            cursor: pointer;
-            transition: transform 0.25s ease;
-        }
-
-        .scroll-member:hover {
-            transform: translateY(-5px) scale(1.04);
-        }
-
-        @keyframes membersScrollLeft {
-            from {
-                transform: translateX(0);
-            }
-
-            to {
-                transform: translateX(-50%);
-            }
-        }
-
-        @keyframes membersScrollRight {
-            from {
-                transform: translateX(-50%);
-            }
-
-            to {
-                transform: translateX(0);
-            }
-        }
-
-    </style>
-
 </head>
 
 
 <body>
+
 
     <!-- ==========================================
          ENTER SCREEN
@@ -203,257 +70,346 @@
 
 
     <!-- ==========================================
-         NAVIGATION
+         MAIN WEBSITE
     ========================================== -->
 
-    <header class="navbar">
+    <div id="main-site">
 
-        <div class="nav-logo">
-            PE
-        </div>
 
-        <nav>
+        <!-- ==========================================
+             NAVIGATION
+        ========================================== -->
 
-            <a href="#home">
-                HOME
-            </a>
+        <header class="navbar">
 
-            <a
-                href="https://discord.gg/PJ6S48X5Qq"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                DISCORD
-            </a>
-
-            <div class="views">
-
-                <span>
-                    VIEWS
-                </span>
-
-                <strong id="view-count">
-                    0
-                </strong>
-
+            <div class="nav-logo">
+                PE
             </div>
 
-        </nav>
+            <nav>
 
-    </header>
-
-
-    <!-- ==========================================
-         MAIN
-    ========================================== -->
-
-    <main>
-
-        <!-- HERO -->
-
-        <section
-            id="home"
-            class="hero"
-        >
-
-            <div class="hero-content">
-
-                <!-- MAIN PROFILE -->
-
-                <div class="profile-wrapper">
-
-                    <div class="profile-ring"></div>
-
-                    <img
-                        src="https://media.discordapp.net/attachments/1489145774569951332/1508056143463710870/image-56.png?ex=6a7900fa&is=6a77af7a&hm=18a90b56911f45264603c614bf2b86f73ee75059be7b3ee245390ac309b6bb9b&format=webp&quality=lossless&width=640&height=640"
-                        class="main-profile"
-                        alt="PUBLIC ENEMY"
-                    >
-
-                </div>
-
-
-                <!-- NAME -->
-
-                <h1 class="main-title">
-                    PUBLIC ENEMY
-                </h1>
-
-
-                <!-- DISCORD BUTTON -->
+                <a href="#home">
+                    HOME
+                </a>
 
                 <a
                     href="https://discord.gg/PJ6S48X5Qq"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="discord-button"
                 >
-                    JOIN SERVER
+                    DISCORD
                 </a>
 
-            </div>
+                <div class="views">
 
-        </section>
+                    <span>
+                        VIEWS
+                    </span>
+
+                    <strong id="view-count">
+                        0
+                    </strong>
+
+                </div>
+
+            </nav>
+
+        </header>
 
 
         <!-- ==========================================
-             DISCORD PEOPLE
+             MAIN
         ========================================== -->
 
-        <section
-            id="people"
-            class="people-section"
+        <main>
+
+
+            <!-- HERO -->
+
+            <section
+                id="home"
+                class="hero"
+            >
+
+                <div class="hero-content">
+
+
+                    <!-- MAIN PROFILE -->
+
+                    <div class="profile-wrapper">
+
+                        <div class="profile-ring"></div>
+
+                        <img
+                            src="https://media.discordapp.net/attachments/1489145774569951332/1508056143463710870/image-56.png?ex=6a7900fa&is=6a77af7a&hm=18a90b56911f45264603c614bf2b86f73ee75059be7b3ee245390ac309b6bb9b&format=webp&quality=lossless&width=640&height=640"
+                            class="main-profile"
+                            alt="PUBLIC ENEMY"
+                        >
+
+                    </div>
+
+
+                    <!-- DISCORD BUTTON -->
+
+                    <a
+                        href="https://discord.gg/PJ6S48X5Qq"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="discord-button"
+                    >
+                        JOIN SERVER
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <!-- ==========================================
+                 DISCORD PEOPLE
+            ========================================== -->
+
+            <section
+                id="people"
+                class="people-section"
+            >
+
+
+                <!-- GODFATHER -->
+
+                <div class="role-section">
+
+                    <div class="role-title">
+                        GODFATHER
+                    </div>
+
+                    <div
+                        id="godfather-list"
+                        class="people-grid"
+                    ></div>
+
+                </div>
+
+
+                <!-- HIGHCOUNCIL -->
+
+                <div class="role-section">
+
+                    <div class="role-title">
+                        HIGHCOUNCIL
+                    </div>
+
+                    <div
+                        id="highcouncil-list"
+                        class="people-grid"
+                    ></div>
+
+                </div>
+
+
+                <!-- MEMBERS -->
+
+                <div class="role-section">
+
+                    <div class="role-title">
+                        MEMBERS
+                    </div>
+
+                    <div
+                        id="members-list"
+                        class="people-grid"
+                    ></div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+
+        <!-- ==========================================
+             PROFILE POPUP
+        ========================================== -->
+
+        <div
+            id="profile-modal"
+            class="profile-modal hidden"
         >
 
-            <!-- GODFATHER -->
+            <div class="profile-modal-content">
 
-            <div class="role-section">
 
-                <div class="role-title">
-                    GODFATHER
-                </div>
+                <button
+                    id="close-profile"
+                    class="close-profile"
+                    type="button"
+                >
+                    ×
+                </button>
+
+
+                <img
+                    id="modal-avatar"
+                    class="modal-avatar"
+                    src=""
+                    alt="Discord Profile"
+                >
+
+
+                <h2 id="modal-name">
+                    Discord User
+                </h2>
+
+
+                <p id="modal-username">
+                    @username
+                </p>
+
 
                 <div
-                    id="godfather-list"
-                    class="people-grid"
-                ></div>
+                    id="modal-status"
+                    class="modal-status"
+                >
 
-            </div>
+                    <span class="status-dot"></span>
 
+                    <span>
+                        Offline
+                    </span>
 
-            <!-- HIGHCOUNCIL -->
-
-            <div class="role-section">
-
-                <div class="role-title">
-                    HIGHCOUNCIL
                 </div>
 
+
                 <div
-                    id="highcouncil-list"
-                    class="people-grid"
+                    id="modal-activity"
+                    class="modal-activity"
                 ></div>
 
-            </div>
 
+                <div class="modal-id">
 
-            <!-- MEMBERS -->
+                    <span>
+                        Discord ID:
+                    </span>
 
-            <div class="role-section">
+                    <strong id="modal-discord-id">
+                        -
+                    </strong>
 
-                <div class="role-title">
-                    MEMBERS
                 </div>
-
-                <div
-                    id="members-list"
-                    class="people-grid"
-                ></div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <!-- ==========================================
-         PROFILE POPUP
-    ========================================== -->
-
-    <div
-        id="profile-modal"
-        class="profile-modal hidden"
-    >
-
-        <div class="profile-modal-content">
-
-            <button
-                id="close-profile"
-                class="close-profile"
-                type="button"
-            >
-                ×
-            </button>
-
-
-            <img
-                id="modal-avatar"
-                class="modal-avatar"
-                src=""
-                alt="Discord Profile"
-            >
-
-
-            <h2 id="modal-name">
-                Discord User
-            </h2>
-
-
-            <p id="modal-username">
-                @username
-            </p>
-
-
-            <div
-                id="modal-status"
-                class="modal-status"
-            >
-
-                <span class="status-dot"></span>
-
-                <span>
-                    Offline
-                </span>
-
-            </div>
-
-
-            <div
-                id="modal-activity"
-                class="modal-activity"
-            ></div>
-
-
-            <div class="modal-id">
-
-                <span>
-                    Discord ID:
-                </span>
-
-                <strong id="modal-discord-id">
-                    -
-                </strong>
 
             </div>
 
         </div>
+
+
+        <!-- ==========================================
+             FOOTER
+        ========================================== -->
+
+        <footer>
+
+            <div class="footer-threat">
+                THREAT TO EVERYONE
+            </div>
+
+            <div class="footer-copy">
+                PUBLIC ENEMY
+            </div>
+
+        </footer>
 
     </div>
 
 
     <!-- ==========================================
-         FOOTER
+         ENTER BUTTON SCRIPT
+         Completely independent from script.js
     ========================================== -->
 
-    <footer>
+    <script>
 
-        <div class="footer-threat">
-            THREAT TO EVERYONE
-        </div>
+        (function () {
 
-        <div class="footer-copy">
-            PUBLIC ENEMY
-        </div>
+            const button =
+                document.getElementById("enter-button");
 
-    </footer>
+            const screen =
+                document.getElementById("enter-screen");
+
+            const music =
+                document.getElementById("background-music");
+
+
+            if (!button || !screen) {
+                return;
+            }
+
+
+            button.addEventListener(
+                "click",
+                function () {
+
+                    /* Prevent multiple clicks */
+
+                    if (
+                        screen.classList.contains("hidden")
+                    ) {
+                        return;
+                    }
+
+
+                    /* Start music */
+
+                    if (music) {
+
+                        music.volume = 0.35;
+
+                        const playPromise =
+                            music.play();
+
+                        if (playPromise) {
+
+                            playPromise.catch(
+                                function () {}
+                            );
+
+                        }
+
+                    }
+
+
+                    /* Hide ENTER screen */
+
+                    screen.classList.add("hidden");
+
+
+                    /* Remove it completely */
+
+                    setTimeout(
+                        function () {
+
+                            screen.style.display =
+                                "none";
+
+                        },
+                        700
+                    );
+
+                }
+            );
+
+        })();
+
+    </script>
 
 
     <!-- ==========================================
-         JAVASCRIPT
+         WEBSITE JAVASCRIPT
     ========================================== -->
 
     <script src="script.js"></script>
+
 
 </body>
 
