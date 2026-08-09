@@ -1,4 +1,4 @@
-```javascript
+ 
 /* ==========================================
    PUBLIC ENEMY
    WEBSITE JAVASCRIPT
@@ -143,12 +143,17 @@ function createPersonCard(person) {
         "person-card";
 
 
+    const avatar =
+        person.avatar || DEFAULT_AVATAR;
+
+
     card.innerHTML = `
 
         <img
             class="person-avatar"
-            src="${person.avatar || DEFAULT_AVATAR}"
+            src="${avatar}"
             alt="${person.username}"
+            draggable="false"
         >
 
         <h3>
@@ -165,19 +170,12 @@ function createPersonCard(person) {
             document
                 .querySelectorAll(".person-card")
                 .forEach(
-                    function (item) {
-
-                        item.classList.remove(
-                            "active"
-                        );
-
-                    }
+                    item =>
+                        item.classList.remove("active")
                 );
 
 
-            card.classList.add(
-                "active"
-            );
+            card.classList.add("active");
 
 
             openProfile(person);
@@ -192,85 +190,63 @@ function createPersonCard(person) {
 
 
 /* ==========================================
-   LOAD GODFATHER
+   LOAD GODFATHER + HIGHCOUNCIL
 ========================================== */
 
-function loadGodfather() {
+function loadPeople() {
 
-    const list =
+    const godfatherList =
         document.getElementById(
             "godfather-list"
         );
 
 
-    if (!list) return;
-
-
-    list.innerHTML = "";
-
-
-    godfather.forEach(
-        function (person) {
-
-            list.appendChild(
-                createPersonCard(person)
-            );
-
-        }
-    );
-
-}
-
-
-/* ==========================================
-   LOAD HIGHCOUNCIL
-========================================== */
-
-function loadHighcouncil() {
-
-    const list =
+    const highcouncilList =
         document.getElementById(
             "highcouncil-list"
         );
 
 
-    if (!list) return;
+    if (godfatherList) {
+
+        godfatherList.innerHTML = "";
 
 
-    list.innerHTML = "";
+        godfather.forEach(
+            person => {
+
+                godfatherList.appendChild(
+                    createPersonCard(person)
+                );
+
+            }
+        );
+
+    }
 
 
-    highcouncil.forEach(
-        function (person) {
+    if (highcouncilList) {
 
-            list.appendChild(
-                createPersonCard(person)
-            );
+        highcouncilList.innerHTML = "";
 
-        }
-    );
+
+        highcouncil.forEach(
+            person => {
+
+                highcouncilList.appendChild(
+                    createPersonCard(person)
+                );
+
+            }
+        );
+
+    }
 
 }
 
 
 /* ==========================================
-   GET MEMBER ID
-========================================== */
-
-function getMemberId(member) {
-
-    return String(
-        member.id ||
-        member.userId ||
-        member.discordId ||
-        ""
-    );
-
-}
-
-
-/* ==========================================
-   LOAD MEMBERS
+   LOAD MEMBERS FROM DISCORD BOT
 ========================================== */
 
 async function loadMembers() {
@@ -284,7 +260,7 @@ async function loadMembers() {
     if (!membersList) {
 
         console.error(
-            "MEMBERS LIST NOT FOUND"
+            "members-list was not found."
         );
 
         return;
@@ -292,368 +268,312 @@ async function loadMembers() {
     }
 
 
+    /*
+        Show the members immediately
+        using the IDs/names we provided.
+
+        This means the profiles do NOT
+        disappear if the API is slow.
+    */
+
+    membersList.innerHTML = "";
+
+
+    const row1 =
+        document.createElement("div");
+
+    row1.className =
+        "member-scroll-row member-row-1";
+
+
+    const row2 =
+        document.createElement("div");
+
+    row2.className =
+        "member-scroll-row member-row-2";
+
+
+    membersList.classList.add(
+        "members-scroller"
+    );
+
+
+    /*
+        Create initial member data.
+    */
+
+    let finalMembers =
+        memberIds.map(
+            person => ({
+
+                username:
+                    person.username,
+
+                id:
+                    person.id,
+
+                avatar:
+                    DEFAULT_AVATAR,
+
+                status:
+                    "Offline",
+
+                activity:
+                    ""
+
+            })
+        );
+
+
+    /*
+        Try to get live Discord
+        information from the bot.
+    */
+
     try {
 
         const response =
             await fetch(
-                "https://public-enemy-bot-cw8m.onrender.com/members"
+                "https://public-enemy-bot-cw8m.onrender.com/members",
+                {
+                    method: "GET",
+                    cache: "no-store"
+                }
             );
 
 
-        if (!response.ok) {
+        if (response.ok) {
 
-            throw new Error(
-                "API returned " +
-                response.status
-            );
-
-        }
+            const data =
+                await response.json();
 
 
-        const data =
-            await response.json();
+            const apiMembers =
+                Array.isArray(data)
+                    ? data
+                    : data.members;
 
 
-        let apiMembers;
+            if (Array.isArray(apiMembers)) {
 
+                finalMembers =
+                    memberIds.map(
+                        requested => {
 
-        if (Array.isArray(data)) {
-
-            apiMembers =
-                data;
-
-        } else if (
-            data &&
-            Array.isArray(data.members)
-        ) {
-
-            apiMembers =
-                data.members;
-
-        } else {
-
-            throw new Error(
-                "Invalid API response"
-            );
-
-        }
-
-
-        /*
-            Match the IDs from your list
-            with the members returned by
-            the Discord bot.
-        */
-
-        const finalMembers =
-            memberIds.map(
-                function (requested) {
-
-                    const found =
-                        apiMembers.find(
-                            function (member) {
-
-                                return (
-                                    getMemberId(member)
-                                    ===
-                                    requested.id
+                            const found =
+                                apiMembers.find(
+                                    member =>
+                                        String(
+                                            member.id ||
+                                            member.userId ||
+                                            member.discordId
+                                        ) === requested.id
                                 );
 
+
+                            if (!found) {
+
+                                return {
+
+                                    username:
+                                        requested.username,
+
+                                    id:
+                                        requested.id,
+
+                                    avatar:
+                                        DEFAULT_AVATAR,
+
+                                    status:
+                                        "Offline",
+
+                                    activity:
+                                        ""
+
+                                };
+
                             }
-                        );
 
 
-                    /*
-                        If the API has the member,
-                        use the live Discord data.
-                    */
+                            return {
 
-                    if (found) {
+                                username:
+                                    found.username ||
+                                    found.name ||
+                                    requested.username,
 
-                        return {
+                                id:
+                                    requested.id,
 
-                            username:
-                                found.username ||
-                                found.name ||
-                                requested.username,
+                                avatar:
+                                    found.avatar ||
+                                    found.avatarUrl ||
+                                    found.avatarURL ||
+                                    DEFAULT_AVATAR,
 
-                            id:
-                                requested.id,
+                                status:
+                                    found.status ||
+                                    "Offline",
 
-                            avatar:
-                                found.avatar ||
-                                found.avatarUrl ||
-                                found.avatarURL ||
-                                DEFAULT_AVATAR,
+                                activity:
+                                    found.activity ||
+                                    found.game ||
+                                    ""
 
-                            status:
-                                found.status ||
-                                "Offline",
+                            };
 
-                            activity:
-                                found.activity ||
-                                found.game ||
-                                ""
-
-                        };
-
-                    }
-
-
-                    /*
-                        If the API doesn't return
-                        the member, still display
-                        the member instead of
-                        making them disappear.
-                    */
-
-                    return {
-
-                        username:
-                            requested.username,
-
-                        id:
-                            requested.id,
-
-                        avatar:
-                            DEFAULT_AVATAR,
-
-                        status:
-                            "Offline",
-
-                        activity:
-                            ""
-
-                    };
-
-                }
-            );
-
-
-        /*
-            Clear old members.
-        */
-
-        membersList.innerHTML = "";
-
-
-        /*
-            Make it a scrolling container.
-        */
-
-        membersList.classList.add(
-            "members-scroller"
-        );
-
-
-        /*
-            Create row 1.
-        */
-
-        const row1 =
-            document.createElement("div");
-
-        row1.className =
-            "member-scroll-row member-row-1";
-
-
-        /*
-            Create row 2.
-        */
-
-        const row2 =
-            document.createElement("div");
-
-        row2.className =
-            "member-scroll-row member-row-2";
-
-
-        /*
-            Put members into rows.
-        */
-
-        finalMembers.forEach(
-            function (person, index) {
-
-                const card =
-                    createPersonCard(person);
-
-                card.classList.add(
-                    "scroll-member"
-                );
-
-
-                if (index % 2 === 0) {
-
-                    row1.appendChild(
-                        card
+                        }
                     );
 
-                } else {
-
-                    row2.appendChild(
-                        card
-                    );
-
-                }
-
             }
-        );
 
-
-        /*
-            Duplicate the cards for
-            seamless scrolling.
-        */
-
-        finalMembers.forEach(
-            function (person, index) {
-
-                const card =
-                    createPersonCard(person);
-
-                card.classList.add(
-                    "scroll-member"
-                );
-
-
-                if (index % 2 === 0) {
-
-                    row1.appendChild(
-                        card
-                    );
-
-                } else {
-
-                    row2.appendChild(
-                        card
-                    );
-
-                }
-
-            }
-        );
-
-
-        /*
-            Add both rows.
-        */
-
-        membersList.appendChild(
-            row1
-        );
-
-        membersList.appendChild(
-            row2
-        );
-
-
-        /*
-            Pause scrolling when hovering.
-        */
-
-        membersList.addEventListener(
-            "mouseenter",
-            function () {
-
-                membersList.classList.add(
-                    "scroll-paused"
-                );
-
-            }
-        );
-
-
-        membersList.addEventListener(
-            "mouseleave",
-            function () {
-
-                membersList.classList.remove(
-                    "scroll-paused"
-                );
-
-            }
-        );
-
-
-        console.log(
-            "Members loaded:",
-            finalMembers
-        );
-
+        }
 
     } catch (error) {
 
-        console.error(
-            "Members API Error:",
+        console.warn(
+            "Members API unavailable. Using saved member list.",
             error
         );
 
-
-        /*
-            IMPORTANT:
-            Even if Render is offline,
-            show the members from your
-            list instead of leaving the
-            section completely empty.
-        */
-
-        membersList.innerHTML = "";
-
-        membersList.classList.add(
-            "members-scroller"
-        );
+    }
 
 
-        const row =
-            document.createElement("div");
+    /*
+        Clear again before creating cards.
+    */
 
-        row.className =
-            "member-scroll-row member-row-1";
+    membersList.innerHTML = "";
 
 
-        memberIds.forEach(
-            function (person) {
+    /*
+        Create the first row.
+    */
+
+    finalMembers.forEach(
+        (person, index) => {
+
+            if (index % 2 === 0) {
 
                 const card =
-                    createPersonCard({
-
-                        username:
-                            person.username,
-
-                        id:
-                            person.id,
-
-                        avatar:
-                            DEFAULT_AVATAR,
-
-                        status:
-                            "Offline",
-
-                        activity:
-                            ""
-
-                    });
-
+                    createPersonCard(person);
 
                 card.classList.add(
                     "scroll-member"
                 );
 
-
-                row.appendChild(
-                    card
-                );
+                row1.appendChild(card);
 
             }
-        );
+
+        }
+    );
 
 
-        membersList.appendChild(
-            row
-        );
+    /*
+        Create the second row.
+    */
 
-    }
+    finalMembers.forEach(
+        (person, index) => {
+
+            if (index % 2 !== 0) {
+
+                const card =
+                    createPersonCard(person);
+
+                card.classList.add(
+                    "scroll-member"
+                );
+
+                row2.appendChild(card);
+
+            }
+
+        }
+    );
+
+
+    /*
+        Duplicate the rows for
+        continuous scrolling.
+    */
+
+    finalMembers.forEach(
+        (person, index) => {
+
+            if (index % 2 === 0) {
+
+                const card =
+                    createPersonCard(person);
+
+                card.classList.add(
+                    "scroll-member"
+                );
+
+                row1.appendChild(card);
+
+            }
+
+        }
+    );
+
+
+    finalMembers.forEach(
+        (person, index) => {
+
+            if (index % 2 !== 0) {
+
+                const card =
+                    createPersonCard(person);
+
+                card.classList.add(
+                    "scroll-member"
+                );
+
+                row2.appendChild(card);
+
+            }
+
+        }
+    );
+
+
+    /*
+        Put the rows into the page.
+    */
+
+    membersList.appendChild(row1);
+
+    membersList.appendChild(row2);
+
+
+    /*
+        Pause scrolling when hovering.
+    */
+
+    membersList.addEventListener(
+        "mouseenter",
+        function () {
+
+            membersList.classList.add(
+                "scroll-paused"
+            );
+
+        }
+    );
+
+
+    membersList.addEventListener(
+        "mouseleave",
+        function () {
+
+            membersList.classList.remove(
+                "scroll-paused"
+            );
+
+        }
+    );
 
 }
 
@@ -662,53 +582,49 @@ async function loadMembers() {
    PROFILE MODAL
 ========================================== */
 
-const modal =
-    document.getElementById(
-        "profile-modal"
-    );
-
-
-const modalAvatar =
-    document.getElementById(
-        "modal-avatar"
-    );
-
-
-const modalName =
-    document.getElementById(
-        "modal-name"
-    );
-
-
-const modalUsername =
-    document.getElementById(
-        "modal-username"
-    );
-
-
-const modalStatus =
-    document.getElementById(
-        "modal-status"
-    );
-
-
-const modalActivity =
-    document.getElementById(
-        "modal-activity"
-    );
-
-
-const modalDiscordId =
-    document.getElementById(
-        "modal-discord-id"
-    );
-
-
-/* ==========================================
-   OPEN PROFILE
-========================================== */
-
 function openProfile(person) {
+
+    const modal =
+        document.getElementById(
+            "profile-modal"
+        );
+
+
+    const modalAvatar =
+        document.getElementById(
+            "modal-avatar"
+        );
+
+
+    const modalName =
+        document.getElementById(
+            "modal-name"
+        );
+
+
+    const modalUsername =
+        document.getElementById(
+            "modal-username"
+        );
+
+
+    const modalStatus =
+        document.getElementById(
+            "modal-status"
+        );
+
+
+    const modalActivity =
+        document.getElementById(
+            "modal-activity"
+        );
+
+
+    const modalDiscordId =
+        document.getElementById(
+            "modal-discord-id"
+        );
+
 
     if (!modal) return;
 
@@ -716,8 +632,7 @@ function openProfile(person) {
     if (modalAvatar) {
 
         modalAvatar.src =
-            person.avatar ||
-            DEFAULT_AVATAR;
+            person.avatar || DEFAULT_AVATAR;
 
     }
 
@@ -725,8 +640,7 @@ function openProfile(person) {
     if (modalName) {
 
         modalName.textContent =
-            person.username ||
-            "Discord User";
+            person.username || "Discord User";
 
     }
 
@@ -735,10 +649,7 @@ function openProfile(person) {
 
         modalUsername.textContent =
             "@" +
-            (
-                person.username ||
-                "username"
-            );
+            (person.username || "username");
 
     }
 
@@ -746,13 +657,12 @@ function openProfile(person) {
     if (modalStatus) {
 
         const status =
-            person.status ||
-            "Offline";
+            person.status || "Offline";
 
 
         modalStatus.innerHTML = `
 
-            <span class="status-dot"></span>
+            <span class="status-dot ${String(status).toLowerCase()}"></span>
 
             <span>
                 ${status}
@@ -766,8 +676,7 @@ function openProfile(person) {
     if (modalActivity) {
 
         modalActivity.textContent =
-            person.activity ||
-            "";
+            person.activity || "";
 
     }
 
@@ -775,8 +684,7 @@ function openProfile(person) {
     if (modalDiscordId) {
 
         modalDiscordId.textContent =
-            person.id ||
-            "-";
+            person.id || "-";
 
     }
 
@@ -792,384 +700,483 @@ function openProfile(person) {
    CLOSE PROFILE
 ========================================== */
 
-const closeProfile =
-    document.getElementById(
-        "close-profile"
-    );
+function closeProfileModal() {
+
+    const modal =
+        document.getElementById(
+            "profile-modal"
+        );
 
 
-if (closeProfile) {
+    if (modal) {
 
-    closeProfile.addEventListener(
-        "click",
-        function () {
+        modal.classList.add(
+            "hidden"
+        );
 
-            if (modal) {
-
-                modal.classList.add(
-                    "hidden"
-                );
-
-            }
+    }
 
 
-            document
-                .querySelectorAll(
-                    ".person-card"
-                )
-                .forEach(
-                    function (card) {
+    document
+        .querySelectorAll(".person-card.active")
+        .forEach(
+            card =>
+                card.classList.remove("active")
+        );
 
-                        card.classList.remove(
-                            "active"
+}
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+
+        /* ==================================
+           ENTER SCREEN
+        ================================== */
+
+        const enterButton =
+            document.getElementById(
+                "enter-button"
+            );
+
+
+        const enterScreen =
+            document.getElementById(
+                "enter-screen"
+            );
+
+
+        const website =
+            document.getElementById(
+                "main-site"
+            );
+
+
+        const music =
+            document.getElementById(
+                "background-music"
+            );
+
+
+        if (enterButton) {
+
+            enterButton.addEventListener(
+                "click",
+                function () {
+
+                    console.log(
+                        "ENTER BUTTON CLICKED"
+                    );
+
+
+                    if (enterScreen) {
+
+                        enterScreen.classList.add(
+                            "hidden"
+                        );
+
+
+                        setTimeout(
+                            function () {
+
+                                enterScreen.style.display =
+                                    "none";
+
+                            },
+                            700
                         );
 
                     }
-                );
-
-        }
-    );
-
-}
 
 
-/* ==========================================
-   CLOSE MODAL BY CLICKING BACKGROUND
-========================================== */
+                    if (website) {
 
-if (modal) {
+                        website.style.opacity =
+                            "1";
 
-    modal.addEventListener(
-        "click",
-        function (event) {
+                        website.style.visibility =
+                            "visible";
 
-            if (
-                event.target === modal
-            ) {
+                        website.style.pointerEvents =
+                            "auto";
 
-                modal.classList.add(
-                    "hidden"
-                );
+                    }
 
 
-                document
-                    .querySelectorAll(
-                        ".person-card"
-                    )
-                    .forEach(
-                        function (card) {
+                    if (music) {
 
-                            card.classList.remove(
-                                "active"
-                            );
-
-                        }
-                    );
-
-            }
-
-        }
-    );
-
-}
+                        music.volume =
+                            0.35;
 
 
-/* ==========================================
-   VIEW COUNTER
-========================================== */
+                        music.play().catch(
+                            function () {
 
-let views =
-    localStorage.getItem(
-        "publicEnemyViews"
-    );
+                                console.log(
+                                    "Music playback blocked."
+                                );
 
+                            }
+                        );
 
-if (!views) {
+                    }
 
-    views = 1;
+                }
+            );
 
-} else {
+        } else {
 
-    views =
-        parseInt(
-            views,
-            10
-        ) + 1;
-
-}
-
-
-localStorage.setItem(
-    "publicEnemyViews",
-    views
-);
-
-
-const viewCount =
-    document.getElementById(
-        "view-count"
-    );
-
-
-if (viewCount) {
-
-    viewCount.textContent =
-        views;
-
-}
-
-
-/* ==========================================
-   DISCORD BOT LIVE STATS
-========================================== */
-
-fetch(
-    "https://public-enemy-bot-cw8m.onrender.com/stats"
-)
-
-.then(
-    function (res) {
-
-        if (!res.ok) {
-
-            throw new Error(
-                "Stats API returned " +
-                res.status
+            console.error(
+                "ENTER BUTTON NOT FOUND"
             );
 
         }
 
-        return res.json();
 
-    }
-)
+        /* ==================================
+           CLOSE MODAL
+        ================================== */
 
-.then(
-    function (data) {
-
-        const botStatus =
+        const closeButton =
             document.getElementById(
-                "bot-status"
+                "close-profile"
             );
 
 
-        const serverMembers =
+        if (closeButton) {
+
+            closeButton.addEventListener(
+                "click",
+                closeProfileModal
+            );
+
+        }
+
+
+        const modal =
             document.getElementById(
-                "server-members"
+                "profile-modal"
             );
 
 
-        if (data.online) {
+        if (modal) {
 
-            if (botStatus) {
+            modal.addEventListener(
+                "click",
+                function (event) {
 
-                botStatus.textContent =
-                    "🟢 Online";
+                    if (
+                        event.target === modal
+                    ) {
+
+                        closeProfileModal();
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        /* ==================================
+           LOAD PEOPLE
+        ================================== */
+
+        loadPeople();
+
+        loadMembers();
+
+
+        /* ==================================
+           VIEW COUNTER
+        ================================== */
+
+        let views =
+            localStorage.getItem(
+                "publicEnemyViews"
+            );
+
+
+        if (!views) {
+
+            views = 1;
+
+        } else {
+
+            views =
+                parseInt(views, 10) + 1;
+
+        }
+
+
+        localStorage.setItem(
+            "publicEnemyViews",
+            views
+        );
+
+
+        const viewCount =
+            document.getElementById(
+                "view-count"
+            );
+
+
+        if (viewCount) {
+
+            viewCount.textContent =
+                views;
+
+        }
+
+
+        /* ==================================
+           CUSTOM CURSOR
+        ================================== */
+
+        const cursor =
+            document.querySelector(
+                ".cursor"
+            );
+
+
+        if (cursor) {
+
+            document.addEventListener(
+                "mousemove",
+                function (event) {
+
+                    cursor.style.left =
+                        event.clientX + "px";
+
+                    cursor.style.top =
+                        event.clientY + "px";
+
+                }
+            );
+
+        }
+
+
+        /* ==================================
+           PARTICLES
+        ================================== */
+
+        const canvas =
+            document.getElementById(
+                "particles"
+            );
+
+
+        if (canvas) {
+
+            const ctx =
+                canvas.getContext("2d");
+
+
+            let particles = [];
+
+
+            function resizeCanvas() {
+
+                canvas.width =
+                    window.innerWidth;
+
+                canvas.height =
+                    window.innerHeight;
 
             }
 
 
-            if (serverMembers) {
+            function createParticles() {
 
-                serverMembers.textContent =
-                    `${data.members} Members`;
+                particles = [];
 
-            }
 
-        }
+                for (
+                    let i = 0;
+                    i < 45;
+                    i++
+                ) {
 
-    }
-)
+                    particles.push({
 
-.catch(
-    function (error) {
+                        x:
+                            Math.random() *
+                            canvas.width,
 
-        console.log(
-            "Discord Stats Error:",
-            error
-        );
+                        y:
+                            Math.random() *
+                            canvas.height,
 
-    }
-);
+                        size:
+                            Math.random() *
+                            1.5 + 0.5,
 
+                        speed:
+                            Math.random() *
+                            0.2 + 0.05
 
-/* ==========================================
-   CUSTOM CURSOR
-========================================== */
-
-const cursor =
-    document.querySelector(
-        ".cursor"
-    );
-
-
-if (cursor) {
-
-    document.addEventListener(
-        "mousemove",
-        function (event) {
-
-            cursor.style.left =
-                event.clientX +
-                "px";
-
-            cursor.style.top =
-                event.clientY +
-                "px";
-
-        }
-    );
-
-}
-
-
-/* ==========================================
-   PARTICLES
-========================================== */
-
-const canvas =
-    document.getElementById(
-        "particles"
-    );
-
-
-if (canvas) {
-
-    const ctx =
-        canvas.getContext(
-            "2d"
-        );
-
-
-    let particles = [];
-
-
-    function resizeCanvas() {
-
-        canvas.width =
-            window.innerWidth;
-
-        canvas.height =
-            window.innerHeight;
-
-    }
-
-
-    resizeCanvas();
-
-
-    window.addEventListener(
-        "resize",
-        resizeCanvas
-    );
-
-
-    function createParticles() {
-
-        particles = [];
-
-
-        for (
-            let i = 0;
-            i < 45;
-            i++
-        ) {
-
-            particles.push({
-
-                x:
-                    Math.random() *
-                    canvas.width,
-
-                y:
-                    Math.random() *
-                    canvas.height,
-
-                size:
-                    Math.random() *
-                    1.5 +
-                    0.5,
-
-                speed:
-                    Math.random() *
-                    0.2 +
-                    0.05
-
-            });
-
-        }
-
-    }
-
-
-    createParticles();
-
-
-    function animateParticles() {
-
-        ctx.clearRect(
-            0,
-            0,
-            canvas.width,
-            canvas.height
-        );
-
-
-        particles.forEach(
-            function (p) {
-
-                ctx.beginPath();
-
-
-                ctx.arc(
-                    p.x,
-                    p.y,
-                    p.size,
-                    0,
-                    Math.PI * 2
-                );
-
-
-                ctx.fillStyle =
-                    "rgba(255,255,255,0.25)";
-
-
-                ctx.fill();
-
-
-                p.y -= p.speed;
-
-
-                if (p.y < 0) {
-
-                    p.y =
-                        canvas.height;
+                    });
 
                 }
 
             }
-        );
 
 
-        requestAnimationFrame(
-            animateParticles
+            function animateParticles() {
+
+                ctx.clearRect(
+                    0,
+                    0,
+                    canvas.width,
+                    canvas.height
+                );
+
+
+                particles.forEach(
+                    function (p) {
+
+                        ctx.beginPath();
+
+
+                        ctx.arc(
+                            p.x,
+                            p.y,
+                            p.size,
+                            0,
+                            Math.PI * 2
+                        );
+
+
+                        ctx.fillStyle =
+                            "rgba(255,255,255,0.25)";
+
+
+                        ctx.fill();
+
+
+                        p.y -= p.speed;
+
+
+                        if (p.y < 0) {
+
+                            p.y =
+                                canvas.height;
+
+                        }
+
+                    }
+                );
+
+
+                requestAnimationFrame(
+                    animateParticles
+                );
+
+            }
+
+
+            resizeCanvas();
+
+            createParticles();
+
+            animateParticles();
+
+
+            window.addEventListener(
+                "resize",
+                function () {
+
+                    resizeCanvas();
+
+                    createParticles();
+
+                }
+            );
+
+        }
+
+
+        /* ==================================
+           DISCORD BOT LIVE STATS
+        ================================== */
+
+        fetch(
+            "https://public-enemy-bot-cw8m.onrender.com/stats",
+            {
+                method: "GET",
+                cache: "no-store"
+            }
+        )
+
+        .then(
+            response => {
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Stats API returned " +
+                        response.status
+                    );
+
+                }
+
+
+                return response.json();
+
+            }
+        )
+
+        .then(
+            data => {
+
+                const botStatus =
+                    document.getElementById(
+                        "bot-status"
+                    );
+
+
+                const serverMembers =
+                    document.getElementById(
+                        "server-members"
+                    );
+
+
+                if (data.online) {
+
+                    if (botStatus) {
+
+                        botStatus.textContent =
+                            "🟢 Online";
+
+                    }
+
+
+                    if (serverMembers) {
+
+                        serverMembers.textContent =
+                            `${data.members} Members`;
+
+                    }
+
+                }
+
+            }
+        )
+
+        .catch(
+            error => {
+
+                console.log(
+                    "Discord API Error:",
+                    error
+                );
+
+            }
         );
 
     }
-
-
-    animateParticles();
-
-}
-
-
-/* ==========================================
-   START WEBSITE
-========================================== */
-
-loadGodfather();
-
-loadHighcouncil();
-
-loadMembers();
-```
+);
