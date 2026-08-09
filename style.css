@@ -46,22 +46,6 @@ body::before {
 }
 
 /* ==========================================
-   MAIN SITE
-========================================== */
-
-#main-site {
-    position: relative;
-
-    width: 100%;
-    min-height: 100vh;
-
-    opacity: 1;
-    visibility: visible;
-
-    z-index: 1;
-}
-
-/* ==========================================
    ENTER SCREEN
 ========================================== */
 
@@ -154,6 +138,22 @@ body::before {
 }
 
 /* ==========================================
+   MAIN SITE
+========================================== */
+
+#main-site {
+    position: relative;
+
+    width: 100%;
+    min-height: 100vh;
+
+    opacity: 1;
+    visibility: visible;
+
+    z-index: 1;
+}
+
+/* ==========================================
    NAVBAR
 ========================================== */
 
@@ -229,7 +229,8 @@ nav a:hover {
     position: relative;
     z-index: 2;
 
-    width: 100%;
+    min-height: 0;
+    height: auto;
 
     display: flex;
 
@@ -237,14 +238,12 @@ nav a:hover {
 
     justify-content: center;
 
-    padding: 0 0 25px;
+    padding: 0 0 20px;
 }
 
 .hero-content {
     position: relative;
     z-index: 5;
-
-    width: 100%;
 
     text-align: center;
 }
@@ -360,7 +359,6 @@ nav a:hover {
 
 /* ==========================================
    PEOPLE SECTION
-   ALIGNED WITH MAIN PROFILE
 ========================================== */
 
 .people-section {
@@ -395,8 +393,6 @@ nav a:hover {
 .role-title {
     position: relative;
     z-index: 5;
-
-    width: 100%;
 
     text-align: center;
 
@@ -452,10 +448,6 @@ nav a:hover {
     justify-items: center;
 
     width: 100%;
-
-    max-width: 1100px;
-
-    margin: 0 auto;
 }
 
 /* ==========================================
@@ -466,15 +458,20 @@ nav a:hover {
     position: relative;
     z-index: 6;
 
-    background: transparent !important;
+    background:
+        transparent !important;
 
-    border: none !important;
+    border:
+        none !important;
 
-    box-shadow: none !important;
+    box-shadow:
+        none !important;
 
-    backdrop-filter: none !important;
+    backdrop-filter:
+        none !important;
 
-    padding: 8px !important;
+    padding:
+        8px !important;
 
     text-align: center;
 
@@ -485,11 +482,14 @@ nav a:hover {
 }
 
 .person-card:hover {
-    background: transparent !important;
+    background:
+        transparent !important;
 
-    border: none !important;
+    border:
+        none !important;
 
-    box-shadow: none !important;
+    box-shadow:
+        none !important;
 
     transform:
         translateY(-8px)
@@ -497,7 +497,8 @@ nav a:hover {
 }
 
 .person-card:active {
-    transform: scale(0.95);
+    transform:
+        scale(0.95);
 }
 
 /* ==========================================
@@ -508,21 +509,27 @@ nav a:hover {
     width: 105px;
     height: 105px;
 
-    border-radius: 50% !important;
+    border-radius:
+        50% !important;
 
     object-fit: cover;
 
     display: block;
 
-    background: transparent !important;
+    background:
+        transparent !important;
 
-    border: 2px solid transparent;
+    border:
+        2px solid transparent;
 
-    transition: 0.4s ease;
+    transition:
+        0.4s ease;
 
-    clip-path: circle(50%);
+    clip-path:
+        circle(50%);
 
-    -webkit-clip-path: circle(50%);
+    -webkit-clip-path:
+        circle(50%);
 
     position: relative;
 
@@ -530,11 +537,14 @@ nav a:hover {
 }
 
 .person-card img {
-    border-radius: 50% !important;
+    border-radius:
+        50% !important;
 
-    object-fit: cover;
+    object-fit:
+        cover;
 
-    overflow: hidden;
+    overflow:
+        hidden;
 }
 
 .person-card:hover .person-avatar {
@@ -566,7 +576,6 @@ nav a:hover {
 
 .person-card h3 {
     position: relative;
-
     z-index: 7;
 
     margin-top: 10px;
@@ -580,7 +589,6 @@ nav a:hover {
 
 /* ==========================================
    MEMBERS
-   TWO-LANE CONTINUOUS MARQUEE
 ========================================== */
 
 #members-list {
@@ -589,52 +597,59 @@ nav a:hover {
 
     width: 100%;
 
-    overflow: hidden !important;
+    height: auto !important;
 
-    display: flex !important;
+    max-height:
+        none !important;
 
-    flex-direction: column !important;
+    overflow:
+        hidden !important;
+
+    display:
+        flex !important;
+
+    flex-direction:
+        column !important;
 
     gap: 8px;
 
-    padding: 5px 0 !important;
-
-    /*
-       IMPORTANT:
-       Do not use grid here.
-       The JavaScript creates the
-       two scrolling rows.
-    */
+    padding:
+        5px 0 !important;
 }
 
 #members-list .member-scroll-row {
-    display: flex !important;
+    display:
+        flex !important;
 
-    flex-direction: row !important;
+    flex-direction:
+        row !important;
 
-    align-items: center;
+    align-items:
+        center;
 
-    gap: 30px;
+    gap:
+        30px;
 
-    width: max-content !important;
+    width:
+        max-content !important;
 
-    margin: 0;
+    margin:
+        0;
 
-    padding: 5px 0;
+    padding:
+        5px 0;
 
-    flex-shrink: 0;
+    flex-shrink:
+        0;
 
-    will-change: transform;
+    will-change:
+        transform;
 }
-
-/* ==========================================
-   SMOOTH MEMBER MOVEMENT
-========================================== */
 
 #members-list .member-row-1 {
     animation:
         membersScrollLeft
-        25s
+        30s
         linear
         infinite;
 }
@@ -642,7 +657,7 @@ nav a:hover {
 #members-list .member-row-2 {
     animation:
         membersScrollRight
-        25s
+        30s
         linear
         infinite;
 }
@@ -656,11 +671,14 @@ nav a:hover {
     flex:
         0 0 150px !important;
 
-    width: 150px;
+    width:
+        150px;
 
-    min-width: 150px;
+    min-width:
+        150px;
 
-    cursor: pointer;
+    cursor:
+        pointer;
 
     transition:
         transform 0.3s ease;
@@ -673,7 +691,8 @@ nav a:hover {
 }
 
 /* ==========================================
-   CONTINUOUS LOOP
+   MEMBER LOOP
+   ORIGINAL RESTARTING VERSION
 ========================================== */
 
 @keyframes membersScrollLeft {
@@ -717,21 +736,29 @@ nav a:hover {
     background:
         rgba(0, 0, 0, 0.75);
 
-    backdrop-filter: blur(10px);
+    backdrop-filter:
+        blur(10px);
 
-    display: flex;
+    display:
+        flex;
 
-    justify-content: center;
+    justify-content:
+        center;
 
-    align-items: center;
+    align-items:
+        center;
 
-    padding: 20px;
+    padding:
+        20px;
 
-    z-index: 10000;
+    z-index:
+        10000;
 
-    opacity: 1;
+    opacity:
+        1;
 
-    visibility: visible;
+    visibility:
+        visible;
 
     transition:
         opacity 0.3s ease,
@@ -739,19 +766,25 @@ nav a:hover {
 }
 
 #profile-modal.hidden {
-    opacity: 0 !important;
+    opacity:
+        0 !important;
 
-    visibility: hidden !important;
+    visibility:
+        hidden !important;
 
-    pointer-events: none !important;
+    pointer-events:
+        none !important;
 }
 
 .profile-modal-content {
-    position: relative;
+    position:
+        relative;
 
-    width: min(400px, 90vw);
+    width:
+        min(400px, 90vw);
 
-    padding: 45px 35px;
+    padding:
+        45px 35px;
 
     background:
         rgba(20, 20, 20, 0.9);
@@ -760,9 +793,11 @@ nav a:hover {
         1px solid
         rgba(255, 255, 255, 0.3);
 
-    text-align: center;
+    text-align:
+        center;
 
-    border-radius: 20px;
+    border-radius:
+        20px;
 
     animation:
         modalIn 0.5s ease;
@@ -771,13 +806,15 @@ nav a:hover {
         0 0 80px
         rgba(255, 255, 255, 0.15);
 
-    backdrop-filter: blur(20px);
+    backdrop-filter:
+        blur(20px);
 }
 
 @keyframes modalIn {
 
     from {
-        opacity: 0;
+        opacity:
+            0;
 
         transform:
             scale(0.8)
@@ -785,7 +822,8 @@ nav a:hover {
     }
 
     to {
-        opacity: 1;
+        opacity:
+            1;
 
         transform:
             scale(1)
@@ -794,14 +832,20 @@ nav a:hover {
 }
 
 .modal-avatar {
-    width: 140px;
-    height: 140px;
+    width:
+        140px;
 
-    border-radius: 50%;
+    height:
+        140px;
 
-    object-fit: cover;
+    border-radius:
+        50%;
 
-    display: block;
+    object-fit:
+        cover;
+
+    display:
+        block;
 
     margin:
         0 auto 20px;
@@ -816,74 +860,102 @@ nav a:hover {
 }
 
 #modal-name {
-    margin-bottom: 8px;
+    margin-bottom:
+        8px;
 
-    font-size: 24px;
+    font-size:
+        24px;
 
-    letter-spacing: 2px;
+    letter-spacing:
+        2px;
 }
 
 #modal-username {
-    margin-bottom: 18px;
+    margin-bottom:
+        18px;
 
-    opacity: 0.6;
+    opacity:
+        0.6;
 
-    font-size: 14px;
+    font-size:
+        14px;
 }
 
 .modal-status {
-    display: flex;
+    display:
+        flex;
 
-    justify-content: center;
+    justify-content:
+        center;
 
-    align-items: center;
+    align-items:
+        center;
 
-    gap: 8px;
+    gap:
+        8px;
 
-    margin-bottom: 15px;
+    margin-bottom:
+        15px;
 
-    font-size: 13px;
+    font-size:
+        13px;
 
-    opacity: 0.8;
+    opacity:
+        0.8;
 }
 
 .status-dot {
-    width: 8px;
-    height: 8px;
+    width:
+        8px;
 
-    border-radius: 50%;
+    height:
+        8px;
 
-    background: #777;
+    border-radius:
+        50%;
 
-    display: inline-block;
+    background:
+        #777;
+
+    display:
+        inline-block;
 }
 
 .modal-activity {
-    margin: 15px 0;
+    margin:
+        15px 0;
 
-    font-size: 13px;
+    font-size:
+        13px;
 
-    opacity: 0.7;
+    opacity:
+        0.7;
 }
 
 .modal-id {
-    margin-top: 20px;
+    margin-top:
+        20px;
 
-    padding-top: 15px;
+    padding-top:
+        15px;
 
     border-top:
         1px solid
         rgba(255, 255, 255, 0.15);
 
-    font-size: 12px;
+    font-size:
+        12px;
 
-    opacity: 0.6;
+    opacity:
+        0.6;
 }
 
 .modal-id strong {
-    margin-left: 5px;
+    margin-left:
+        5px;
 
-    font-weight: 500;
+    font-weight:
+        500;
 }
 
 /* ==========================================
@@ -891,33 +963,49 @@ nav a:hover {
 ========================================== */
 
 .close-profile {
-    position: absolute;
+    position:
+        absolute;
 
-    top: 12px;
-    right: 15px;
+    top:
+        12px;
 
-    width: 35px;
-    height: 35px;
+    right:
+        15px;
 
-    background: transparent;
+    width:
+        35px;
 
-    border: none;
+    height:
+        35px;
 
-    color: white;
+    background:
+        transparent;
 
-    font-size: 30px;
+    border:
+        none;
 
-    line-height: 30px;
+    color:
+        white;
 
-    cursor: pointer;
+    font-size:
+        30px;
 
-    opacity: 0.7;
+    line-height:
+        30px;
 
-    transition: 0.3s;
+    cursor:
+        pointer;
+
+    opacity:
+        0.7;
+
+    transition:
+        0.3s;
 }
 
 .close-profile:hover {
-    opacity: 1;
+    opacity:
+        1;
 
     transform:
         rotate(90deg);
@@ -928,30 +1016,40 @@ nav a:hover {
 ========================================== */
 
 footer {
-    position: relative;
+    position:
+        relative;
 
-    z-index: 5;
+    z-index:
+        5;
 
-    width: 100%;
+    width:
+        100%;
 
-    text-align: center;
+    text-align:
+        center;
 
     padding:
         25px 20px 35px;
 
-    opacity: 0.7;
+    opacity:
+        0.7;
 
-    margin-top: 0;
+    margin-top:
+        0;
 }
 
 footer::before {
-    content: "";
+    content:
+        "";
 
-    display: block;
+    display:
+        block;
 
-    width: 140px;
+    width:
+        140px;
 
-    height: 1px;
+    height:
+        1px;
 
     background:
         rgba(255, 255, 255, 0.55);
@@ -961,17 +1059,22 @@ footer::before {
 }
 
 .footer-threat {
-    font-size: 14px;
+    font-size:
+        14px;
 
-    letter-spacing: 1px;
+    letter-spacing:
+        1px;
 
-    margin-bottom: 5px;
+    margin-bottom:
+        5px;
 }
 
 .footer-copy {
-    font-size: 13px;
+    font-size:
+        13px;
 
-    letter-spacing: 1px;
+    letter-spacing:
+        1px;
 }
 
 /* ==========================================
@@ -1002,14 +1105,16 @@ footer::before {
 @keyframes fadeUp {
 
     from {
-        opacity: 0;
+        opacity:
+            0;
 
         transform:
             translateY(30px);
     }
 
     to {
-        opacity: 1;
+        opacity:
+            1;
 
         transform:
             translateY(0);
@@ -1028,21 +1133,29 @@ footer::before {
     }
 
     nav {
-        gap: 12px;
+        gap:
+            12px;
     }
 
     .views {
-        display: none;
+        display:
+            none;
     }
 
     .hero {
+        min-height:
+            auto;
+
         padding:
             0 0 10px;
     }
 
     .profile-wrapper {
-        width: 160px;
-        height: 160px;
+        width:
+            160px;
+
+        height:
+            160px;
     }
 
     .people-section {
@@ -1059,42 +1172,53 @@ footer::before {
     }
 
     .person-avatar {
-        width: 90px;
-        height: 90px;
+        width:
+            90px;
+
+        height:
+            90px;
     }
 
     .person-card h3 {
-        font-size: 13px;
+        font-size:
+            13px;
     }
 
     .role-section {
-        margin-bottom: 40px;
+        margin-bottom:
+            40px;
     }
 
     .role-title {
-        margin-bottom: 18px;
+        margin-bottom:
+            18px;
     }
 
     .role-title::before,
     .role-title::after {
-        width: 40px;
+        width:
+            40px;
     }
 
     #members-list {
-        gap: 8px;
+        gap:
+            8px;
     }
 
     #members-list .member-scroll-row {
-        gap: 20px;
+        gap:
+            20px;
     }
 
     #members-list .scroll-member {
         flex:
             0 0 120px !important;
 
-        width: 120px;
+        width:
+            120px;
 
-        min-width: 120px;
+        min-width:
+            120px;
     }
 
     footer {
