@@ -1119,4 +1119,28 @@ footer::before {
     pointer-events: none;
 }
 ```
+/* ENTER SCREEN FINAL FIX */
 
+#enter-screen {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 999999 !important;
+    pointer-events: auto !important;
+}
+
+#enter-button {
+    position: relative !important;
+    z-index: 1000000 !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+
+#enter-screen.hidden {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+#main-site {
+    pointer-events: auto;
+}
