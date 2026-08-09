@@ -10,7 +10,6 @@
 ========================================== */
 
 const godfather = [
-
     {
         username: "salvatore.am",
         id: "1045740438147051541",
@@ -40,12 +39,10 @@ const godfather = [
         id: "695588470348972082",
         avatar: "https://cdn.discordapp.com/avatars/695588470348972082/dc06c598b1a468f72a3d87a15f286a8b.png?size=256"
     }
-
 ];
 
 
 const highcouncil = [
-
     {
         username: "anescheese",
         id: "1473659382800584855",
@@ -69,7 +66,6 @@ const highcouncil = [
         id: "1512087904715800629",
         avatar: "https://cdn.discordapp.com/embed/avatars/1.png"
     }
-
 ];
 
 
@@ -78,7 +74,6 @@ const highcouncil = [
 ========================================== */
 
 const memberIds = [
-
     {
         username: "Lebwak",
         id: "543782681796804629"
@@ -118,7 +113,6 @@ const memberIds = [
         username: "Stro",
         id: "719895356338602054"
     }
-
 ];
 
 
@@ -133,40 +127,29 @@ function createPersonCard(person) {
     card.className = "person-card";
 
     card.innerHTML = `
-
         <img
             class="person-avatar"
             src="${person.avatar || "https://cdn.discordapp.com/embed/avatars/0.png"}"
             alt="${person.username}"
         >
 
-        <h3>
-            ${person.username}
-        </h3>
-
+        <h3>${person.username}</h3>
     `;
 
+    card.addEventListener("click", () => {
 
-    card.onclick = () => {
-
-        document.querySelectorAll(".person-card")
+        document
+            .querySelectorAll(".person-card")
             .forEach(item => {
-
                 item.classList.remove("active");
-
             });
-
 
         card.classList.add("active");
 
-
         openProfile(person);
-
-    };
-
+    });
 
     return card;
-
 }
 
 
@@ -178,7 +161,6 @@ function loadPeople() {
 
     const godfatherList =
         document.getElementById("godfather-list");
-
 
     const highcouncilList =
         document.getElementById("highcouncil-list");
@@ -208,7 +190,6 @@ function loadPeople() {
         });
 
     }
-
 }
 
 
@@ -220,7 +201,6 @@ async function loadMembers() {
 
     const membersList =
         document.getElementById("members-list");
-
 
     if (!membersList) return;
 
@@ -246,21 +226,6 @@ async function loadMembers() {
             await response.json();
 
 
-        /*
-            The API can return either:
-
-            [
-                {...},
-                {...}
-            ]
-
-            OR
-
-            {
-                members: [...]
-            }
-        */
-
         let apiMembers =
             Array.isArray(data)
                 ? data
@@ -276,36 +241,11 @@ async function loadMembers() {
         }
 
 
-        /*
-            Only show the members we specified.
-        */
-
-        const allowedIds =
-            memberIds.map(member => member.id);
-
-
-        const members =
-            apiMembers.filter(member =>
-                allowedIds.includes(
-                    String(
-                        member.id ||
-                        member.userId ||
-                        member.discordId
-                    )
-                )
-            );
-
-
-        /*
-            Keep our chosen names if the API
-            doesn't provide them.
-        */
-
         const finalMembers =
             memberIds.map(requested => {
 
                 const found =
-                    members.find(member =>
+                    apiMembers.find(member =>
                         String(
                             member.id ||
                             member.userId ||
@@ -317,19 +257,12 @@ async function loadMembers() {
                 if (!found) {
 
                     return {
-
-                        username:
-                            requested.username,
-
-                        id:
-                            requested.id,
-
+                        username: requested.username,
+                        id: requested.id,
                         avatar:
                             "https://cdn.discordapp.com/embed/avatars/0.png",
-
-                        status:
-                            "Offline"
-
+                        status: "Offline",
+                        activity: ""
                     };
 
                 }
@@ -359,15 +292,10 @@ async function loadMembers() {
                         found.activity ||
                         found.game ||
                         ""
-
                 };
 
             });
 
-
-        /*
-            Create two rows.
-        */
 
         const row1 =
             document.createElement("div");
@@ -383,9 +311,7 @@ async function loadMembers() {
             "member-scroll-row member-row-2";
 
 
-        /*
-            Split members between rows.
-        */
+        /* First copy */
 
         finalMembers.forEach(
             (person, index) => {
@@ -412,10 +338,7 @@ async function loadMembers() {
         );
 
 
-        /*
-            Duplicate the rows so the
-            scrolling animation loops.
-        */
+        /* Second copy for seamless loop */
 
         finalMembers.forEach(
             (person, index) => {
@@ -444,30 +367,21 @@ async function loadMembers() {
 
         membersList.innerHTML = "";
 
-
         membersList.classList.add(
             "members-scroller"
         );
-
 
         membersList.appendChild(row1);
 
         membersList.appendChild(row2);
 
 
-        /*
-            Pause when cursor enters
-            the member section.
-        */
-
         membersList.addEventListener(
             "mouseenter",
             () => {
-
                 membersList.classList.add(
                     "scroll-paused"
                 );
-
             }
         );
 
@@ -475,11 +389,9 @@ async function loadMembers() {
         membersList.addEventListener(
             "mouseleave",
             () => {
-
                 membersList.classList.remove(
                     "scroll-paused"
                 );
-
             }
         );
 
@@ -492,7 +404,6 @@ async function loadMembers() {
         );
 
     }
-
 }
 
 
@@ -515,6 +426,9 @@ const modalUsername =
 const modalStatus =
     document.getElementById("modal-status");
 
+const modalActivity =
+    document.getElementById("modal-activity");
+
 const modalDiscordId =
     document.getElementById("modal-discord-id");
 
@@ -529,7 +443,6 @@ function openProfile(person) {
         modalAvatar.src =
             person.avatar ||
             "https://cdn.discordapp.com/embed/avatars/0.png";
-
     }
 
 
@@ -537,7 +450,6 @@ function openProfile(person) {
 
         modalName.textContent =
             person.username;
-
     }
 
 
@@ -545,7 +457,6 @@ function openProfile(person) {
 
         modalUsername.textContent =
             "@" + person.username;
-
     }
 
 
@@ -554,17 +465,17 @@ function openProfile(person) {
         const status =
             person.status || "Offline";
 
-
         modalStatus.innerHTML = `
-
-            <span class="status-dot ${status.toLowerCase()}"></span>
-
-            <span>
-                ${status}
-            </span>
-
+            <span class="status-dot"></span>
+            <span>${status}</span>
         `;
+    }
 
+
+    if (modalActivity) {
+
+        modalActivity.textContent =
+            person.activity || "";
     }
 
 
@@ -572,12 +483,10 @@ function openProfile(person) {
 
         modalDiscordId.textContent =
             person.id;
-
     }
 
 
     modal.classList.remove("hidden");
-
 }
 
 
@@ -591,76 +500,138 @@ const closeProfile =
 
 if (closeProfile) {
 
-    closeProfile.onclick = () => {
+    closeProfile.addEventListener(
+        "click",
+        () => {
 
-        if (modal) {
+            if (modal) {
+                modal.classList.add("hidden");
+            }
 
-            modal.classList.add("hidden");
+            document
+                .querySelectorAll(".person-card")
+                .forEach(item => {
+                    item.classList.remove("active");
+                });
 
         }
-
-    };
-
+    );
 }
 
 
 if (modal) {
 
-    modal.onclick = (event) => {
+    modal.addEventListener(
+        "click",
+        event => {
 
-        if (event.target === modal) {
+            if (event.target === modal) {
 
-            modal.classList.add("hidden");
+                modal.classList.add("hidden");
+
+                document
+                    .querySelectorAll(".person-card")
+                    .forEach(item => {
+                        item.classList.remove("active");
+                    });
+
+            }
 
         }
-
-    };
-
+    );
 }
 
+
 /* ==========================================
-   ENTER SCREEN
+   ENTER WEBSITE
 ========================================== */
 
-window.addEventListener("DOMContentLoaded", () => {
+function enterWebsite() {
 
-    const enterButton = document.getElementById("enter-button");
-    const enterScreen = document.getElementById("enter-screen");
-    const website = document.getElementById("main-site");
-    const music = document.getElementById("background-music");
+    const enterScreen =
+        document.getElementById("enter-screen");
 
-    if (!enterButton) {
-        console.error("ENTER BUTTON NOT FOUND");
+    const music =
+        document.getElementById("background-music");
+
+
+    if (!enterScreen) {
+
+        console.error(
+            "ENTER SCREEN NOT FOUND"
+        );
+
         return;
     }
 
-    enterButton.addEventListener("click", () => {
 
-        console.log("ENTER BUTTON CLICKED");
+    /* Prevent double-click problems */
 
-        if (enterScreen) {
-            enterScreen.style.opacity = "0";
-            enterScreen.style.visibility = "hidden";
-            enterScreen.style.pointerEvents = "none";
+    if (enterScreen.classList.contains("hidden")) {
+        return;
+    }
+
+
+    /* Start music */
+
+    if (music) {
+
+        music.volume = 0.35;
+
+        music.play().catch(() => {
+            console.log(
+                "Music playback was blocked."
+            );
+        });
+
+    }
+
+
+    /* Remove ENTER screen */
+
+    enterScreen.classList.add("hidden");
+
+
+    /* Completely disable it after animation */
+
+    setTimeout(() => {
+
+        enterScreen.style.display = "none";
+
+    }, 650);
+}
+
+
+/* ==========================================
+   ENTER BUTTON
+========================================== */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        const enterButton =
+            document.getElementById("enter-button");
+
+
+        if (!enterButton) {
+
+            console.error(
+                "ENTER BUTTON NOT FOUND"
+            );
+
+            return;
         }
 
-        if (website) {
-            website.style.opacity = "1";
-            website.style.visibility = "visible";
-            website.style.pointerEvents = "auto";
-        }
 
-        if (music) {
-            music.volume = 0.35;
+        enterButton.addEventListener(
+            "click",
+            enterWebsite
+        );
 
-            music.play().catch(() => {
-                console.log("Music playback blocked.");
-            });
-        }
+    }
+);
 
-    });
-
-});
 
 /* ==========================================
    VIEW COUNTER
@@ -680,7 +651,6 @@ if (!views) {
 
     views =
         parseInt(views) + 1;
-
 }
 
 
@@ -700,7 +670,6 @@ if (viewCount) {
 
     viewCount.textContent =
         views;
-
 }
 
 
@@ -718,7 +687,7 @@ if (cursor) {
 
     document.addEventListener(
         "mousemove",
-        (event) => {
+        event => {
 
             cursor.style.left =
                 event.clientX + "px";
@@ -728,7 +697,6 @@ if (cursor) {
 
         }
     );
-
 }
 
 
@@ -747,7 +715,6 @@ if (canvas) {
     const ctx =
         canvas.getContext("2d");
 
-
     let particles = [];
 
 
@@ -758,7 +725,6 @@ if (canvas) {
 
         canvas.height =
             window.innerHeight;
-
     }
 
 
@@ -776,11 +742,7 @@ if (canvas) {
         particles = [];
 
 
-        for (
-            let i = 0;
-            i < 45;
-            i++
-        ) {
+        for (let i = 0; i < 45; i++) {
 
             particles.push({
 
@@ -803,7 +765,6 @@ if (canvas) {
             });
 
         }
-
     }
 
 
@@ -820,51 +781,47 @@ if (canvas) {
         );
 
 
-        particles.forEach(
-            p => {
+        particles.forEach(p => {
 
-                ctx.beginPath();
-
-
-                ctx.arc(
-                    p.x,
-                    p.y,
-                    p.size,
-                    0,
-                    Math.PI * 2
-                );
+            ctx.beginPath();
 
 
-                ctx.fillStyle =
-                    "rgba(255,255,255,0.25)";
+            ctx.arc(
+                p.x,
+                p.y,
+                p.size,
+                0,
+                Math.PI * 2
+            );
 
 
-                ctx.fill();
+            ctx.fillStyle =
+                "rgba(255,255,255,0.25)";
 
 
-                p.y -= p.speed;
+            ctx.fill();
 
 
-                if (p.y < 0) {
+            p.y -= p.speed;
 
-                    p.y =
-                        canvas.height;
 
-                }
+            if (p.y < 0) {
+
+                p.y =
+                    canvas.height;
 
             }
-        );
+
+        });
 
 
         requestAnimationFrame(
             animateParticles
         );
-
     }
 
 
     animateParticles();
-
 }
 
 
@@ -877,8 +834,7 @@ fetch(
 )
 
 .then(
-    res =>
-        res.json()
+    res => res.json()
 )
 
 .then(
@@ -902,7 +858,6 @@ fetch(
 
                 botStatus.textContent =
                     "🟢 Online";
-
             }
 
 
@@ -910,7 +865,6 @@ fetch(
 
                 serverMembers.textContent =
                     `${data.members} Members`;
-
             }
 
         }
