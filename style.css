@@ -1,6 +1,6 @@
 /* ==========================================
    PUBLIC ENEMY
-   CLEAN / TIGHT LAYOUT
+   COMPACT LAYOUT
 ========================================== */
 
 * {
@@ -37,8 +37,8 @@ body::before {
     background:
         radial-gradient(
             circle at center,
-            rgba(255, 255, 255, 0.08),
-            rgba(0, 0, 0, 0.85)
+            rgba(255,255,255,0.08),
+            rgba(0,0,0,0.85)
         );
 
     z-index: -1;
@@ -82,7 +82,9 @@ body::before {
 .enter-content {
     position: relative;
     z-index: 1000000;
+
     text-align: center;
+
     animation: fadeUp 1s ease;
 }
 
@@ -101,18 +103,19 @@ body::before {
     padding: 15px 50px;
 
     background: transparent;
+
     border: 1px solid white;
 
     color: white;
 
     font-family: "Inter", sans-serif;
+
     font-size: 12px;
     font-weight: 600;
+
     letter-spacing: 3px;
 
     cursor: pointer;
-    user-select: none;
-    -webkit-user-select: none;
 
     transition:
         background 0.4s ease,
@@ -136,11 +139,25 @@ body::before {
 
 
 /* ==========================================
+   MAIN SITE
+========================================== */
+
+#main-site {
+    width: 100%;
+    min-height: 100vh;
+
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* ==========================================
    NAVBAR
 ========================================== */
 
 .navbar {
     display: flex;
+
     justify-content: space-between;
     align-items: center;
 
@@ -149,18 +166,23 @@ body::before {
 
 .nav-logo {
     font-size: 28px;
+
     font-weight: 800;
+
     letter-spacing: 5px;
 }
 
 nav {
     display: flex;
+
     align-items: center;
+
     gap: 25px;
 }
 
 nav a {
     color: white;
+
     text-decoration: none;
 
     font-size: 13px;
@@ -179,10 +201,13 @@ nav a:hover {
 
 .views {
     display: flex;
+
     align-items: center;
+
     gap: 8px;
 
     font-size: 11px;
+
     letter-spacing: 2px;
 
     opacity: 0.7;
@@ -197,16 +222,30 @@ nav a:hover {
    HERO
 ========================================== */
 
+/*
+   IMPORTANT:
+   This is much smaller than before.
+   The profiles will now appear much
+   sooner after pressing ENTER.
+*/
+
 .hero {
-    min-height: 48vh;
+    min-height: 32vh;
+
+    height: auto;
 
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 
     position: relative;
 
-    padding: 20px 0 30px;
+    padding:
+        10px
+        0
+        25px;
 }
 
 .hero-content {
@@ -219,8 +258,8 @@ nav a:hover {
 ========================================== */
 
 .profile-wrapper {
-    width: 230px;
-    height: 230px;
+    width: 190px;
+    height: 190px;
 
     position: relative;
 
@@ -238,12 +277,13 @@ nav a:hover {
     border-radius: 50%;
 
     position: relative;
+
     z-index: 2;
 
     transition: 0.5s;
 
     box-shadow:
-        0 0 50px rgba(255, 255, 255, 0.35);
+        0 0 50px rgba(255,255,255,0.35);
 }
 
 .main-profile:hover {
@@ -256,24 +296,16 @@ nav a:hover {
 .profile-ring {
     position: absolute;
 
-    inset: -15px;
+    inset: -12px;
 
     border-radius: 50%;
 
     border: 2px solid white;
 
-    animation: spin 8s linear infinite;
+    animation:
+        spin 8s linear infinite;
 
     z-index: 1;
-}
-
-
-/* ==========================================
-   TITLE
-========================================== */
-
-.main-title {
-    display: none;
 }
 
 
@@ -287,28 +319,33 @@ nav a:hover {
     justify-content: center;
     align-items: center;
 
-    margin-top: 16px;
+    margin-top: 12px;
 
-    padding: 8px 16px;
+    padding: 7px 15px;
 
     color: #aaa !important;
 
     text-decoration: none;
 
     font-size: 8px;
+
     font-weight: 600;
 
     letter-spacing: 2px;
 
     border-radius: 6px;
 
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border:
+        1px solid
+        rgba(255,255,255,0.3);
 
-    background: rgba(255, 255, 255, 0.08);
+    background:
+        rgba(255,255,255,0.08);
 
     backdrop-filter: blur(12px);
 
-    transition: all 0.3s ease;
+    transition:
+        all 0.3s ease;
 }
 
 .discord-button:hover {
@@ -316,24 +353,30 @@ nav a:hover {
 
     border-color: white;
 
-    transform: translateY(-2px);
+    transform:
+        translateY(-2px);
 
     box-shadow:
-        0 0 25px rgba(255, 255, 255, 0.5);
+        0 0 25px
+        rgba(255,255,255,0.5);
 }
 
 
 /* ==========================================
-   PEOPLE
+   PEOPLE SECTION
 ========================================== */
 
 .people-section {
-    padding: 35px 8% 60px;
+    padding:
+        15px
+        8%
+        60px;
 }
 
 .role-section {
     width: 100%;
-    margin-bottom: 55px;
+
+    margin-bottom: 50px;
 }
 
 .role-section:last-child {
@@ -349,7 +392,7 @@ nav a:hover {
 
     font-weight: 600;
 
-    margin-bottom: 28px;
+    margin-bottom: 25px;
 
     opacity: 0.85;
 
@@ -370,7 +413,8 @@ nav a:hover {
 
     height: 1px;
 
-    background: rgba(255, 255, 255, 0.5);
+    background:
+        rgba(255,255,255,0.5);
 }
 
 
@@ -382,9 +426,12 @@ nav a:hover {
     display: grid;
 
     grid-template-columns:
-        repeat(auto-fit, minmax(150px, 1fr));
+        repeat(
+            auto-fit,
+            minmax(150px, 1fr)
+        );
 
-    gap: 30px;
+    gap: 25px;
 
     justify-items: center;
 
@@ -397,31 +444,40 @@ nav a:hover {
 ========================================== */
 
 .person-card {
-    background: transparent !important;
+    background:
+        transparent !important;
 
-    border: none !important;
+    border:
+        none !important;
 
-    box-shadow: none !important;
+    box-shadow:
+        none !important;
 
-    backdrop-filter: none !important;
+    backdrop-filter:
+        none !important;
 
-    padding: 10px !important;
+    padding:
+        8px !important;
 
     text-align: center;
 
     cursor: pointer;
 
-    transition: 0.4s ease;
+    transition:
+        0.4s ease;
 
     position: relative;
 }
 
 .person-card:hover {
-    background: transparent !important;
+    background:
+        transparent !important;
 
-    border: none !important;
+    border:
+        none !important;
 
-    box-shadow: none !important;
+    box-shadow:
+        none !important;
 
     transform:
         translateY(-8px)
@@ -429,7 +485,8 @@ nav a:hover {
 }
 
 .person-card:active {
-    transform: scale(0.95);
+    transform:
+        scale(0.95);
 }
 
 
@@ -438,8 +495,8 @@ nav a:hover {
 ========================================== */
 
 .person-avatar {
-    width: 115px;
-    height: 115px;
+    width: 105px;
+    height: 105px;
 
     border-radius: 50% !important;
 
@@ -447,27 +504,38 @@ nav a:hover {
 
     display: block;
 
-    background: transparent !important;
+    background:
+        transparent !important;
 
-    border: 2px solid transparent;
+    border:
+        2px solid transparent;
 
-    transition: 0.4s ease;
+    transition:
+        0.4s ease;
 
-    clip-path: circle(50%);
-    -webkit-clip-path: circle(50%);
+    clip-path:
+        circle(50%);
+
+    -webkit-clip-path:
+        circle(50%);
 }
 
 .person-card img {
-    border-radius: 50% !important;
+    border-radius:
+        50% !important;
 
-    object-fit: cover;
+    object-fit:
+        cover;
 
-    overflow: hidden;
+    overflow:
+        hidden;
 }
 
-.person-card:hover .person-avatar {
+.person-card:hover
+.person-avatar {
     box-shadow:
-        0 0 25px rgba(255, 255, 255, 0.6);
+        0 0 25px
+        rgba(255,255,255,0.6);
 }
 
 
@@ -475,14 +543,18 @@ nav a:hover {
    SELECTED PROFILE
 ========================================== */
 
-.person-card.active .person-avatar {
-    border: 2px solid white;
+.person-card.active
+.person-avatar {
+    border:
+        2px solid white;
 
     box-shadow:
         0 0 20px white,
-        0 0 50px rgba(255, 255, 255, 0.8);
+        0 0 50px
+        rgba(255,255,255,0.8);
 
-    transform: scale(1.08);
+    transform:
+        scale(1.08);
 }
 
 
@@ -491,9 +563,9 @@ nav a:hover {
 ========================================== */
 
 .person-card h3 {
-    margin-top: 15px;
+    margin-top: 12px;
 
-    font-size: 16px;
+    font-size: 15px;
 
     letter-spacing: 2px;
 
@@ -502,92 +574,138 @@ nav a:hover {
 
 
 /* ==========================================
-   MEMBERS AUTO SCROLLER
+   MEMBERS
 ========================================== */
 
 #members-list {
     width: 100%;
 
     height: auto !important;
-    max-height: none !important;
 
-    overflow: hidden !important;
+    max-height:
+        none !important;
 
-    display: flex !important;
-    flex-direction: column !important;
+    overflow:
+        hidden !important;
 
-    gap: 12px;
+    display:
+        flex !important;
 
-    padding: 10px 0 !important;
+    flex-direction:
+        column !important;
+
+    gap: 10px;
+
+    padding:
+        8px 0 !important;
 }
 
-#members-list .member-scroll-row {
-    display: flex !important;
-    flex-direction: row !important;
+#members-list
+.member-scroll-row {
 
-    align-items: center;
+    display:
+        flex !important;
 
-    gap: 35px;
+    flex-direction:
+        row !important;
 
-    width: max-content !important;
+    align-items:
+        center;
+
+    gap: 30px;
+
+    width:
+        max-content !important;
 
     margin: 0;
-    padding: 5px 0;
+
+    padding:
+        5px 0;
 
     flex-shrink: 0;
 
-    will-change: transform;
+    will-change:
+        transform;
 }
 
-#members-list .member-row-1 {
-    animation: membersScrollLeft 30s linear infinite;
+#members-list
+.member-row-1 {
+
+    animation:
+        membersScrollLeft
+        30s linear infinite;
 }
 
-#members-list .member-row-2 {
-    animation: membersScrollRight 30s linear infinite;
+#members-list
+.member-row-2 {
+
+    animation:
+        membersScrollRight
+        30s linear infinite;
 }
 
-#members-list.scroll-paused .member-scroll-row {
-    animation-play-state: paused !important;
+#members-list.scroll-paused
+.member-scroll-row {
+
+    animation-play-state:
+        paused !important;
 }
 
-#members-list .scroll-member {
-    flex: 0 0 150px !important;
+#members-list
+.scroll-member {
 
-    width: 150px;
-    min-width: 150px;
+    flex:
+        0 0 150px !important;
 
-    cursor: pointer;
+    width:
+        150px;
 
-    transition: transform 0.3s ease;
+    min-width:
+        150px;
+
+    cursor:
+        pointer;
+
+    transition:
+        transform 0.3s ease;
 }
 
-#members-list .scroll-member:hover {
-    transform: translateY(-6px) scale(1.04);
+#members-list
+.scroll-member:hover {
+
+    transform:
+        translateY(-6px)
+        scale(1.04);
 }
 
 
 /* ==========================================
-   SCROLL ANIMATIONS
+   MEMBER LOOP
 ========================================== */
 
 @keyframes membersScrollLeft {
+
     from {
-        transform: translateX(0);
+        transform:
+            translateX(0);
     }
 
     to {
-        transform: translateX(-50%);
+        transform:
+            translateX(-50%);
     }
 }
 
 @keyframes membersScrollRight {
+
     from {
-        transform: translateX(-50%);
+        transform:
+            translateX(-50%);
     }
 
     to {
-        transform: translateX(0);
+        transform:
+            translateX(0);
     }
 }
 
@@ -604,22 +722,32 @@ nav a:hover {
     width: 100%;
     height: 100%;
 
-    background: rgba(0, 0, 0, 0.75);
+    background:
+        rgba(0,0,0,0.75);
 
-    backdrop-filter: blur(10px);
+    backdrop-filter:
+        blur(10px);
 
-    display: flex;
+    display:
+        flex;
 
-    justify-content: center;
-    align-items: center;
+    justify-content:
+        center;
 
-    padding: 20px;
+    align-items:
+        center;
 
-    z-index: 10000;
+    padding:
+        20px;
 
-    opacity: 1;
+    z-index:
+        10000;
 
-    visibility: visible;
+    opacity:
+        1;
+
+    visibility:
+        visible;
 
     transition:
         opacity 0.3s ease,
@@ -627,39 +755,57 @@ nav a:hover {
 }
 
 #profile-modal.hidden {
-    opacity: 0 !important;
 
-    visibility: hidden !important;
+    opacity:
+        0 !important;
 
-    pointer-events: none !important;
+    visibility:
+        hidden !important;
+
+    pointer-events:
+        none !important;
 }
 
 .profile-modal-content {
-    position: relative;
 
-    width: min(400px, 90vw);
+    position:
+        relative;
 
-    padding: 45px 35px;
+    width:
+        min(400px,90vw);
 
-    background: rgba(20, 20, 20, 0.9);
+    padding:
+        45px 35px;
 
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background:
+        rgba(20,20,20,0.9);
 
-    text-align: center;
+    border:
+        1px solid
+        rgba(255,255,255,0.3);
 
-    border-radius: 20px;
+    text-align:
+        center;
 
-    animation: modalIn 0.5s ease;
+    border-radius:
+        20px;
+
+    animation:
+        modalIn 0.5s ease;
 
     box-shadow:
-        0 0 80px rgba(255, 255, 255, 0.15);
+        0 0 80px
+        rgba(255,255,255,0.15);
 
-    backdrop-filter: blur(20px);
+    backdrop-filter:
+        blur(20px);
 }
 
 @keyframes modalIn {
+
     from {
-        opacity: 0;
+        opacity:
+            0;
 
         transform:
             scale(0.8)
@@ -667,7 +813,8 @@ nav a:hover {
     }
 
     to {
-        opacity: 1;
+        opacity:
+            1;
 
         transform:
             scale(1)
@@ -676,90 +823,138 @@ nav a:hover {
 }
 
 .modal-avatar {
-    width: 140px;
-    height: 140px;
 
-    border-radius: 50%;
+    width:
+        140px;
 
-    object-fit: cover;
+    height:
+        140px;
 
-    display: block;
+    border-radius:
+        50%;
 
-    margin: 0 auto 20px;
+    object-fit:
+        cover;
 
-    border: 2px solid rgba(255, 255, 255, 0.4);
+    display:
+        block;
+
+    margin:
+        0 auto 20px;
+
+    border:
+        2px solid
+        rgba(255,255,255,0.4);
 
     box-shadow:
-        0 0 50px rgba(255, 255, 255, 0.25);
+        0 0 50px
+        rgba(255,255,255,0.25);
 }
 
 #modal-name {
-    margin-bottom: 8px;
 
-    font-size: 24px;
+    margin-bottom:
+        8px;
 
-    letter-spacing: 2px;
+    font-size:
+        24px;
+
+    letter-spacing:
+        2px;
 }
 
 #modal-username {
-    margin-bottom: 18px;
 
-    opacity: 0.6;
+    margin-bottom:
+        18px;
 
-    font-size: 14px;
+    opacity:
+        0.6;
+
+    font-size:
+        14px;
 }
 
 .modal-status {
-    display: flex;
 
-    justify-content: center;
+    display:
+        flex;
 
-    align-items: center;
+    justify-content:
+        center;
 
-    gap: 8px;
+    align-items:
+        center;
 
-    margin-bottom: 15px;
+    gap:
+        8px;
 
-    font-size: 13px;
+    margin-bottom:
+        15px;
 
-    opacity: 0.8;
+    font-size:
+        13px;
+
+    opacity:
+        0.8;
 }
 
 .status-dot {
-    width: 8px;
-    height: 8px;
 
-    border-radius: 50%;
+    width:
+        8px;
 
-    background: #777;
+    height:
+        8px;
 
-    display: inline-block;
+    border-radius:
+        50%;
+
+    background:
+        #777;
+
+    display:
+        inline-block;
 }
 
 .modal-activity {
-    margin: 15px 0;
 
-    font-size: 13px;
+    margin:
+        15px 0;
 
-    opacity: 0.7;
+    font-size:
+        13px;
+
+    opacity:
+        0.7;
 }
 
 .modal-id {
-    margin-top: 20px;
 
-    padding-top: 15px;
+    margin-top:
+        20px;
 
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding-top:
+        15px;
 
-    font-size: 12px;
+    border-top:
+        1px solid
+        rgba(255,255,255,0.15);
 
-    opacity: 0.6;
+    font-size:
+        12px;
+
+    opacity:
+        0.6;
 }
 
 .modal-id strong {
-    margin-left: 5px;
 
-    font-weight: 500;
+    margin-left:
+        5px;
+
+    font-weight:
+        500;
 }
 
 
@@ -768,35 +963,54 @@ nav a:hover {
 ========================================== */
 
 .close-profile {
-    position: absolute;
 
-    top: 12px;
-    right: 15px;
+    position:
+        absolute;
 
-    width: 35px;
-    height: 35px;
+    top:
+        12px;
 
-    background: transparent;
+    right:
+        15px;
 
-    border: none;
+    width:
+        35px;
 
-    color: white;
+    height:
+        35px;
 
-    font-size: 30px;
+    background:
+        transparent;
 
-    line-height: 30px;
+    border:
+        none;
 
-    cursor: pointer;
+    color:
+        white;
 
-    opacity: 0.7;
+    font-size:
+        30px;
 
-    transition: 0.3s;
+    line-height:
+        30px;
+
+    cursor:
+        pointer;
+
+    opacity:
+        0.7;
+
+    transition:
+        0.3s;
 }
 
 .close-profile:hover {
-    opacity: 1;
 
-    transform: rotate(90deg);
+    opacity:
+        1;
+
+    transform:
+        rotate(90deg);
 }
 
 
@@ -805,45 +1019,66 @@ nav a:hover {
 ========================================== */
 
 footer {
-    position: relative;
 
-    width: 100%;
+    position:
+        relative;
 
-    text-align: center;
+    width:
+        100%;
 
-    padding: 35px 20px 45px;
+    text-align:
+        center;
 
-    opacity: 0.7;
+    padding:
+        30px 20px 40px;
 
-    margin-top: 0;
+    opacity:
+        0.7;
+
+    margin-top:
+        0;
 }
 
 footer::before {
-    content: "";
 
-    display: block;
+    content:
+        "";
 
-    width: 140px;
+    display:
+        block;
 
-    height: 1px;
+    width:
+        140px;
 
-    background: rgba(255, 255, 255, 0.55);
+    height:
+        1px;
 
-    margin: 0 auto 20px;
+    background:
+        rgba(255,255,255,0.55);
+
+    margin:
+        0 auto 20px;
 }
 
 .footer-threat {
-    font-size: 14px;
 
-    letter-spacing: 1px;
+    font-size:
+        14px;
 
-    margin-bottom: 5px;
+    letter-spacing:
+        1px;
+
+    margin-bottom:
+        5px;
 }
 
 .footer-copy {
-    font-size: 13px;
 
-    letter-spacing: 1px;
+    font-size:
+        13px;
+
+    letter-spacing:
+        1px;
 }
 
 
@@ -852,111 +1087,165 @@ footer::before {
 ========================================== */
 
 @keyframes spin {
+
     from {
-        transform: rotate(0deg);
+        transform:
+            rotate(0deg);
     }
 
     to {
-        transform: rotate(360deg);
+        transform:
+            rotate(360deg);
     }
 }
 
 @keyframes float {
+
     50% {
-        transform: translateY(-15px);
+        transform:
+            translateY(-10px);
     }
 }
 
 @keyframes fadeUp {
+
     from {
-        opacity: 0;
-        transform: translateY(30px);
+        opacity:
+            0;
+
+        transform:
+            translateY(30px);
     }
 
     to {
-        opacity: 1;
-        transform: translateY(0);
+        opacity:
+            1;
+
+        transform:
+            translateY(0);
     }
 }
 
 
 /* ==========================================
-   RESPONSIVE
+   MOBILE
 ========================================== */
 
-@media (max-width: 700px) {
+@media (max-width:700px) {
 
     .navbar {
-        padding: 18px 5%;
+
+        padding:
+            18px 5%;
     }
 
     nav {
-        gap: 12px;
-        font-size: 11px;
+
+        gap:
+            12px;
     }
 
     .views {
-        display: none;
+        display:
+            none;
     }
 
     .hero {
-        min-height: 42vh;
-        padding: 15px 0 25px;
+
+        min-height:
+            28vh;
+
+        padding:
+            5px 0 20px;
     }
 
     .profile-wrapper {
-        width: 180px;
-        height: 180px;
+
+        width:
+            160px;
+
+        height:
+            160px;
     }
 
     .people-section {
-        padding: 30px 5% 50px;
+
+        padding:
+            10px 5% 50px;
     }
 
     .people-grid {
-        grid-template-columns:
-            repeat(2, 1fr);
 
-        gap: 25px 15px;
+        grid-template-columns:
+            repeat(2,1fr);
+
+        gap:
+            20px 15px;
     }
 
     .person-avatar {
-        width: 95px;
-        height: 95px;
+
+        width:
+            90px;
+
+        height:
+            90px;
     }
 
     .person-card h3 {
-        font-size: 13px;
+
+        font-size:
+            13px;
     }
 
     .role-section {
-        margin-bottom: 50px;
+
+        margin-bottom:
+            45px;
     }
 
     .role-title {
-        margin-bottom: 25px;
+
+        margin-bottom:
+            22px;
     }
 
     .role-title::before,
     .role-title::after {
-        width: 40px;
+
+        width:
+            40px;
     }
 
     #members-list {
-        gap: 8px;
+
+        gap:
+            8px;
     }
 
-    #members-list .member-scroll-row {
-        gap: 20px;
+    #members-list
+    .member-scroll-row {
+
+        gap:
+            20px;
     }
 
-    #members-list .scroll-member {
-        flex-basis: 120px !important;
-        width: 120px;
-        min-width: 120px;
+    #members-list
+    .scroll-member {
+
+        flex-basis:
+            120px !important;
+
+        width:
+            120px;
+
+        min-width:
+            120px;
     }
 
     footer {
-        padding-bottom: 35px;
+
+        padding:
+            25px 20px 35px;
     }
 }
