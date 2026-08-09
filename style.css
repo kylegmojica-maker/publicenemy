@@ -1,8 +1,10 @@
 ```css
 /* ==========================================
    PUBLIC ENEMY
-   CLEAN COMPACT STYLE
+   ORIGINAL COMPACT WORKING STYLE
 ========================================== */
+
+/* RESET */
 
 * {
     margin: 0;
@@ -38,12 +40,13 @@ body::before {
     background:
         radial-gradient(
             circle at center,
-            rgba(255, 255, 255, 0.08),
-            rgba(0, 0, 0, 0.85)
+            rgba(255,255,255,0.08),
+            rgba(0,0,0,0.85)
         );
 
     z-index: -1;
 }
+
 
 /* ==========================================
    ENTER SCREEN
@@ -74,9 +77,9 @@ body::before {
 }
 
 #enter-screen.hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
 }
 
 .enter-content {
@@ -137,36 +140,33 @@ body::before {
     transform: scale(0.96);
 }
 
+
 /* ==========================================
    MAIN SITE
 ========================================== */
 
 #main-site {
-    position: relative;
-
     width: 100%;
     min-height: 100vh;
 
     opacity: 1;
     visibility: visible;
-
-    z-index: 1;
 }
+
 
 /* ==========================================
    NAVBAR
 ========================================== */
 
 .navbar {
-    position: relative;
-    z-index: 5;
+    width: 100%;
 
     display: flex;
 
     justify-content: space-between;
     align-items: center;
 
-    padding: 18px 8%;
+    padding: 22px 8%;
 }
 
 .nav-logo {
@@ -199,6 +199,7 @@ nav a:hover {
     opacity: 0.5;
 }
 
+
 /* ==========================================
    VIEWS
 ========================================== */
@@ -221,16 +222,15 @@ nav a:hover {
     font-weight: 600;
 }
 
+
 /* ==========================================
    HERO
 ========================================== */
 
 .hero {
-    position: relative;
-    z-index: 2;
+    width: 100%;
 
     min-height: 0;
-    height: auto;
 
     display: flex;
 
@@ -238,15 +238,17 @@ nav a:hover {
 
     justify-content: center;
 
-    padding: 0 0 20px;
+    position: relative;
+
+    padding: 5px 8% 25px;
 }
 
 .hero-content {
-    position: relative;
-    z-index: 5;
+    width: 100%;
 
     text-align: center;
 }
+
 
 /* ==========================================
    MAIN PROFILE
@@ -273,14 +275,14 @@ nav a:hover {
 
     position: relative;
 
-    z-index: 3;
+    z-index: 2;
 
     display: block;
 
     transition: 0.5s;
 
     box-shadow:
-        0 0 50px rgba(255, 255, 255, 0.35);
+        0 0 50px rgba(255,255,255,0.35);
 }
 
 .main-profile:hover {
@@ -302,8 +304,9 @@ nav a:hover {
     animation:
         spin 8s linear infinite;
 
-    z-index: 2;
+    z-index: 1;
 }
+
 
 /* ==========================================
    DISCORD BUTTON
@@ -315,7 +318,7 @@ nav a:hover {
     justify-content: center;
     align-items: center;
 
-    margin-top: 10px;
+    margin-top: 12px;
 
     padding: 7px 15px;
 
@@ -333,10 +336,10 @@ nav a:hover {
 
     border:
         1px solid
-        rgba(255, 255, 255, 0.3);
+        rgba(255,255,255,0.3);
 
     background:
-        rgba(255, 255, 255, 0.08);
+        rgba(255,255,255,0.08);
 
     backdrop-filter: blur(12px);
 
@@ -354,46 +357,34 @@ nav a:hover {
 
     box-shadow:
         0 0 25px
-        rgba(255, 255, 255, 0.5);
+        rgba(255,255,255,0.5);
 }
+
 
 /* ==========================================
    PEOPLE SECTION
 ========================================== */
 
 .people-section {
-    position: relative;
-    z-index: 3;
-
     width: 100%;
 
     padding:
-        5px
+        15px
         8%
-        45px;
+        60px;
 }
 
 .role-section {
-    position: relative;
-    z-index: 4;
-
     width: 100%;
 
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 
 .role-section:last-child {
     margin-bottom: 0;
 }
 
-/* ==========================================
-   ROLE TITLE
-========================================== */
-
 .role-title {
-    position: relative;
-    z-index: 5;
-
     text-align: center;
 
     font-size: 14px;
@@ -402,7 +393,7 @@ nav a:hover {
 
     font-weight: 600;
 
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 
     opacity: 0.85;
 
@@ -424,17 +415,15 @@ nav a:hover {
     height: 1px;
 
     background:
-        rgba(255, 255, 255, 0.5);
+        rgba(255,255,255,0.5);
 }
+
 
 /* ==========================================
    PEOPLE GRID
 ========================================== */
 
 .people-grid {
-    position: relative;
-    z-index: 5;
-
     display: grid;
 
     grid-template-columns:
@@ -443,21 +432,19 @@ nav a:hover {
             minmax(150px, 1fr)
         );
 
-    gap: 20px;
+    gap: 25px;
 
     justify-items: center;
 
     width: 100%;
 }
 
+
 /* ==========================================
    PROFILE CARDS
 ========================================== */
 
 .person-card {
-    position: relative;
-    z-index: 6;
-
     background:
         transparent !important;
 
@@ -478,7 +465,9 @@ nav a:hover {
     cursor: pointer;
 
     transition:
-        transform 0.4s ease;
+        0.4s ease;
+
+    position: relative;
 }
 
 .person-card:hover {
@@ -501,6 +490,7 @@ nav a:hover {
         scale(0.95);
 }
 
+
 /* ==========================================
    AVATAR
 ========================================== */
@@ -509,8 +499,7 @@ nav a:hover {
     width: 105px;
     height: 105px;
 
-    border-radius:
-        50% !important;
+    border-radius: 50% !important;
 
     object-fit: cover;
 
@@ -530,10 +519,6 @@ nav a:hover {
 
     -webkit-clip-path:
         circle(50%);
-
-    position: relative;
-
-    z-index: 7;
 }
 
 .person-card img {
@@ -547,38 +532,39 @@ nav a:hover {
         hidden;
 }
 
-.person-card:hover .person-avatar {
+.person-card:hover
+.person-avatar {
     box-shadow:
         0 0 25px
-        rgba(255, 255, 255, 0.6);
+        rgba(255,255,255,0.6);
 }
+
 
 /* ==========================================
    SELECTED PROFILE
 ========================================== */
 
-.person-card.active .person-avatar {
+.person-card.active
+.person-avatar {
     border:
         2px solid white;
 
     box-shadow:
         0 0 20px white,
         0 0 50px
-        rgba(255, 255, 255, 0.8);
+        rgba(255,255,255,0.8);
 
     transform:
         scale(1.08);
 }
+
 
 /* ==========================================
    PROFILE NAME
 ========================================== */
 
 .person-card h3 {
-    position: relative;
-    z-index: 7;
-
-    margin-top: 10px;
+    margin-top: 12px;
 
     font-size: 15px;
 
@@ -587,14 +573,13 @@ nav a:hover {
     font-weight: 600;
 }
 
+
 /* ==========================================
    MEMBERS
+   ORIGINAL RESTARTING MARQUEE
 ========================================== */
 
 #members-list {
-    position: relative;
-    z-index: 5;
-
     width: 100%;
 
     height: auto !important;
@@ -611,10 +596,10 @@ nav a:hover {
     flex-direction:
         column !important;
 
-    gap: 8px;
+    gap: 10px;
 
     padding:
-        5px 0 !important;
+        8px 0 !important;
 }
 
 #members-list .member-scroll-row {
@@ -649,20 +634,17 @@ nav a:hover {
 #members-list .member-row-1 {
     animation:
         membersScrollLeft
-        30s
-        linear
-        infinite;
+        30s linear infinite;
 }
 
 #members-list .member-row-2 {
     animation:
         membersScrollRight
-        30s
-        linear
-        infinite;
+        30s linear infinite;
 }
 
-#members-list.scroll-paused .member-scroll-row {
+#members-list.scroll-paused
+.member-scroll-row {
     animation-play-state:
         paused !important;
 }
@@ -690,9 +672,9 @@ nav a:hover {
         scale(1.04);
 }
 
+
 /* ==========================================
    MEMBER LOOP
-   ORIGINAL RESTARTING VERSION
 ========================================== */
 
 @keyframes membersScrollLeft {
@@ -721,6 +703,7 @@ nav a:hover {
     }
 }
 
+
 /* ==========================================
    PROFILE MODAL
 ========================================== */
@@ -734,7 +717,7 @@ nav a:hover {
     height: 100%;
 
     background:
-        rgba(0, 0, 0, 0.75);
+        rgba(0,0,0,0.75);
 
     backdrop-filter:
         blur(10px);
@@ -781,17 +764,17 @@ nav a:hover {
         relative;
 
     width:
-        min(400px, 90vw);
+        min(400px,90vw);
 
     padding:
         45px 35px;
 
     background:
-        rgba(20, 20, 20, 0.9);
+        rgba(20,20,20,0.9);
 
     border:
         1px solid
-        rgba(255, 255, 255, 0.3);
+        rgba(255,255,255,0.3);
 
     text-align:
         center;
@@ -804,7 +787,7 @@ nav a:hover {
 
     box-shadow:
         0 0 80px
-        rgba(255, 255, 255, 0.15);
+        rgba(255,255,255,0.15);
 
     backdrop-filter:
         blur(20px);
@@ -852,11 +835,11 @@ nav a:hover {
 
     border:
         2px solid
-        rgba(255, 255, 255, 0.4);
+        rgba(255,255,255,0.4);
 
     box-shadow:
         0 0 50px
-        rgba(255, 255, 255, 0.25);
+        rgba(255,255,255,0.25);
 }
 
 #modal-name {
@@ -941,7 +924,7 @@ nav a:hover {
 
     border-top:
         1px solid
-        rgba(255, 255, 255, 0.15);
+        rgba(255,255,255,0.15);
 
     font-size:
         12px;
@@ -957,6 +940,7 @@ nav a:hover {
     font-weight:
         500;
 }
+
 
 /* ==========================================
    CLOSE BUTTON
@@ -1011,6 +995,7 @@ nav a:hover {
         rotate(90deg);
 }
 
+
 /* ==========================================
    FOOTER
 ========================================== */
@@ -1019,9 +1004,6 @@ footer {
     position:
         relative;
 
-    z-index:
-        5;
-
     width:
         100%;
 
@@ -1029,7 +1011,7 @@ footer {
         center;
 
     padding:
-        25px 20px 35px;
+        30px 20px 40px;
 
     opacity:
         0.7;
@@ -1052,7 +1034,7 @@ footer::before {
         1px;
 
     background:
-        rgba(255, 255, 255, 0.55);
+        rgba(255,255,255,0.55);
 
     margin:
         0 auto 20px;
@@ -1076,6 +1058,7 @@ footer::before {
     letter-spacing:
         1px;
 }
+
 
 /* ==========================================
    ANIMATIONS
@@ -1121,15 +1104,16 @@ footer::before {
     }
 }
 
+
 /* ==========================================
    MOBILE
 ========================================== */
 
-@media (max-width: 700px) {
+@media (max-width:700px) {
 
     .navbar {
         padding:
-            14px 5%;
+            18px 5%;
     }
 
     nav {
@@ -1143,11 +1127,8 @@ footer::before {
     }
 
     .hero {
-        min-height:
-            auto;
-
         padding:
-            0 0 10px;
+            5px 5% 20px;
     }
 
     .profile-wrapper {
@@ -1160,15 +1141,15 @@ footer::before {
 
     .people-section {
         padding:
-            5px 5% 40px;
+            10px 5% 50px;
     }
 
     .people-grid {
         grid-template-columns:
-            repeat(2, 1fr);
+            repeat(2,1fr);
 
         gap:
-            18px 15px;
+            20px 15px;
     }
 
     .person-avatar {
@@ -1186,12 +1167,12 @@ footer::before {
 
     .role-section {
         margin-bottom:
-            40px;
+            45px;
     }
 
     .role-title {
         margin-bottom:
-            18px;
+            22px;
     }
 
     .role-title::before,
@@ -1211,8 +1192,8 @@ footer::before {
     }
 
     #members-list .scroll-member {
-        flex:
-            0 0 120px !important;
+        flex-basis:
+            120px !important;
 
         width:
             120px;
@@ -1223,7 +1204,7 @@ footer::before {
 
     footer {
         padding:
-            20px 20px 30px;
+            25px 20px 35px;
     }
 }
 ```
