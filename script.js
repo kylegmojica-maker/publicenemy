@@ -1,4 +1,4 @@
- 
+```javascript
 /* ==========================================
    PUBLIC ENEMY
    WEBSITE JAVASCRIPT
@@ -185,7 +185,6 @@ function createPersonCard(person) {
 
 
     return card;
-
 }
 
 
@@ -246,7 +245,7 @@ function loadPeople() {
 
 
 /* ==========================================
-   LOAD MEMBERS FROM DISCORD BOT
+   LOAD MEMBERS
 ========================================== */
 
 async function loadMembers() {
@@ -267,14 +266,6 @@ async function loadMembers() {
 
     }
 
-
-    /*
-        Show the members immediately
-        using the IDs/names we provided.
-
-        This means the profiles do NOT
-        disappear if the API is slow.
-    */
 
     membersList.innerHTML = "";
 
@@ -298,10 +289,6 @@ async function loadMembers() {
     );
 
 
-    /*
-        Create initial member data.
-    */
-
     let finalMembers =
         memberIds.map(
             person => ({
@@ -324,11 +311,6 @@ async function loadMembers() {
             })
         );
 
-
-    /*
-        Try to get live Discord
-        information from the bot.
-    */
 
     try {
 
@@ -439,16 +421,10 @@ async function loadMembers() {
     }
 
 
-    /*
-        Clear again before creating cards.
-    */
-
     membersList.innerHTML = "";
 
 
-    /*
-        Create the first row.
-    */
+    /* FIRST ROW */
 
     finalMembers.forEach(
         (person, index) => {
@@ -470,9 +446,7 @@ async function loadMembers() {
     );
 
 
-    /*
-        Create the second row.
-    */
+    /* SECOND ROW */
 
     finalMembers.forEach(
         (person, index) => {
@@ -494,10 +468,7 @@ async function loadMembers() {
     );
 
 
-    /*
-        Duplicate the rows for
-        continuous scrolling.
-    */
+    /* DUPLICATE FIRST ROW */
 
     finalMembers.forEach(
         (person, index) => {
@@ -519,6 +490,8 @@ async function loadMembers() {
     );
 
 
+    /* DUPLICATE SECOND ROW */
+
     finalMembers.forEach(
         (person, index) => {
 
@@ -538,19 +511,11 @@ async function loadMembers() {
         }
     );
 
-
-    /*
-        Put the rows into the page.
-    */
 
     membersList.appendChild(row1);
 
     membersList.appendChild(row2);
 
-
-    /*
-        Pause scrolling when hovering.
-    */
 
     membersList.addEventListener(
         "mouseenter",
@@ -727,6 +692,10 @@ function closeProfileModal() {
 }
 
 
+/* ==========================================
+   PAGE INITIALIZATION
+========================================== */
+
 document.addEventListener(
     "DOMContentLoaded",
     function () {
@@ -771,6 +740,107 @@ document.addEventListener(
                     );
 
 
+                    /*
+                        IMPORTANT:
+                        Force page back to the
+                        absolute top.
+                    */
+
+                    window.scrollTo({
+                        top: 0,
+                        left: 0,
+                        behavior: "instant"
+                    });
+
+
+                    /*
+                        Make sure the particle
+                        canvas can NEVER create
+                        vertical page space.
+                    */
+
+                    const particleCanvas =
+                        document.getElementById(
+                            "particles"
+                        );
+
+
+                    if (particleCanvas) {
+
+                        particleCanvas.style.position =
+                            "fixed";
+
+                        particleCanvas.style.top =
+                            "0";
+
+                        particleCanvas.style.left =
+                            "0";
+
+                        particleCanvas.style.width =
+                            "100vw";
+
+                        particleCanvas.style.height =
+                            "100vh";
+
+                        particleCanvas.style.margin =
+                            "0";
+
+                        particleCanvas.style.padding =
+                            "0";
+
+                        particleCanvas.style.display =
+                            "block";
+
+                        particleCanvas.style.pointerEvents =
+                            "none";
+
+                        particleCanvas.style.zIndex =
+                            "0";
+
+                    }
+
+
+                    /*
+                        Make sure the main
+                        website starts immediately.
+                    */
+
+                    if (website) {
+
+                        website.style.marginTop =
+                            "0";
+
+                        website.style.paddingTop =
+                            "0";
+
+                        website.style.opacity =
+                            "1";
+
+                        website.style.visibility =
+                            "visible";
+
+                        website.style.pointerEvents =
+                            "auto";
+
+                    }
+
+
+                    /*
+                        Remove any accidental
+                        top spacing.
+                    */
+
+                    document.body.style.marginTop =
+                        "0";
+
+                    document.body.style.paddingTop =
+                        "0";
+
+
+                    /*
+                        Hide ENTER screen.
+                    */
+
                     if (enterScreen) {
 
                         enterScreen.classList.add(
@@ -791,19 +861,9 @@ document.addEventListener(
                     }
 
 
-                    if (website) {
-
-                        website.style.opacity =
-                            "1";
-
-                        website.style.visibility =
-                            "visible";
-
-                        website.style.pointerEvents =
-                            "auto";
-
-                    }
-
+                    /*
+                        Play music.
+                    */
 
                     if (music) {
 
@@ -824,12 +884,6 @@ document.addEventListener(
                     }
 
                 }
-            );
-
-        } else {
-
-            console.error(
-                "ENTER BUTTON NOT FOUND"
             );
 
         }
@@ -971,6 +1025,39 @@ document.addEventListener(
 
 
         if (canvas) {
+
+            /*
+                Force canvas out of the
+                normal document flow.
+            */
+
+            canvas.style.position =
+                "fixed";
+
+            canvas.style.top =
+                "0";
+
+            canvas.style.left =
+                "0";
+
+            canvas.style.width =
+                "100vw";
+
+            canvas.style.height =
+                "100vh";
+
+            canvas.style.margin =
+                "0";
+
+            canvas.style.padding =
+                "0";
+
+            canvas.style.pointerEvents =
+                "none";
+
+            canvas.style.zIndex =
+                "0";
+
 
             const ctx =
                 canvas.getContext("2d");
@@ -1180,3 +1267,4 @@ document.addEventListener(
 
     }
 );
+```
