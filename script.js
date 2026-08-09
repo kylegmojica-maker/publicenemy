@@ -1,4 +1,4 @@
- 
+```javascript
 /* ==========================================
    PUBLIC ENEMY
    WEBSITE JAVASCRIPT
@@ -123,11 +123,81 @@ const memberIds = [
 
 
 /* ==========================================
-   DEFAULT AVATAR
+   AVATAR CACHE
 ========================================== */
 
 const DEFAULT_AVATAR =
     "https://cdn.discordapp.com/embed/avatars/0.png";
+
+
+function getCachedAvatar(id) {
+
+    try {
+
+        return localStorage.getItem(
+            "publicEnemyAvatar_" + id
+        );
+
+    } catch (error) {
+
+        return null;
+
+    }
+
+}
+
+
+function cacheAvatar(id, avatar) {
+
+    if (!avatar || avatar === DEFAULT_AVATAR) {
+        return;
+    }
+
+    try {
+
+        localStorage.setItem(
+            "publicEnemyAvatar_" + id,
+            avatar
+        );
+
+    } catch (error) {
+
+        console.log(
+            "Avatar cache unavailable."
+        );
+
+    }
+
+}
+
+
+/* ==========================================
+   GET BEST AVATAR
+========================================== */
+
+function getAvatar(person) {
+
+    const cached =
+        getCachedAvatar(person.id);
+
+    if (cached) {
+        return cached;
+    }
+
+    if (
+        person.avatar &&
+        !person.avatar.includes(
+            "/embed/avatars/"
+        )
+    ) {
+
+        return person.avatar;
+
+    }
+
+    return DEFAULT_AVATAR;
+
+}
 
 
 /* ==========================================
@@ -144,7 +214,7 @@ function createPersonCard(person) {
 
 
     const avatar =
-        person.avatar || DEFAULT_AVATAR;
+        getAvatar(person);
 
 
     card.innerHTML = `
@@ -153,7 +223,6 @@ function createPersonCard(person) {
             class="person-avatar"
             src="${avatar}"
             alt="${person.username}"
-            draggable="false"
         >
 
         <h3>
@@ -163,25 +232,76 @@ function createPersonCard(person) {
     `;
 
 
-    card.addEventListener(
-        "click",
-        function () {
+    /*
+        Cache the avatar whenever
+        the image successfully loads.
+    */
 
-            document
-                .querySelectorAll(".person-card")
-                .forEach(
-                    item =>
-                        item.classList.remove("active")
+    const image =
+        card.querySelector(".person-avatar");
+
+
+    if (image) {
+
+        image.addEventListener(
+            "load",
+            () => {
+
+                if (
+                    image.src &&
+                    !image.src.includes(
+                        "/embed/avatars/"
+                    )
+                ) {
+
+                    cacheAvatar(
+                        person.id,
+                        image.src
+                    );
+
+                }
+
+            }
+        );
+
+
+        image.addEventListener(
+            "error",
+            () => {
+
+                /*
+                    If the cached/real avatar
+                    fails, use Discord default.
+                */
+
+                image.src =
+                    DEFAULT_AVATAR;
+
+            }
+        );
+
+    }
+
+
+    card.onclick = () => {
+
+        document
+            .querySelectorAll(".person-card")
+            .forEach(item => {
+
+                item.classList.remove(
+                    "active"
                 );
 
+            });
 
-            card.classList.add("active");
+
+        card.classList.add("active");
 
 
-            openProfile(person);
+        openProfile(person);
 
-        }
-    );
+    };
 
 
     return card;
@@ -209,36 +329,26 @@ function loadPeople() {
 
     if (godfatherList) {
 
-        godfatherList.innerHTML = "";
+        godfather.forEach(person => {
 
+            godfatherList.appendChild(
+                createPersonCard(person)
+            );
 
-        godfather.forEach(
-            person => {
-
-                godfatherList.appendChild(
-                    createPersonCard(person)
-                );
-
-            }
-        );
+        });
 
     }
 
 
     if (highcouncilList) {
 
-        highcouncilList.innerHTML = "";
+        highcouncil.forEach(person => {
 
+            highcouncilList.appendChild(
+                createPersonCard(person)
+            );
 
-        highcouncil.forEach(
-            person => {
-
-                highcouncilList.appendChild(
-                    createPersonCard(person)
-                );
-
-            }
-        );
+        });
 
     }
 
@@ -257,78 +367,8 @@ async function loadMembers() {
         );
 
 
-    if (!membersList) {
+    if (!membersList) return;
 
-        console.error(
-            "members-list was not found."
-        );
-
-        return;
-
-    }
-
-
-    /*
-        Show the members immediately
-        using the IDs/names we provided.
-
-        This means the profiles do NOT
-        disappear if the API is slow.
-    */
-
-    membersList.innerHTML = "";
-
-
-    const row1 =
-        document.createElement("div");
-
-    row1.className =
-        "member-scroll-row member-row-1";
-
-
-    const row2 =
-        document.createElement("div");
-
-    row2.className =
-        "member-scroll-row member-row-2";
-
-
-    membersList.classList.add(
-        "members-scroller"
-    );
-
-
-    /*
-        Create initial member data.
-    */
-
-    let finalMembers =
-        memberIds.map(
-            person => ({
-
-                username:
-                    person.username,
-
-                id:
-                    person.id,
-
-                avatar:
-                    DEFAULT_AVATAR,
-
-                status:
-                    "Offline",
-
-                activity:
-                    ""
-
-            })
-        );
-
-
-    /*
-        Try to get live Discord
-        information from the bot.
-    */
 
     try {
 
@@ -336,244 +376,315 @@ async function loadMembers() {
             await fetch(
                 "https://public-enemy-bot-cw8m.onrender.com/members",
                 {
-                    method: "GET",
                     cache: "no-store"
                 }
             );
 
 
-        if (response.ok) {
+        if (!response.ok) {
 
-            const data =
-                await response.json();
-
-
-            const apiMembers =
-                Array.isArray(data)
-                    ? data
-                    : data.members;
-
-
-            if (Array.isArray(apiMembers)) {
-
-                finalMembers =
-                    memberIds.map(
-                        requested => {
-
-                            const found =
-                                apiMembers.find(
-                                    member =>
-                                        String(
-                                            member.id ||
-                                            member.userId ||
-                                            member.discordId
-                                        ) === requested.id
-                                );
-
-
-                            if (!found) {
-
-                                return {
-
-                                    username:
-                                        requested.username,
-
-                                    id:
-                                        requested.id,
-
-                                    avatar:
-                                        DEFAULT_AVATAR,
-
-                                    status:
-                                        "Offline",
-
-                                    activity:
-                                        ""
-
-                                };
-
-                            }
-
-
-                            return {
-
-                                username:
-                                    found.username ||
-                                    found.name ||
-                                    requested.username,
-
-                                id:
-                                    requested.id,
-
-                                avatar:
-                                    found.avatar ||
-                                    found.avatarUrl ||
-                                    found.avatarURL ||
-                                    DEFAULT_AVATAR,
-
-                                status:
-                                    found.status ||
-                                    "Offline",
-
-                                activity:
-                                    found.activity ||
-                                    found.game ||
-                                    ""
-
-                            };
-
-                        }
-                    );
-
-            }
+            throw new Error(
+                "Members API returned " +
+                response.status
+            );
 
         }
 
+
+        const data =
+            await response.json();
+
+
+        let apiMembers =
+            Array.isArray(data)
+                ? data
+                : data.members;
+
+
+        if (!Array.isArray(apiMembers)) {
+
+            throw new Error(
+                "Invalid members API format"
+            );
+
+        }
+
+
+        const allowedIds =
+            memberIds.map(
+                member => member.id
+            );
+
+
+        const members =
+            apiMembers.filter(member => {
+
+                const id =
+                    String(
+                        member.id ||
+                        member.userId ||
+                        member.discordId ||
+                        ""
+                    );
+
+                return allowedIds.includes(id);
+
+            });
+
+
+        /*
+            Always create ALL 8 members
+            in the order specified above.
+        */
+
+        const finalMembers =
+            memberIds.map(requested => {
+
+                const found =
+                    members.find(member => {
+
+                        const id =
+                            String(
+                                member.id ||
+                                member.userId ||
+                                member.discordId ||
+                                ""
+                            );
+
+                        return id === requested.id;
+
+                    });
+
+
+                if (!found) {
+
+                    const cached =
+                        getCachedAvatar(
+                            requested.id
+                        );
+
+
+                    return {
+
+                        username:
+                            requested.username,
+
+                        id:
+                            requested.id,
+
+                        avatar:
+                            cached ||
+                            DEFAULT_AVATAR,
+
+                        status:
+                            "Offline",
+
+                        activity:
+                            ""
+
+                    };
+
+                }
+
+
+                const apiAvatar =
+                    found.avatar ||
+                    found.avatarUrl ||
+                    found.avatarURL ||
+                    "";
+
+
+                const cached =
+                    getCachedAvatar(
+                        requested.id
+                    );
+
+
+                const avatar =
+                    apiAvatar &&
+                    !apiAvatar.includes(
+                        "/embed/avatars/"
+                    )
+                        ? apiAvatar
+                        : (
+                            cached ||
+                            DEFAULT_AVATAR
+                        );
+
+
+                if (
+                    apiAvatar &&
+                    !apiAvatar.includes(
+                        "/embed/avatars/"
+                    )
+                ) {
+
+                    cacheAvatar(
+                        requested.id,
+                        apiAvatar
+                    );
+
+                }
+
+
+                return {
+
+                    username:
+                        found.username ||
+                        found.name ||
+                        requested.username,
+
+                    id:
+                        requested.id,
+
+                    avatar:
+                        avatar,
+
+                    status:
+                        found.status ||
+                        "Offline",
+
+                    activity:
+                        found.activity ||
+                        found.game ||
+                        ""
+
+                };
+
+            });
+
+
+        /*
+            Create rows.
+        */
+
+        const row1 =
+            document.createElement("div");
+
+        row1.className =
+            "member-scroll-row member-row-1";
+
+
+        const row2 =
+            document.createElement("div");
+
+        row2.className =
+            "member-scroll-row member-row-2";
+
+
+        /*
+            First copy.
+        */
+
+        finalMembers.forEach(
+            (person, index) => {
+
+                const card =
+                    createPersonCard(person);
+
+                card.classList.add(
+                    "scroll-member"
+                );
+
+
+                if (index % 2 === 0) {
+
+                    row1.appendChild(card);
+
+                } else {
+
+                    row2.appendChild(card);
+
+                }
+
+            }
+        );
+
+
+        /*
+            Duplicate copy for
+            seamless scrolling.
+        */
+
+        finalMembers.forEach(
+            (person, index) => {
+
+                const card =
+                    createPersonCard(person);
+
+                card.classList.add(
+                    "scroll-member"
+                );
+
+
+                if (index % 2 === 0) {
+
+                    row1.appendChild(card);
+
+                } else {
+
+                    row2.appendChild(card);
+
+                }
+
+            }
+        );
+
+
+        membersList.innerHTML = "";
+
+
+        membersList.classList.add(
+            "members-scroller"
+        );
+
+
+        membersList.appendChild(
+            row1
+        );
+
+
+        membersList.appendChild(
+            row2
+        );
+
+
+        /*
+            Pause scrolling on hover.
+        */
+
+        membersList.addEventListener(
+            "mouseenter",
+            () => {
+
+                membersList.classList.add(
+                    "scroll-paused"
+                );
+
+            }
+        );
+
+
+        membersList.addEventListener(
+            "mouseleave",
+            () => {
+
+                membersList.classList.remove(
+                    "scroll-paused"
+                );
+
+            }
+        );
+
+
     } catch (error) {
 
-        console.warn(
-            "Members API unavailable. Using saved member list.",
+        console.error(
+            "Members API Error:",
             error
         );
 
     }
-
-
-    /*
-        Clear again before creating cards.
-    */
-
-    membersList.innerHTML = "";
-
-
-    /*
-        Create the first row.
-    */
-
-    finalMembers.forEach(
-        (person, index) => {
-
-            if (index % 2 === 0) {
-
-                const card =
-                    createPersonCard(person);
-
-                card.classList.add(
-                    "scroll-member"
-                );
-
-                row1.appendChild(card);
-
-            }
-
-        }
-    );
-
-
-    /*
-        Create the second row.
-    */
-
-    finalMembers.forEach(
-        (person, index) => {
-
-            if (index % 2 !== 0) {
-
-                const card =
-                    createPersonCard(person);
-
-                card.classList.add(
-                    "scroll-member"
-                );
-
-                row2.appendChild(card);
-
-            }
-
-        }
-    );
-
-
-    /*
-        Duplicate the rows for
-        continuous scrolling.
-    */
-
-    finalMembers.forEach(
-        (person, index) => {
-
-            if (index % 2 === 0) {
-
-                const card =
-                    createPersonCard(person);
-
-                card.classList.add(
-                    "scroll-member"
-                );
-
-                row1.appendChild(card);
-
-            }
-
-        }
-    );
-
-
-    finalMembers.forEach(
-        (person, index) => {
-
-            if (index % 2 !== 0) {
-
-                const card =
-                    createPersonCard(person);
-
-                card.classList.add(
-                    "scroll-member"
-                );
-
-                row2.appendChild(card);
-
-            }
-
-        }
-    );
-
-
-    /*
-        Put the rows into the page.
-    */
-
-    membersList.appendChild(row1);
-
-    membersList.appendChild(row2);
-
-
-    /*
-        Pause scrolling when hovering.
-    */
-
-    membersList.addEventListener(
-        "mouseenter",
-        function () {
-
-            membersList.classList.add(
-                "scroll-paused"
-            );
-
-        }
-    );
-
-
-    membersList.addEventListener(
-        "mouseleave",
-        function () {
-
-            membersList.classList.remove(
-                "scroll-paused"
-            );
-
-        }
-    );
 
 }
 
@@ -582,57 +693,70 @@ async function loadMembers() {
    PROFILE MODAL
 ========================================== */
 
+const modal =
+    document.getElementById(
+        "profile-modal"
+    );
+
+
+const modalAvatar =
+    document.getElementById(
+        "modal-avatar"
+    );
+
+
+const modalName =
+    document.getElementById(
+        "modal-name"
+    );
+
+
+const modalUsername =
+    document.getElementById(
+        "modal-username"
+    );
+
+
+const modalStatus =
+    document.getElementById(
+        "modal-status"
+    );
+
+
+const modalDiscordId =
+    document.getElementById(
+        "modal-discord-id"
+    );
+
+
+const modalActivity =
+    document.getElementById(
+        "modal-activity"
+    );
+
+
 function openProfile(person) {
-
-    const modal =
-        document.getElementById(
-            "profile-modal"
-        );
-
-
-    const modalAvatar =
-        document.getElementById(
-            "modal-avatar"
-        );
-
-
-    const modalName =
-        document.getElementById(
-            "modal-name"
-        );
-
-
-    const modalUsername =
-        document.getElementById(
-            "modal-username"
-        );
-
-
-    const modalStatus =
-        document.getElementById(
-            "modal-status"
-        );
-
-
-    const modalActivity =
-        document.getElementById(
-            "modal-activity"
-        );
-
-
-    const modalDiscordId =
-        document.getElementById(
-            "modal-discord-id"
-        );
-
 
     if (!modal) return;
 
 
     if (modalAvatar) {
 
+        const avatar =
+            getAvatar(person);
+
+
         modalAvatar.src =
-            person.avatar || DEFAULT_AVATAR;
+            avatar;
+
+
+        modalAvatar.onerror =
+            () => {
+
+                modalAvatar.src =
+                    DEFAULT_AVATAR;
+
+            };
 
     }
 
@@ -640,7 +764,7 @@ function openProfile(person) {
     if (modalName) {
 
         modalName.textContent =
-            person.username || "Discord User";
+            person.username;
 
     }
 
@@ -648,8 +772,7 @@ function openProfile(person) {
     if (modalUsername) {
 
         modalUsername.textContent =
-            "@" +
-            (person.username || "username");
+            "@" + person.username;
 
     }
 
@@ -657,12 +780,15 @@ function openProfile(person) {
     if (modalStatus) {
 
         const status =
-            person.status || "Offline";
+            person.status ||
+            "Offline";
 
 
         modalStatus.innerHTML = `
 
-            <span class="status-dot ${String(status).toLowerCase()}"></span>
+            <span
+                class="status-dot ${status.toLowerCase()}"
+            ></span>
 
             <span>
                 ${status}
@@ -684,7 +810,7 @@ function openProfile(person) {
     if (modalDiscordId) {
 
         modalDiscordId.textContent =
-            person.id || "-";
+            person.id;
 
     }
 
@@ -697,44 +823,58 @@ function openProfile(person) {
 
 
 /* ==========================================
-   CLOSE PROFILE
+   CLOSE PROFILE MODAL
 ========================================== */
 
-function closeProfileModal() {
-
-    const modal =
-        document.getElementById(
-            "profile-modal"
-        );
+const closeProfile =
+    document.getElementById(
+        "close-profile"
+    );
 
 
-    if (modal) {
+if (closeProfile) {
 
-        modal.classList.add(
-            "hidden"
-        );
+    closeProfile.onclick = () => {
 
-    }
+        if (modal) {
 
+            modal.classList.add(
+                "hidden"
+            );
 
-    document
-        .querySelectorAll(".person-card.active")
-        .forEach(
-            card =>
-                card.classList.remove("active")
-        );
+        }
+
+    };
 
 }
 
 
-document.addEventListener(
+if (modal) {
+
+    modal.onclick = event => {
+
+        if (
+            event.target === modal
+        ) {
+
+            modal.classList.add(
+                "hidden"
+            );
+
+        }
+
+    };
+
+}
+
+
+/* ==========================================
+   ENTER SCREEN + MUSIC
+========================================== */
+
+window.addEventListener(
     "DOMContentLoaded",
-    function () {
-
-
-        /* ==================================
-           ENTER SCREEN
-        ================================== */
+    () => {
 
         const enterButton =
             document.getElementById(
@@ -760,423 +900,353 @@ document.addEventListener(
             );
 
 
-        if (enterButton) {
-
-            enterButton.addEventListener(
-                "click",
-                function () {
-
-                    console.log(
-                        "ENTER BUTTON CLICKED"
-                    );
-
-
-                    if (enterScreen) {
-
-                        enterScreen.classList.add(
-                            "hidden"
-                        );
-
-
-                        setTimeout(
-                            function () {
-
-                                enterScreen.style.display =
-                                    "none";
-
-                            },
-                            700
-                        );
-
-                    }
-
-
-                    if (website) {
-
-                        website.style.opacity =
-                            "1";
-
-                        website.style.visibility =
-                            "visible";
-
-                        website.style.pointerEvents =
-                            "auto";
-
-                    }
-
-
-                    if (music) {
-
-                        music.volume =
-                            0.35;
-
-
-                        music.play().catch(
-                            function () {
-
-                                console.log(
-                                    "Music playback blocked."
-                                );
-
-                            }
-                        );
-
-                    }
-
-                }
-            );
-
-        } else {
+        if (!enterButton) {
 
             console.error(
                 "ENTER BUTTON NOT FOUND"
             );
 
-        }
-
-
-        /* ==================================
-           CLOSE MODAL
-        ================================== */
-
-        const closeButton =
-            document.getElementById(
-                "close-profile"
-            );
-
-
-        if (closeButton) {
-
-            closeButton.addEventListener(
-                "click",
-                closeProfileModal
-            );
+            return;
 
         }
 
 
-        const modal =
-            document.getElementById(
-                "profile-modal"
-            );
-
-
-        if (modal) {
-
-            modal.addEventListener(
-                "click",
-                function (event) {
-
-                    if (
-                        event.target === modal
-                    ) {
-
-                        closeProfileModal();
-
-                    }
-
-                }
-            );
-
-        }
-
-
-        /* ==================================
-           LOAD PEOPLE
-        ================================== */
-
-        loadPeople();
-
-        loadMembers();
-
-
-        /* ==================================
-           VIEW COUNTER
-        ================================== */
-
-        let views =
-            localStorage.getItem(
-                "publicEnemyViews"
-            );
-
-
-        if (!views) {
-
-            views = 1;
-
-        } else {
-
-            views =
-                parseInt(views, 10) + 1;
-
-        }
-
-
-        localStorage.setItem(
-            "publicEnemyViews",
-            views
-        );
-
-
-        const viewCount =
-            document.getElementById(
-                "view-count"
-            );
-
-
-        if (viewCount) {
-
-            viewCount.textContent =
-                views;
-
-        }
-
-
-        /* ==================================
-           CUSTOM CURSOR
-        ================================== */
-
-        const cursor =
-            document.querySelector(
-                ".cursor"
-            );
-
-
-        if (cursor) {
-
-            document.addEventListener(
-                "mousemove",
-                function (event) {
-
-                    cursor.style.left =
-                        event.clientX + "px";
-
-                    cursor.style.top =
-                        event.clientY + "px";
-
-                }
-            );
-
-        }
-
-
-        /* ==================================
-           PARTICLES
-        ================================== */
-
-        const canvas =
-            document.getElementById(
-                "particles"
-            );
-
-
-        if (canvas) {
-
-            const ctx =
-                canvas.getContext("2d");
-
-
-            let particles = [];
-
-
-            function resizeCanvas() {
-
-                canvas.width =
-                    window.innerWidth;
-
-                canvas.height =
-                    window.innerHeight;
-
-            }
-
-
-            function createParticles() {
-
-                particles = [];
-
-
-                for (
-                    let i = 0;
-                    i < 45;
-                    i++
-                ) {
-
-                    particles.push({
-
-                        x:
-                            Math.random() *
-                            canvas.width,
-
-                        y:
-                            Math.random() *
-                            canvas.height,
-
-                        size:
-                            Math.random() *
-                            1.5 + 0.5,
-
-                        speed:
-                            Math.random() *
-                            0.2 + 0.05
-
-                    });
-
-                }
-
-            }
-
-
-            function animateParticles() {
-
-                ctx.clearRect(
-                    0,
-                    0,
-                    canvas.width,
-                    canvas.height
-                );
-
-
-                particles.forEach(
-                    function (p) {
-
-                        ctx.beginPath();
-
-
-                        ctx.arc(
-                            p.x,
-                            p.y,
-                            p.size,
-                            0,
-                            Math.PI * 2
-                        );
-
-
-                        ctx.fillStyle =
-                            "rgba(255,255,255,0.25)";
-
-
-                        ctx.fill();
-
-
-                        p.y -= p.speed;
-
-
-                        if (p.y < 0) {
-
-                            p.y =
-                                canvas.height;
-
-                        }
-
-                    }
-                );
-
-
-                requestAnimationFrame(
-                    animateParticles
-                );
-
-            }
-
-
-            resizeCanvas();
-
-            createParticles();
-
-            animateParticles();
-
-
-            window.addEventListener(
-                "resize",
-                function () {
-
-                    resizeCanvas();
-
-                    createParticles();
-
-                }
-            );
-
-        }
-
-
-        /* ==================================
-           DISCORD BOT LIVE STATS
-        ================================== */
-
-        fetch(
-            "https://public-enemy-bot-cw8m.onrender.com/stats",
-            {
-                method: "GET",
-                cache: "no-store"
-            }
-        )
-
-        .then(
-            response => {
-
-                if (!response.ok) {
-
-                    throw new Error(
-                        "Stats API returned " +
-                        response.status
-                    );
-
-                }
-
-
-                return response.json();
-
-            }
-        )
-
-        .then(
-            data => {
-
-                const botStatus =
-                    document.getElementById(
-                        "bot-status"
-                    );
-
-
-                const serverMembers =
-                    document.getElementById(
-                        "server-members"
-                    );
-
-
-                if (data.online) {
-
-                    if (botStatus) {
-
-                        botStatus.textContent =
-                            "🟢 Online";
-
-                    }
-
-
-                    if (serverMembers) {
-
-                        serverMembers.textContent =
-                            `${data.members} Members`;
-
-                    }
-
-                }
-
-            }
-        )
-
-        .catch(
-            error => {
+        enterButton.addEventListener(
+            "click",
+            () => {
 
                 console.log(
-                    "Discord API Error:",
-                    error
+                    "ENTER BUTTON CLICKED"
                 );
+
+
+                if (enterScreen) {
+
+                    enterScreen.style.opacity =
+                        "0";
+
+                    enterScreen.style.visibility =
+                        "hidden";
+
+                    enterScreen.style.pointerEvents =
+                        "none";
+
+                }
+
+
+                if (website) {
+
+                    website.style.opacity =
+                        "1";
+
+                    website.style.visibility =
+                        "visible";
+
+                    website.style.pointerEvents =
+                        "auto";
+
+                }
+
+
+                if (music) {
+
+                    music.volume =
+                        0.35;
+
+
+                    music.play().catch(
+                        error => {
+
+                            console.log(
+                                "Music playback blocked:",
+                                error
+                            );
+
+                        }
+                    );
+
+                }
 
             }
         );
 
     }
 );
+
+
+/* ==========================================
+   VIEW COUNTER
+========================================== */
+
+let views =
+    localStorage.getItem(
+        "publicEnemyViews"
+    );
+
+
+if (!views) {
+
+    views = 1;
+
+} else {
+
+    views =
+        parseInt(views) + 1;
+
+}
+
+
+localStorage.setItem(
+    "publicEnemyViews",
+    views
+);
+
+
+const viewCount =
+    document.getElementById(
+        "view-count"
+    );
+
+
+if (viewCount) {
+
+    viewCount.textContent =
+        views;
+
+}
+
+
+/* ==========================================
+   CUSTOM CURSOR
+========================================== */
+
+const cursor =
+    document.querySelector(
+        ".cursor"
+    );
+
+
+if (cursor) {
+
+    document.addEventListener(
+        "mousemove",
+        event => {
+
+            cursor.style.left =
+                event.clientX + "px";
+
+            cursor.style.top =
+                event.clientY + "px";
+
+        }
+    );
+
+}
+
+
+/* ==========================================
+   PARTICLES
+========================================== */
+
+const canvas =
+    document.getElementById(
+        "particles"
+    );
+
+
+if (canvas) {
+
+    const ctx =
+        canvas.getContext("2d");
+
+
+    let particles = [];
+
+
+    function resizeCanvas() {
+
+        canvas.width =
+            window.innerWidth;
+
+        canvas.height =
+            window.innerHeight;
+
+    }
+
+
+    resizeCanvas();
+
+
+    window.addEventListener(
+        "resize",
+        resizeCanvas
+    );
+
+
+    function createParticles() {
+
+        particles = [];
+
+
+        for (
+            let i = 0;
+            i < 45;
+            i++
+        ) {
+
+            particles.push({
+
+                x:
+                    Math.random() *
+                    canvas.width,
+
+                y:
+                    Math.random() *
+                    canvas.height,
+
+                size:
+                    Math.random() *
+                    1.5 + 0.5,
+
+                speed:
+                    Math.random() *
+                    0.2 + 0.05
+
+            });
+
+        }
+
+    }
+
+
+    createParticles();
+
+
+    function animateParticles() {
+
+        ctx.clearRect(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+
+
+        particles.forEach(
+            p => {
+
+                ctx.beginPath();
+
+
+                ctx.arc(
+                    p.x,
+                    p.y,
+                    p.size,
+                    0,
+                    Math.PI * 2
+                );
+
+
+                ctx.fillStyle =
+                    "rgba(255,255,255,0.25)";
+
+
+                ctx.fill();
+
+
+                p.y -= p.speed;
+
+
+                if (p.y < 0) {
+
+                    p.y =
+                        canvas.height;
+
+                }
+
+            }
+        );
+
+
+        requestAnimationFrame(
+            animateParticles
+        );
+
+    }
+
+
+    animateParticles();
+
+}
+
+
+/* ==========================================
+   DISCORD BOT LIVE STATS
+========================================== */
+
+fetch(
+    "https://public-enemy-bot-cw8m.onrender.com/stats"
+)
+
+.then(
+    res =>
+        res.json()
+)
+
+.then(
+    data => {
+
+        const botStatus =
+            document.getElementById(
+                "bot-status"
+            );
+
+
+        const serverMembers =
+            document.getElementById(
+                "server-members"
+            );
+
+
+        if (data.online) {
+
+            if (botStatus) {
+
+                botStatus.textContent =
+                    "🟢 Online";
+
+            }
+
+
+            if (serverMembers) {
+
+                serverMembers.textContent =
+                    `${data.members} Members`;
+
+            }
+
+        }
+
+    }
+)
+
+.catch(
+    err => {
+
+        console.log(
+            "Discord API Error:",
+            err
+        );
+
+    }
+);
+
+
+/* ==========================================
+   START WEBSITE
+========================================== */
+
+loadPeople();
+
+loadMembers();
+```
