@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +6,10 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>PUBLIC ENEMY</title>
 
@@ -30,71 +34,64 @@
             background-attachment: fixed;
         }
 
-
         /* ==========================================
            ENTER SCREEN
         ========================================== */
 
         #enter-screen {
-            position: fixed !important;
-            inset: 0 !important;
+            position: fixed;
+            inset: 0;
 
-            width: 100vw !important;
-            height: 100vh !important;
+            width: 100vw;
+            height: 100vh;
 
-            z-index: 999999 !important;
-
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-
-            pointer-events: auto !important;
-        }
-
-
-        #enter-screen .enter-content {
-            position: relative !important;
-
-            z-index: 1000000 !important;
+            z-index: 999999;
 
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
 
-            pointer-events: auto !important;
-        }
+            opacity: 1;
+            visibility: visible;
 
-
-        #enter-button {
-            position: relative !important;
-
-            z-index: 1000001 !important;
-
-            pointer-events: auto !important;
-
-            cursor: pointer !important;
-
-            user-select: none;
-
-            -webkit-user-select: none;
-        }
-
-
-        /*
-            This class is added after ENTER.
-        */
-
-        #enter-screen.entered {
-            opacity: 0 !important;
-            visibility: hidden !important;
-            pointer-events: none !important;
+            pointer-events: auto;
 
             transition:
                 opacity 0.6s ease,
                 visibility 0.6s ease;
         }
 
+        #enter-screen .enter-content {
+            position: relative;
+
+            z-index: 1000000;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            pointer-events: auto;
+        }
+
+        #enter-button {
+            position: relative;
+
+            z-index: 1000001;
+
+            pointer-events: auto;
+
+            cursor: pointer;
+
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        #enter-screen.entered {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
 
         /* ==========================================
            MEMBERS SCROLLER
@@ -107,65 +104,38 @@
             padding: 10px 0 20px;
         }
 
-
         .member-scroll-row {
             display: flex;
-
             width: max-content;
-
             gap: 25px;
-
             margin: 12px 0;
-
             will-change: transform;
         }
 
-
         .member-row-1 {
-            animation:
-                membersScrollLeft
-                28s
-                linear
-                infinite;
+            animation: membersScrollLeft 28s linear infinite;
         }
-
 
         .member-row-2 {
-            animation:
-                membersScrollRight
-                32s
-                linear
-                infinite;
+            animation: membersScrollRight 32s linear infinite;
         }
 
-
-        .members-scroller.scroll-paused
-        .member-scroll-row {
+        .members-scroller.scroll-paused .member-scroll-row {
             animation-play-state: paused;
         }
 
-
         .scroll-member {
             flex: 0 0 auto;
-
             min-width: 150px;
-
             cursor: pointer;
-
-            transition:
-                transform 0.25s ease;
+            transition: transform 0.25s ease;
         }
-
 
         .scroll-member:hover {
-            transform:
-                translateY(-5px)
-                scale(1.04);
+            transform: translateY(-5px) scale(1.04);
         }
-
 
         @keyframes membersScrollLeft {
-
             from {
                 transform: translateX(0);
             }
@@ -173,12 +143,9 @@
             to {
                 transform: translateX(-50%);
             }
-
         }
 
-
         @keyframes membersScrollRight {
-
             from {
                 transform: translateX(-50%);
             }
@@ -186,7 +153,6 @@
             to {
                 transform: translateX(0);
             }
-
         }
 
     </style>
@@ -196,46 +162,49 @@
 
 <body>
 
+    <!-- ==========================================
+         ENTER SCREEN
+    ========================================== -->
 
-<!-- ==========================================
-     ENTER SCREEN
-========================================== -->
+    <div id="enter-screen">
 
-<div id="enter-screen">
+        <div class="enter-content">
 
-    <div class="enter-content">
+            <div class="enter-label">
+                WELCOME
+            </div>
 
-        <div class="enter-label">
-            WELCOME
+            <button
+                id="enter-button"
+                type="button"
+            >
+                ENTER
+            </button>
+
         </div>
-
-        <!--
-            IMPORTANT:
-            The button works directly here.
-            It does NOT depend on script.js.
-        -->
-
-        <button
-            id="enter-button"
-            type="button"
-            onclick="enterWebsite()"
-        >
-            ENTER
-        </button>
 
     </div>
 
-</div>
+
+    <!-- ==========================================
+         BACKGROUND MUSIC
+    ========================================== -->
+
+    <audio
+        id="background-music"
+        loop
+        preload="auto"
+    >
+        <source
+            src="music.mp3"
+            type="audio/mpeg"
+        >
+    </audio>
 
 
-<!-- ==========================================
-     MAIN WEBSITE
-========================================== -->
-
-<div id="main-site">
-
-
-    <!-- NAVIGATION -->
+    <!-- ==========================================
+         NAVIGATION
+    ========================================== -->
 
     <header class="navbar">
 
@@ -280,7 +249,6 @@
 
     <main>
 
-
         <!-- HERO -->
 
         <section
@@ -289,7 +257,6 @@
         >
 
             <div class="hero-content">
-
 
                 <!-- MAIN PROFILE -->
 
@@ -337,7 +304,6 @@
             id="people"
             class="people-section"
         >
-
 
             <!-- GODFATHER -->
 
@@ -401,7 +367,6 @@
     >
 
         <div class="profile-modal-content">
-
 
             <button
                 id="close-profile"
@@ -483,89 +448,14 @@
 
     </footer>
 
-</div>
 
+    <!-- ==========================================
+         JAVASCRIPT
+    ========================================== -->
 
-<!-- ==========================================
-     BACKGROUND MUSIC
-========================================== -->
-
-<audio
-    id="background-music"
-    loop
-    preload="auto"
->
-
-    <source
-        src="music.mp3"
-        type="audio/mpeg"
-    >
-
-</audio>
-
-
-<!-- ==========================================
-     ENTER BUTTON — DIRECT FIX
-========================================== -->
-
-<script>
-
-function enterWebsite() {
-
-    const enterScreen =
-        document.getElementById("enter-screen");
-
-    const mainSite =
-        document.getElementById("main-site");
-
-    const music =
-        document.getElementById("background-music");
-
-
-    /*
-        Hide ENTER screen
-    */
-
-    if (enterScreen) {
-
-        enterScreen.classList.add("entered");
-
-    }
-
-
-    /*
-        Show website
-    */
-
-    if (mainSite) {
-
-        mainSite.classList.add("visible");
-
-        mainSite.style.pointerEvents = "auto";
-
-    }
-
-
-    /*
-        Start music after user click
-    */
-
-    if (music) {
-
-        music.volume = 0.35;
-
-        music.play().catch(() => {});
-
-    }
-
-}
-
-</script>
-
-
-<script src="script.js"></script>
-
+    <script src="script.js"></script>
 
 </body>
 
 </html>
+```
