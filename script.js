@@ -618,37 +618,49 @@ if (modal) {
 
 }
 
-
 /* ==========================================
    ENTER SCREEN
 ========================================== */
 
-const enterButton = document.getElementById("enter-button");
-const enterScreen = document.getElementById("enter-screen");
-const website = document.getElementById("main-site");
+window.addEventListener("DOMContentLoaded", () => {
 
-if (enterButton && enterScreen && website) {
+    const enterButton = document.getElementById("enter-button");
+    const enterScreen = document.getElementById("enter-screen");
+    const website = document.getElementById("main-site");
+    const music = document.getElementById("background-music");
 
-    enterButton.addEventListener("click", function () {
+    if (!enterButton) {
+        console.error("ENTER BUTTON NOT FOUND");
+        return;
+    }
 
-        enterScreen.classList.add("hidden");
+    enterButton.addEventListener("click", () => {
 
-        website.classList.add("visible");
+        console.log("ENTER BUTTON CLICKED");
 
-        const music = document.getElementById("background-music");
+        if (enterScreen) {
+            enterScreen.style.opacity = "0";
+            enterScreen.style.visibility = "hidden";
+            enterScreen.style.pointerEvents = "none";
+        }
+
+        if (website) {
+            website.style.opacity = "1";
+            website.style.visibility = "visible";
+            website.style.pointerEvents = "auto";
+        }
 
         if (music) {
             music.volume = 0.35;
 
-            music.play().catch(function () {
-                console.log("Music could not autoplay.");
+            music.play().catch(() => {
+                console.log("Music playback blocked.");
             });
         }
 
     });
 
-}
-
+});
 
 /* ==========================================
    VIEW COUNTER
