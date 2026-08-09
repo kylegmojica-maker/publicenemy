@@ -1202,16 +1202,16 @@ footer::before {
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
-
     width: 100vw !important;
     height: 100vh !important;
-
     display: block !important;
-
     margin: 0 !important;
     padding: 0 !important;
-
     pointer-events: none !important;
+    z-index: -1 !important;
+}
 
-    z-index: 0 !important;
+#main-site {
+    position: relative !important;
+    z-index: 1 !important;
 }
