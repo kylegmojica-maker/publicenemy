@@ -1,4 +1,4 @@
-
+```javascript
 /* ==========================================
    PUBLIC ENEMY
    WEBSITE JAVASCRIPT
@@ -10,6 +10,7 @@
 ========================================== */
 
 const godfather = [
+
     {
         username: "salvatore.am",
         id: "1045740438147051541",
@@ -39,10 +40,12 @@ const godfather = [
         id: "695588470348972082",
         avatar: "https://cdn.discordapp.com/avatars/695588470348972082/dc06c598b1a468f72a3d87a15f286a8b.png?size=256"
     }
+
 ];
 
 
 const highcouncil = [
+
     {
         username: "anescheese",
         id: "1473659382800584855",
@@ -66,6 +69,7 @@ const highcouncil = [
         id: "1512087904715800629",
         avatar: "https://cdn.discordapp.com/embed/avatars/1.png"
     }
+
 ];
 
 
@@ -74,6 +78,7 @@ const highcouncil = [
 ========================================== */
 
 const memberIds = [
+
     {
         username: "Lebwak",
         id: "543782681796804629"
@@ -113,7 +118,16 @@ const memberIds = [
         username: "Stro",
         id: "719895356338602054"
     }
+
 ];
+
+
+/* ==========================================
+   DEFAULT AVATAR
+========================================== */
+
+const DEFAULT_AVATAR =
+    "https://cdn.discordapp.com/embed/avatars/0.png";
 
 
 /* ==========================================
@@ -122,100 +136,174 @@ const memberIds = [
 
 function createPersonCard(person) {
 
-    const card = document.createElement("div");
+    const card =
+        document.createElement("div");
 
-    card.className = "person-card";
+    card.className =
+        "person-card";
+
 
     card.innerHTML = `
+
         <img
             class="person-avatar"
-            src="${person.avatar || "https://cdn.discordapp.com/embed/avatars/0.png"}"
+            src="${person.avatar || DEFAULT_AVATAR}"
             alt="${person.username}"
         >
 
-        <h3>${person.username}</h3>
+        <h3>
+            ${person.username}
+        </h3>
+
     `;
 
-    card.addEventListener("click", () => {
 
-        document
-            .querySelectorAll(".person-card")
-            .forEach(item => {
-                item.classList.remove("active");
-            });
+    card.addEventListener(
+        "click",
+        function () {
 
-        card.classList.add("active");
+            document
+                .querySelectorAll(".person-card")
+                .forEach(
+                    function (item) {
 
-        openProfile(person);
-    });
+                        item.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
+
+
+            card.classList.add(
+                "active"
+            );
+
+
+            openProfile(person);
+
+        }
+    );
+
 
     return card;
+
 }
 
 
 /* ==========================================
-   LOAD GODFATHER + HIGHCOUNCIL
+   LOAD GODFATHER
 ========================================== */
 
-function loadPeople() {
+function loadGodfather() {
 
-    const godfatherList =
-        document.getElementById("godfather-list");
+    const list =
+        document.getElementById(
+            "godfather-list"
+        );
 
-    const highcouncilList =
-        document.getElementById("highcouncil-list");
+
+    if (!list) return;
 
 
-    if (godfatherList) {
+    list.innerHTML = "";
 
-        godfather.forEach(person => {
 
-            godfatherList.appendChild(
+    godfather.forEach(
+        function (person) {
+
+            list.appendChild(
                 createPersonCard(person)
             );
 
-        });
+        }
+    );
 
-    }
-
-
-    if (highcouncilList) {
-
-        highcouncil.forEach(person => {
-
-            highcouncilList.appendChild(
-                createPersonCard(person)
-            );
-
-        });
-
-    }
 }
 
 
 /* ==========================================
-   LOAD MEMBERS FROM DISCORD BOT
+   LOAD HIGHCOUNCIL
+========================================== */
+
+function loadHighcouncil() {
+
+    const list =
+        document.getElementById(
+            "highcouncil-list"
+        );
+
+
+    if (!list) return;
+
+
+    list.innerHTML = "";
+
+
+    highcouncil.forEach(
+        function (person) {
+
+            list.appendChild(
+                createPersonCard(person)
+            );
+
+        }
+    );
+
+}
+
+
+/* ==========================================
+   GET MEMBER ID
+========================================== */
+
+function getMemberId(member) {
+
+    return String(
+        member.id ||
+        member.userId ||
+        member.discordId ||
+        ""
+    );
+
+}
+
+
+/* ==========================================
+   LOAD MEMBERS
 ========================================== */
 
 async function loadMembers() {
 
     const membersList =
-        document.getElementById("members-list");
+        document.getElementById(
+            "members-list"
+        );
 
-    if (!membersList) return;
+
+    if (!membersList) {
+
+        console.error(
+            "MEMBERS LIST NOT FOUND"
+        );
+
+        return;
+
+    }
 
 
     try {
 
-        const response = await fetch(
-            "https://public-enemy-bot-cw8m.onrender.com/members"
-        );
+        const response =
+            await fetch(
+                "https://public-enemy-bot-cw8m.onrender.com/members"
+            );
 
 
         if (!response.ok) {
 
             throw new Error(
-                "Members API returned " +
+                "API returned " +
                 response.status
             );
 
@@ -226,76 +314,141 @@ async function loadMembers() {
             await response.json();
 
 
-        let apiMembers =
-            Array.isArray(data)
-                ? data
-                : data.members;
+        let apiMembers;
 
 
-        if (!Array.isArray(apiMembers)) {
+        if (Array.isArray(data)) {
+
+            apiMembers =
+                data;
+
+        } else if (
+            data &&
+            Array.isArray(data.members)
+        ) {
+
+            apiMembers =
+                data.members;
+
+        } else {
 
             throw new Error(
-                "Invalid members API format"
+                "Invalid API response"
             );
 
         }
 
 
+        /*
+            Match the IDs from your list
+            with the members returned by
+            the Discord bot.
+        */
+
         const finalMembers =
-            memberIds.map(requested => {
+            memberIds.map(
+                function (requested) {
 
-                const found =
-                    apiMembers.find(member =>
-                        String(
-                            member.id ||
-                            member.userId ||
-                            member.discordId
-                        ) === requested.id
-                    );
+                    const found =
+                        apiMembers.find(
+                            function (member) {
+
+                                return (
+                                    getMemberId(member)
+                                    ===
+                                    requested.id
+                                );
+
+                            }
+                        );
 
 
-                if (!found) {
+                    /*
+                        If the API has the member,
+                        use the live Discord data.
+                    */
+
+                    if (found) {
+
+                        return {
+
+                            username:
+                                found.username ||
+                                found.name ||
+                                requested.username,
+
+                            id:
+                                requested.id,
+
+                            avatar:
+                                found.avatar ||
+                                found.avatarUrl ||
+                                found.avatarURL ||
+                                DEFAULT_AVATAR,
+
+                            status:
+                                found.status ||
+                                "Offline",
+
+                            activity:
+                                found.activity ||
+                                found.game ||
+                                ""
+
+                        };
+
+                    }
+
+
+                    /*
+                        If the API doesn't return
+                        the member, still display
+                        the member instead of
+                        making them disappear.
+                    */
 
                     return {
-                        username: requested.username,
-                        id: requested.id,
+
+                        username:
+                            requested.username,
+
+                        id:
+                            requested.id,
+
                         avatar:
-                            "https://cdn.discordapp.com/embed/avatars/0.png",
-                        status: "Offline",
-                        activity: ""
+                            DEFAULT_AVATAR,
+
+                        status:
+                            "Offline",
+
+                        activity:
+                            ""
+
                     };
 
                 }
+            );
 
 
-                return {
+        /*
+            Clear old members.
+        */
 
-                    username:
-                        found.username ||
-                        found.name ||
-                        requested.username,
+        membersList.innerHTML = "";
 
-                    id:
-                        requested.id,
 
-                    avatar:
-                        found.avatar ||
-                        found.avatarUrl ||
-                        found.avatarURL ||
-                        "https://cdn.discordapp.com/embed/avatars/0.png",
+        /*
+            Make it a scrolling container.
+        */
 
-                    status:
-                        found.status ||
-                        "Offline",
+        membersList.classList.add(
+            "members-scroller"
+        );
 
-                    activity:
-                        found.activity ||
-                        found.game ||
-                        ""
-                };
 
-            });
-
+        /*
+            Create row 1.
+        */
 
         const row1 =
             document.createElement("div");
@@ -304,6 +457,10 @@ async function loadMembers() {
             "member-scroll-row member-row-1";
 
 
+        /*
+            Create row 2.
+        */
+
         const row2 =
             document.createElement("div");
 
@@ -311,10 +468,12 @@ async function loadMembers() {
             "member-scroll-row member-row-2";
 
 
-        /* First copy */
+        /*
+            Put members into rows.
+        */
 
         finalMembers.forEach(
-            (person, index) => {
+            function (person, index) {
 
                 const card =
                     createPersonCard(person);
@@ -326,11 +485,15 @@ async function loadMembers() {
 
                 if (index % 2 === 0) {
 
-                    row1.appendChild(card);
+                    row1.appendChild(
+                        card
+                    );
 
                 } else {
 
-                    row2.appendChild(card);
+                    row2.appendChild(
+                        card
+                    );
 
                 }
 
@@ -338,10 +501,13 @@ async function loadMembers() {
         );
 
 
-        /* Second copy for seamless loop */
+        /*
+            Duplicate the cards for
+            seamless scrolling.
+        */
 
         finalMembers.forEach(
-            (person, index) => {
+            function (person, index) {
 
                 const card =
                     createPersonCard(person);
@@ -353,11 +519,15 @@ async function loadMembers() {
 
                 if (index % 2 === 0) {
 
-                    row1.appendChild(card);
+                    row1.appendChild(
+                        card
+                    );
 
                 } else {
 
-                    row2.appendChild(card);
+                    row2.appendChild(
+                        card
+                    );
 
                 }
 
@@ -365,34 +535,50 @@ async function loadMembers() {
         );
 
 
-        membersList.innerHTML = "";
+        /*
+            Add both rows.
+        */
 
-        membersList.classList.add(
-            "members-scroller"
+        membersList.appendChild(
+            row1
         );
 
-        membersList.appendChild(row1);
+        membersList.appendChild(
+            row2
+        );
 
-        membersList.appendChild(row2);
 
+        /*
+            Pause scrolling when hovering.
+        */
 
         membersList.addEventListener(
             "mouseenter",
-            () => {
+            function () {
+
                 membersList.classList.add(
                     "scroll-paused"
                 );
+
             }
         );
 
 
         membersList.addEventListener(
             "mouseleave",
-            () => {
+            function () {
+
                 membersList.classList.remove(
                     "scroll-paused"
                 );
+
             }
+        );
+
+
+        console.log(
+            "Members loaded:",
+            finalMembers
         );
 
 
@@ -403,7 +589,72 @@ async function loadMembers() {
             error
         );
 
+
+        /*
+            IMPORTANT:
+            Even if Render is offline,
+            show the members from your
+            list instead of leaving the
+            section completely empty.
+        */
+
+        membersList.innerHTML = "";
+
+        membersList.classList.add(
+            "members-scroller"
+        );
+
+
+        const row =
+            document.createElement("div");
+
+        row.className =
+            "member-scroll-row member-row-1";
+
+
+        memberIds.forEach(
+            function (person) {
+
+                const card =
+                    createPersonCard({
+
+                        username:
+                            person.username,
+
+                        id:
+                            person.id,
+
+                        avatar:
+                            DEFAULT_AVATAR,
+
+                        status:
+                            "Offline",
+
+                        activity:
+                            ""
+
+                    });
+
+
+                card.classList.add(
+                    "scroll-member"
+                );
+
+
+                row.appendChild(
+                    card
+                );
+
+            }
+        );
+
+
+        membersList.appendChild(
+            row
+        );
+
     }
+
 }
 
 
@@ -412,26 +663,50 @@ async function loadMembers() {
 ========================================== */
 
 const modal =
-    document.getElementById("profile-modal");
+    document.getElementById(
+        "profile-modal"
+    );
+
 
 const modalAvatar =
-    document.getElementById("modal-avatar");
+    document.getElementById(
+        "modal-avatar"
+    );
+
 
 const modalName =
-    document.getElementById("modal-name");
+    document.getElementById(
+        "modal-name"
+    );
+
 
 const modalUsername =
-    document.getElementById("modal-username");
+    document.getElementById(
+        "modal-username"
+    );
+
 
 const modalStatus =
-    document.getElementById("modal-status");
+    document.getElementById(
+        "modal-status"
+    );
+
 
 const modalActivity =
-    document.getElementById("modal-activity");
+    document.getElementById(
+        "modal-activity"
+    );
+
 
 const modalDiscordId =
-    document.getElementById("modal-discord-id");
+    document.getElementById(
+        "modal-discord-id"
+    );
 
+
+/* ==========================================
+   OPEN PROFILE
+========================================== */
 
 function openProfile(person) {
 
@@ -442,195 +717,161 @@ function openProfile(person) {
 
         modalAvatar.src =
             person.avatar ||
-            "https://cdn.discordapp.com/embed/avatars/0.png";
+            DEFAULT_AVATAR;
+
     }
 
 
     if (modalName) {
 
         modalName.textContent =
-            person.username;
+            person.username ||
+            "Discord User";
+
     }
 
 
     if (modalUsername) {
 
         modalUsername.textContent =
-            "@" + person.username;
+            "@" +
+            (
+                person.username ||
+                "username"
+            );
+
     }
 
 
     if (modalStatus) {
 
         const status =
-            person.status || "Offline";
+            person.status ||
+            "Offline";
+
 
         modalStatus.innerHTML = `
+
             <span class="status-dot"></span>
-            <span>${status}</span>
+
+            <span>
+                ${status}
+            </span>
+
         `;
+
     }
 
 
     if (modalActivity) {
 
         modalActivity.textContent =
-            person.activity || "";
+            person.activity ||
+            "";
+
     }
 
 
     if (modalDiscordId) {
 
         modalDiscordId.textContent =
-            person.id;
+            person.id ||
+            "-";
+
     }
 
 
-    modal.classList.remove("hidden");
+    modal.classList.remove(
+        "hidden"
+    );
+
 }
 
 
 /* ==========================================
-   CLOSE PROFILE MODAL
+   CLOSE PROFILE
 ========================================== */
 
 const closeProfile =
-    document.getElementById("close-profile");
+    document.getElementById(
+        "close-profile"
+    );
 
 
 if (closeProfile) {
 
     closeProfile.addEventListener(
         "click",
-        () => {
+        function () {
 
             if (modal) {
-                modal.classList.add("hidden");
+
+                modal.classList.add(
+                    "hidden"
+                );
+
             }
 
+
             document
-                .querySelectorAll(".person-card")
-                .forEach(item => {
-                    item.classList.remove("active");
-                });
+                .querySelectorAll(
+                    ".person-card"
+                )
+                .forEach(
+                    function (card) {
+
+                        card.classList.remove(
+                            "active"
+                        );
+
+                    }
+                );
 
         }
     );
+
 }
 
+
+/* ==========================================
+   CLOSE MODAL BY CLICKING BACKGROUND
+========================================== */
 
 if (modal) {
 
     modal.addEventListener(
         "click",
-        event => {
+        function (event) {
 
-            if (event.target === modal) {
+            if (
+                event.target === modal
+            ) {
 
-                modal.classList.add("hidden");
+                modal.classList.add(
+                    "hidden"
+                );
+
 
                 document
-                    .querySelectorAll(".person-card")
-                    .forEach(item => {
-                        item.classList.remove("active");
-                    });
+                    .querySelectorAll(
+                        ".person-card"
+                    )
+                    .forEach(
+                        function (card) {
+
+                            card.classList.remove(
+                                "active"
+                            );
+
+                        }
+                    );
 
             }
 
         }
     );
+
 }
-
-
-/* ==========================================
-   ENTER WEBSITE
-========================================== */
-
-function enterWebsite() {
-
-    const enterScreen =
-        document.getElementById("enter-screen");
-
-    const music =
-        document.getElementById("background-music");
-
-
-    if (!enterScreen) {
-
-        console.error(
-            "ENTER SCREEN NOT FOUND"
-        );
-
-        return;
-    }
-
-
-    /* Prevent double-click problems */
-
-    if (enterScreen.classList.contains("hidden")) {
-        return;
-    }
-
-
-    /* Start music */
-
-    if (music) {
-
-        music.volume = 0.35;
-
-        music.play().catch(() => {
-            console.log(
-                "Music playback was blocked."
-            );
-        });
-
-    }
-
-
-    /* Remove ENTER screen */
-
-    enterScreen.classList.add("hidden");
-
-
-    /* Completely disable it after animation */
-
-    setTimeout(() => {
-
-        enterScreen.style.display = "none";
-
-    }, 650);
-}
-
-
-/* ==========================================
-   ENTER BUTTON
-========================================== */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
-
-        const enterButton =
-            document.getElementById("enter-button");
-
-
-        if (!enterButton) {
-
-            console.error(
-                "ENTER BUTTON NOT FOUND"
-            );
-
-            return;
-        }
-
-
-        enterButton.addEventListener(
-            "click",
-            enterWebsite
-        );
-
-    }
-);
 
 
 /* ==========================================
@@ -650,7 +891,11 @@ if (!views) {
 } else {
 
     views =
-        parseInt(views) + 1;
+        parseInt(
+            views,
+            10
+        ) + 1;
+
 }
 
 
@@ -670,158 +915,7 @@ if (viewCount) {
 
     viewCount.textContent =
         views;
-}
 
-
-/* ==========================================
-   CUSTOM CURSOR
-========================================== */
-
-const cursor =
-    document.querySelector(
-        ".cursor"
-    );
-
-
-if (cursor) {
-
-    document.addEventListener(
-        "mousemove",
-        event => {
-
-            cursor.style.left =
-                event.clientX + "px";
-
-            cursor.style.top =
-                event.clientY + "px";
-
-        }
-    );
-}
-
-
-/* ==========================================
-   PARTICLES
-========================================== */
-
-const canvas =
-    document.getElementById(
-        "particles"
-    );
-
-
-if (canvas) {
-
-    const ctx =
-        canvas.getContext("2d");
-
-    let particles = [];
-
-
-    function resizeCanvas() {
-
-        canvas.width =
-            window.innerWidth;
-
-        canvas.height =
-            window.innerHeight;
-    }
-
-
-    resizeCanvas();
-
-
-    window.addEventListener(
-        "resize",
-        resizeCanvas
-    );
-
-
-    function createParticles() {
-
-        particles = [];
-
-
-        for (let i = 0; i < 45; i++) {
-
-            particles.push({
-
-                x:
-                    Math.random() *
-                    canvas.width,
-
-                y:
-                    Math.random() *
-                    canvas.height,
-
-                size:
-                    Math.random() *
-                    1.5 + 0.5,
-
-                speed:
-                    Math.random() *
-                    0.2 + 0.05
-
-            });
-
-        }
-    }
-
-
-    createParticles();
-
-
-    function animateParticles() {
-
-        ctx.clearRect(
-            0,
-            0,
-            canvas.width,
-            canvas.height
-        );
-
-
-        particles.forEach(p => {
-
-            ctx.beginPath();
-
-
-            ctx.arc(
-                p.x,
-                p.y,
-                p.size,
-                0,
-                Math.PI * 2
-            );
-
-
-            ctx.fillStyle =
-                "rgba(255,255,255,0.25)";
-
-
-            ctx.fill();
-
-
-            p.y -= p.speed;
-
-
-            if (p.y < 0) {
-
-                p.y =
-                    canvas.height;
-
-            }
-
-        });
-
-
-        requestAnimationFrame(
-            animateParticles
-        );
-    }
-
-
-    animateParticles();
 }
 
 
@@ -834,11 +928,24 @@ fetch(
 )
 
 .then(
-    res => res.json()
+    function (res) {
+
+        if (!res.ok) {
+
+            throw new Error(
+                "Stats API returned " +
+                res.status
+            );
+
+        }
+
+        return res.json();
+
+    }
 )
 
 .then(
-    data => {
+    function (data) {
 
         const botStatus =
             document.getElementById(
@@ -858,6 +965,7 @@ fetch(
 
                 botStatus.textContent =
                     "🟢 Online";
+
             }
 
 
@@ -865,6 +973,7 @@ fetch(
 
                 serverMembers.textContent =
                     `${data.members} Members`;
+
             }
 
         }
@@ -873,11 +982,11 @@ fetch(
 )
 
 .catch(
-    err => {
+    function (error) {
 
         console.log(
-            "Discord API Error:",
-            err
+            "Discord Stats Error:",
+            error
         );
 
     }
@@ -885,10 +994,182 @@ fetch(
 
 
 /* ==========================================
+   CUSTOM CURSOR
+========================================== */
+
+const cursor =
+    document.querySelector(
+        ".cursor"
+    );
+
+
+if (cursor) {
+
+    document.addEventListener(
+        "mousemove",
+        function (event) {
+
+            cursor.style.left =
+                event.clientX +
+                "px";
+
+            cursor.style.top =
+                event.clientY +
+                "px";
+
+        }
+    );
+
+}
+
+
+/* ==========================================
+   PARTICLES
+========================================== */
+
+const canvas =
+    document.getElementById(
+        "particles"
+    );
+
+
+if (canvas) {
+
+    const ctx =
+        canvas.getContext(
+            "2d"
+        );
+
+
+    let particles = [];
+
+
+    function resizeCanvas() {
+
+        canvas.width =
+            window.innerWidth;
+
+        canvas.height =
+            window.innerHeight;
+
+    }
+
+
+    resizeCanvas();
+
+
+    window.addEventListener(
+        "resize",
+        resizeCanvas
+    );
+
+
+    function createParticles() {
+
+        particles = [];
+
+
+        for (
+            let i = 0;
+            i < 45;
+            i++
+        ) {
+
+            particles.push({
+
+                x:
+                    Math.random() *
+                    canvas.width,
+
+                y:
+                    Math.random() *
+                    canvas.height,
+
+                size:
+                    Math.random() *
+                    1.5 +
+                    0.5,
+
+                speed:
+                    Math.random() *
+                    0.2 +
+                    0.05
+
+            });
+
+        }
+
+    }
+
+
+    createParticles();
+
+
+    function animateParticles() {
+
+        ctx.clearRect(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+
+
+        particles.forEach(
+            function (p) {
+
+                ctx.beginPath();
+
+
+                ctx.arc(
+                    p.x,
+                    p.y,
+                    p.size,
+                    0,
+                    Math.PI * 2
+                );
+
+
+                ctx.fillStyle =
+                    "rgba(255,255,255,0.25)";
+
+
+                ctx.fill();
+
+
+                p.y -= p.speed;
+
+
+                if (p.y < 0) {
+
+                    p.y =
+                        canvas.height;
+
+                }
+
+            }
+        );
+
+
+        requestAnimationFrame(
+            animateParticles
+        );
+
+    }
+
+
+    animateParticles();
+
+}
+
+
+/* ==========================================
    START WEBSITE
 ========================================== */
 
-loadPeople();
+loadGodfather();
+
+loadHighcouncil();
 
 loadMembers();
 ```
