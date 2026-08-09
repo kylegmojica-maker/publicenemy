@@ -1,3 +1,4 @@
+```css
 /* ==========================================
    PUBLIC ENEMY
    CLEAN COMPACT STYLE
@@ -43,7 +44,6 @@ body::before {
 
     z-index: -1;
 }
-
 
 /* ==========================================
    ENTER SCREEN
@@ -137,7 +137,6 @@ body::before {
     transform: scale(0.96);
 }
 
-
 /* ==========================================
    MAIN SITE
 ========================================== */
@@ -153,7 +152,6 @@ body::before {
 
     z-index: 1;
 }
-
 
 /* ==========================================
    NAVBAR
@@ -201,7 +199,6 @@ nav a:hover {
     opacity: 0.5;
 }
 
-
 /* ==========================================
    VIEWS
 ========================================== */
@@ -223,7 +220,6 @@ nav a:hover {
 .views strong {
     font-weight: 600;
 }
-
 
 /* ==========================================
    HERO
@@ -251,7 +247,6 @@ nav a:hover {
 
     text-align: center;
 }
-
 
 /* ==========================================
    MAIN PROFILE
@@ -310,7 +305,6 @@ nav a:hover {
     z-index: 2;
 }
 
-
 /* ==========================================
    DISCORD BUTTON
 ========================================== */
@@ -362,7 +356,6 @@ nav a:hover {
         0 0 25px
         rgba(255, 255, 255, 0.5);
 }
-
 
 /* ==========================================
    PEOPLE SECTION
@@ -430,7 +423,6 @@ nav a:hover {
         rgba(255, 255, 255, 0.5);
 }
 
-
 /* ==========================================
    PEOPLE GRID
 ========================================== */
@@ -453,7 +445,6 @@ nav a:hover {
 
     width: 100%;
 }
-
 
 /* ==========================================
    PROFILE CARDS
@@ -497,7 +488,6 @@ nav a:hover {
     transform: scale(0.95);
 }
 
-
 /* ==========================================
    AVATAR
 ========================================== */
@@ -540,7 +530,6 @@ nav a:hover {
         rgba(255, 255, 255, 0.6);
 }
 
-
 /* ==========================================
    SELECTED PROFILE
 ========================================== */
@@ -557,7 +546,6 @@ nav a:hover {
     transform:
         scale(1.08);
 }
-
 
 /* ==========================================
    PROFILE NAME
@@ -576,10 +564,8 @@ nav a:hover {
     font-weight: 600;
 }
 
-
 /* ==========================================
    MEMBERS
-   ONE CONTINUOUS TWO-LANE MARQUEE
 ========================================== */
 
 #members-list {
@@ -603,6 +589,13 @@ nav a:hover {
     padding: 5px 0 !important;
 }
 
+/*
+   IMPORTANT:
+   Each row contains two identical copies.
+   The row itself is twice the visible content
+   width, allowing the animation to loop.
+*/
+
 #members-list .member-scroll-row {
     display: flex !important;
 
@@ -621,23 +614,44 @@ nav a:hover {
     flex-shrink: 0;
 
     will-change: transform;
+
+    transform: translate3d(0, 0, 0);
+
+    backface-visibility: hidden;
 }
+
+/* ==========================================
+   SMOOTH MEMBER ANIMATION
+========================================== */
 
 #members-list .member-row-1 {
     animation:
         membersScrollLeft
-        25s linear infinite;
+        22s
+        linear
+        infinite;
+
+    animation-fill-mode: both;
 }
 
 #members-list .member-row-2 {
     animation:
         membersScrollRight
-        25s linear infinite;
+        22s
+        linear
+        infinite;
+
+    animation-fill-mode: both;
 }
 
 #members-list.scroll-paused .member-scroll-row {
     animation-play-state: paused !important;
 }
+
+/*
+   Member cards have a fixed width so the
+   duplicated content stays perfectly aligned.
+*/
 
 #members-list .scroll-member {
     flex:
@@ -646,6 +660,8 @@ nav a:hover {
     width: 150px;
 
     min-width: 150px;
+
+    margin: 0;
 
     cursor: pointer;
 
@@ -659,21 +675,33 @@ nav a:hover {
         scale(1.04);
 }
 
-
 /* ==========================================
-   MEMBER LOOP
+   SEAMLESS LOOP
 ========================================== */
+
+/*
+   Because script.js creates:
+   
+   [members][members]
+
+   moving exactly half of the row puts the
+   second copy in the exact position of the
+   first copy.
+
+   The animation restarts at an identical
+   visual position, so there is no jump.
+*/
 
 @keyframes membersScrollLeft {
 
     from {
         transform:
-            translateX(0);
+            translate3d(0, 0, 0);
     }
 
     to {
         transform:
-            translateX(-50%);
+            translate3d(-50%, 0, 0);
     }
 }
 
@@ -681,15 +709,14 @@ nav a:hover {
 
     from {
         transform:
-            translateX(-50%);
+            translate3d(-50%, 0, 0);
     }
 
     to {
         transform:
-            translateX(0);
+            translate3d(0, 0, 0);
     }
 }
-
 
 /* ==========================================
    PROFILE MODAL
@@ -875,7 +902,6 @@ nav a:hover {
     font-weight: 500;
 }
 
-
 /* ==========================================
    CLOSE BUTTON
 ========================================== */
@@ -912,7 +938,6 @@ nav a:hover {
     transform:
         rotate(90deg);
 }
-
 
 /* ==========================================
    FOOTER
@@ -964,7 +989,6 @@ footer::before {
     letter-spacing: 1px;
 }
 
-
 /* ==========================================
    ANIMATIONS
 ========================================== */
@@ -1006,7 +1030,6 @@ footer::before {
             translateY(0);
     }
 }
-
 
 /* ==========================================
    MOBILE
@@ -1096,3 +1119,4 @@ footer::before {
             20px 20px 30px;
     }
 }
+```
