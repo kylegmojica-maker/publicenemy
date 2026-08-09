@@ -1,7 +1,6 @@
-```css
 /* ==========================================
    PUBLIC ENEMY
-   COMPACT LAYOUT
+   CLEAN COMPACT STYLE
 ========================================== */
 
 * {
@@ -38,8 +37,8 @@ body::before {
     background:
         radial-gradient(
             circle at center,
-            rgba(255,255,255,0.08),
-            rgba(0,0,0,0.85)
+            rgba(255, 255, 255, 0.08),
+            rgba(0, 0, 0, 0.85)
         );
 
     z-index: -1;
@@ -48,26 +47,23 @@ body::before {
 
 /* ==========================================
    PARTICLES
-   FIXED BACKGROUND — NO PAGE SPACE
+   FIXED SO THEY CANNOT CREATE PAGE SPACE
 ========================================== */
 
 #particles {
-    position: fixed !important;
+    position: fixed;
+    top: 0;
+    left: 0;
 
-    top: 0 !important;
-    left: 0 !important;
+    width: 100vw;
+    height: 100vh;
 
-    width: 100vw !important;
-    height: 100vh !important;
+    margin: 0;
+    padding: 0;
 
-    margin: 0 !important;
-    padding: 0 !important;
+    pointer-events: none;
 
-    display: block !important;
-
-    pointer-events: none !important;
-
-    z-index: 0 !important;
+    z-index: 0;
 }
 
 
@@ -76,19 +72,19 @@ body::before {
 ========================================== */
 
 #enter-screen {
-    position: fixed !important;
-    inset: 0 !important;
+    position: fixed;
+    inset: 0;
 
-    width: 100vw !important;
-    height: 100vh !important;
+    width: 100vw;
+    height: 100vh;
 
     background: #000;
 
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    z-index: 999999 !important;
+    z-index: 999999;
 
     opacity: 1;
     visibility: visible;
@@ -100,9 +96,9 @@ body::before {
 }
 
 #enter-screen.hidden {
-    opacity: 0 !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 }
 
 .enter-content {
@@ -169,15 +165,15 @@ body::before {
 ========================================== */
 
 #main-site {
-    position: relative !important;
-
-    z-index: 1 !important;
+    position: relative;
 
     width: 100%;
     min-height: 100vh;
 
     opacity: 1;
     visibility: visible;
+
+    z-index: 1;
 }
 
 
@@ -186,15 +182,15 @@ body::before {
 ========================================== */
 
 .navbar {
-    position: relative !important;
-    z-index: 2 !important;
+    position: relative;
+    z-index: 5;
 
     display: flex;
 
     justify-content: space-between;
     align-items: center;
 
-    padding: 16px 8%;
+    padding: 18px 8%;
 }
 
 .nav-logo {
@@ -256,10 +252,10 @@ nav a:hover {
 ========================================== */
 
 .hero {
-    position: relative !important;
-    z-index: 2 !important;
+    position: relative;
+    z-index: 2;
 
-    min-height: auto;
+    min-height: 0;
     height: auto;
 
     display: flex;
@@ -268,12 +264,12 @@ nav a:hover {
 
     justify-content: center;
 
-    padding: 0 0 12px;
+    padding: 0 0 20px;
 }
 
 .hero-content {
     position: relative;
-    z-index: 3;
+    z-index: 5;
 
     text-align: center;
 }
@@ -311,7 +307,7 @@ nav a:hover {
     transition: 0.5s;
 
     box-shadow:
-        0 0 50px rgba(255,255,255,0.35);
+        0 0 50px rgba(255, 255, 255, 0.35);
 }
 
 .main-profile:hover {
@@ -342,15 +338,12 @@ nav a:hover {
 ========================================== */
 
 .discord-button {
-    position: relative;
-    z-index: 3;
-
     display: inline-flex;
 
     justify-content: center;
     align-items: center;
 
-    margin-top: 8px;
+    margin-top: 10px;
 
     padding: 7px 15px;
 
@@ -368,10 +361,10 @@ nav a:hover {
 
     border:
         1px solid
-        rgba(255,255,255,0.3);
+        rgba(255, 255, 255, 0.3);
 
     background:
-        rgba(255,255,255,0.08);
+        rgba(255, 255, 255, 0.08);
 
     backdrop-filter: blur(12px);
 
@@ -389,7 +382,7 @@ nav a:hover {
 
     box-shadow:
         0 0 25px
-        rgba(255,255,255,0.5);
+        rgba(255, 255, 255, 0.5);
 }
 
 
@@ -398,8 +391,10 @@ nav a:hover {
 ========================================== */
 
 .people-section {
-    position: relative !important;
-    z-index: 2 !important;
+    position: relative;
+    z-index: 3;
+
+    width: 100%;
 
     padding:
         5px
@@ -409,7 +404,7 @@ nav a:hover {
 
 .role-section {
     position: relative;
-    z-index: 3;
+    z-index: 4;
 
     width: 100%;
 
@@ -422,7 +417,7 @@ nav a:hover {
 
 .role-title {
     position: relative;
-    z-index: 3;
+    z-index: 5;
 
     text-align: center;
 
@@ -454,7 +449,7 @@ nav a:hover {
     height: 1px;
 
     background:
-        rgba(255,255,255,0.5);
+        rgba(255, 255, 255, 0.5);
 }
 
 
@@ -464,7 +459,7 @@ nav a:hover {
 
 .people-grid {
     position: relative;
-    z-index: 3;
+    z-index: 5;
 
     display: grid;
 
@@ -488,41 +483,32 @@ nav a:hover {
 
 .person-card {
     position: relative;
+    z-index: 6;
 
-    z-index: 4;
+    background: transparent !important;
 
-    background:
-        transparent !important;
+    border: none !important;
 
-    border:
-        none !important;
+    box-shadow: none !important;
 
-    box-shadow:
-        none !important;
+    backdrop-filter: none !important;
 
-    backdrop-filter:
-        none !important;
-
-    padding:
-        8px !important;
+    padding: 8px !important;
 
     text-align: center;
 
     cursor: pointer;
 
     transition:
-        0.4s ease;
+        transform 0.4s ease;
 }
 
 .person-card:hover {
-    background:
-        transparent !important;
+    background: transparent !important;
 
-    border:
-        none !important;
+    border: none !important;
 
-    box-shadow:
-        none !important;
+    box-shadow: none !important;
 
     transform:
         translateY(-8px)
@@ -530,8 +516,7 @@ nav a:hover {
 }
 
 .person-card:active {
-    transform:
-        scale(0.95);
+    transform: scale(0.95);
 }
 
 
@@ -549,42 +534,32 @@ nav a:hover {
 
     display: block;
 
-    background:
-        transparent !important;
+    background: transparent !important;
 
-    border:
-        2px solid transparent;
+    border: 2px solid transparent;
 
-    transition:
-        0.4s ease;
+    transition: 0.4s ease;
 
-    clip-path:
-        circle(50%);
+    clip-path: circle(50%);
 
-    -webkit-clip-path:
-        circle(50%);
+    -webkit-clip-path: circle(50%);
 
     position: relative;
-
-    z-index: 5;
+    z-index: 7;
 }
 
 .person-card img {
-    border-radius:
-        50% !important;
+    border-radius: 50% !important;
 
-    object-fit:
-        cover;
+    object-fit: cover;
 
-    overflow:
-        hidden;
+    overflow: hidden;
 }
 
-.person-card:hover
-.person-avatar {
+.person-card:hover .person-avatar {
     box-shadow:
         0 0 25px
-        rgba(255,255,255,0.6);
+        rgba(255, 255, 255, 0.6);
 }
 
 
@@ -592,15 +567,14 @@ nav a:hover {
    SELECTED PROFILE
 ========================================== */
 
-.person-card.active
-.person-avatar {
+.person-card.active .person-avatar {
     border:
         2px solid white;
 
     box-shadow:
         0 0 20px white,
         0 0 50px
-        rgba(255,255,255,0.8);
+        rgba(255, 255, 255, 0.8);
 
     transform:
         scale(1.08);
@@ -613,7 +587,7 @@ nav a:hover {
 
 .person-card h3 {
     position: relative;
-    z-index: 5;
+    z-index: 7;
 
     margin-top: 10px;
 
@@ -631,103 +605,76 @@ nav a:hover {
 
 #members-list {
     position: relative;
-    z-index: 3;
+    z-index: 5;
 
     width: 100%;
 
     height: auto !important;
 
-    max-height:
-        none !important;
+    max-height: none !important;
 
-    overflow:
-        hidden !important;
+    overflow: hidden !important;
 
-    display:
-        flex !important;
+    display: flex !important;
 
-    flex-direction:
-        column !important;
+    flex-direction: column !important;
 
     gap: 8px;
 
-    padding:
-        5px 0 !important;
+    padding: 5px 0 !important;
 }
 
-#members-list
-.member-scroll-row {
+#members-list .member-scroll-row {
+    display: flex !important;
 
-    display:
-        flex !important;
+    flex-direction: row !important;
 
-    flex-direction:
-        row !important;
-
-    align-items:
-        center;
+    align-items: center;
 
     gap: 30px;
 
-    width:
-        max-content !important;
+    width: max-content !important;
 
     margin: 0;
 
-    padding:
-        5px 0;
+    padding: 5px 0;
 
     flex-shrink: 0;
 
-    will-change:
-        transform;
+    will-change: transform;
 }
 
-#members-list
-.member-row-1 {
-
+#members-list .member-row-1 {
     animation:
         membersScrollLeft
         30s linear infinite;
 }
 
-#members-list
-.member-row-2 {
-
+#members-list .member-row-2 {
     animation:
         membersScrollRight
         30s linear infinite;
 }
 
-#members-list.scroll-paused
-.member-scroll-row {
-
-    animation-play-state:
-        paused !important;
+#members-list.scroll-paused .member-scroll-row {
+    animation-play-state: paused !important;
 }
 
-#members-list
-.scroll-member {
-
+#members-list .scroll-member {
     flex:
         0 0 150px !important;
 
-    width:
-        150px;
+    width: 150px;
 
-    min-width:
-        150px;
+    min-width: 150px;
 
-    cursor:
-        pointer;
+    cursor: pointer;
 
     transition:
         transform 0.3s ease;
 }
 
-#members-list
-.scroll-member:hover {
-
+#members-list .scroll-member:hover {
     transform:
         translateY(-6px)
         scale(1.04);
@@ -749,7 +696,6 @@ nav a:hover {
         transform:
             translateX(-50%);
     }
-
 }
 
 @keyframes membersScrollRight {
@@ -763,7 +709,6 @@ nav a:hover {
         transform:
             translateX(0);
     }
-
 }
 
 
@@ -772,7 +717,6 @@ nav a:hover {
 ========================================== */
 
 #profile-modal {
-
     position: fixed;
 
     inset: 0;
@@ -781,31 +725,23 @@ nav a:hover {
     height: 100%;
 
     background:
-        rgba(0,0,0,0.75);
+        rgba(0, 0, 0, 0.75);
 
-    backdrop-filter:
-        blur(10px);
+    backdrop-filter: blur(10px);
 
-    display:
-        flex;
+    display: flex;
 
-    justify-content:
-        center;
+    justify-content: center;
 
-    align-items:
-        center;
+    align-items: center;
 
-    padding:
-        20px;
+    padding: 20px;
 
-    z-index:
-        10000;
+    z-index: 10000;
 
-    opacity:
-        1;
+    opacity: 1;
 
-    visibility:
-        visible;
+    visibility: visible;
 
     transition:
         opacity 0.3s ease,
@@ -813,57 +749,45 @@ nav a:hover {
 }
 
 #profile-modal.hidden {
+    opacity: 0 !important;
 
-    opacity:
-        0 !important;
+    visibility: hidden !important;
 
-    visibility:
-        hidden !important;
-
-    pointer-events:
-        none !important;
+    pointer-events: none !important;
 }
 
 .profile-modal-content {
+    position: relative;
 
-    position:
-        relative;
+    width: min(400px, 90vw);
 
-    width:
-        min(400px,90vw);
-
-    padding:
-        45px 35px;
+    padding: 45px 35px;
 
     background:
-        rgba(20,20,20,0.9);
+        rgba(20, 20, 20, 0.9);
 
     border:
         1px solid
-        rgba(255,255,255,0.3);
+        rgba(255, 255, 255, 0.3);
 
-    text-align:
-        center;
+    text-align: center;
 
-    border-radius:
-        20px;
+    border-radius: 20px;
 
     animation:
         modalIn 0.5s ease;
 
     box-shadow:
         0 0 80px
-        rgba(255,255,255,0.15);
+        rgba(255, 255, 255, 0.15);
 
-    backdrop-filter:
-        blur(20px);
+    backdrop-filter: blur(20px);
 }
 
 @keyframes modalIn {
 
     from {
-        opacity:
-            0;
+        opacity: 0;
 
         transform:
             scale(0.8)
@@ -871,149 +795,105 @@ nav a:hover {
     }
 
     to {
-        opacity:
-            1;
+        opacity: 1;
 
         transform:
             scale(1)
             translateY(0);
     }
-
 }
 
 .modal-avatar {
+    width: 140px;
+    height: 140px;
 
-    width:
-        140px;
+    border-radius: 50%;
 
-    height:
-        140px;
+    object-fit: cover;
 
-    border-radius:
-        50%;
-
-    object-fit:
-        cover;
-
-    display:
-        block;
+    display: block;
 
     margin:
         0 auto 20px;
 
     border:
         2px solid
-        rgba(255,255,255,0.4);
+        rgba(255, 255, 255, 0.4);
 
     box-shadow:
         0 0 50px
-        rgba(255,255,255,0.25);
+        rgba(255, 255, 255, 0.25);
 }
 
 #modal-name {
+    margin-bottom: 8px;
 
-    margin-bottom:
-        8px;
+    font-size: 24px;
 
-    font-size:
-        24px;
-
-    letter-spacing:
-        2px;
+    letter-spacing: 2px;
 }
 
 #modal-username {
+    margin-bottom: 18px;
 
-    margin-bottom:
-        18px;
+    opacity: 0.6;
 
-    opacity:
-        0.6;
-
-    font-size:
-        14px;
+    font-size: 14px;
 }
 
 .modal-status {
+    display: flex;
 
-    display:
-        flex;
+    justify-content: center;
 
-    justify-content:
-        center;
+    align-items: center;
 
-    align-items:
-        center;
+    gap: 8px;
 
-    gap:
-        8px;
+    margin-bottom: 15px;
 
-    margin-bottom:
-        15px;
+    font-size: 13px;
 
-    font-size:
-        13px;
-
-    opacity:
-        0.8;
+    opacity: 0.8;
 }
 
 .status-dot {
+    width: 8px;
+    height: 8px;
 
-    width:
-        8px;
+    border-radius: 50%;
 
-    height:
-        8px;
+    background: #777;
 
-    border-radius:
-        50%;
-
-    background:
-        #777;
-
-    display:
-        inline-block;
+    display: inline-block;
 }
 
 .modal-activity {
+    margin: 15px 0;
 
-    margin:
-        15px 0;
+    font-size: 13px;
 
-    font-size:
-        13px;
-
-    opacity:
-        0.7;
+    opacity: 0.7;
 }
 
 .modal-id {
+    margin-top: 20px;
 
-    margin-top:
-        20px;
-
-    padding-top:
-        15px;
+    padding-top: 15px;
 
     border-top:
         1px solid
-        rgba(255,255,255,0.15);
+        rgba(255, 255, 255, 0.15);
 
-    font-size:
-        12px;
+    font-size: 12px;
 
-    opacity:
-        0.6;
+    opacity: 0.6;
 }
 
 .modal-id strong {
+    margin-left: 5px;
 
-    margin-left:
-        5px;
-
-    font-weight:
-        500;
+    font-weight: 500;
 }
 
 
@@ -1022,51 +902,33 @@ nav a:hover {
 ========================================== */
 
 .close-profile {
+    position: absolute;
 
-    position:
-        absolute;
+    top: 12px;
+    right: 15px;
 
-    top:
-        12px;
+    width: 35px;
+    height: 35px;
 
-    right:
-        15px;
+    background: transparent;
 
-    width:
-        35px;
+    border: none;
 
-    height:
-        35px;
+    color: white;
 
-    background:
-        transparent;
+    font-size: 30px;
 
-    border:
-        none;
+    line-height: 30px;
 
-    color:
-        white;
+    cursor: pointer;
 
-    font-size:
-        30px;
+    opacity: 0.7;
 
-    line-height:
-        30px;
-
-    cursor:
-        pointer;
-
-    opacity:
-        0.7;
-
-    transition:
-        0.3s;
+    transition: 0.3s;
 }
 
 .close-profile:hover {
-
-    opacity:
-        1;
+    opacity: 1;
 
     transform:
         rotate(90deg);
@@ -1078,69 +940,49 @@ nav a:hover {
 ========================================== */
 
 footer {
+    position: relative;
+    z-index: 5;
 
-    position:
-        relative !important;
+    width: 100%;
 
-    z-index:
-        2 !important;
-
-    width:
-        100%;
-
-    text-align:
-        center;
+    text-align: center;
 
     padding:
         25px 20px 35px;
 
-    opacity:
-        0.7;
+    opacity: 0.7;
 
-    margin-top:
-        0;
+    margin-top: 0;
 }
 
 footer::before {
+    content: "";
 
-    content:
-        "";
+    display: block;
 
-    display:
-        block;
+    width: 140px;
 
-    width:
-        140px;
-
-    height:
-        1px;
+    height: 1px;
 
     background:
-        rgba(255,255,255,0.55);
+        rgba(255, 255, 255, 0.55);
 
     margin:
         0 auto 20px;
 }
 
 .footer-threat {
+    font-size: 14px;
 
-    font-size:
-        14px;
+    letter-spacing: 1px;
 
-    letter-spacing:
-        1px;
-
-    margin-bottom:
-        5px;
+    margin-bottom: 5px;
 }
 
 .footer-copy {
+    font-size: 13px;
 
-    font-size:
-        13px;
-
-    letter-spacing:
-        1px;
+    letter-spacing: 1px;
 }
 
 
@@ -1159,7 +1001,6 @@ footer::before {
         transform:
             rotate(360deg);
     }
-
 }
 
 @keyframes float {
@@ -1168,27 +1009,23 @@ footer::before {
         transform:
             translateY(-10px);
     }
-
 }
 
 @keyframes fadeUp {
 
     from {
-        opacity:
-            0;
+        opacity: 0;
 
         transform:
             translateY(30px);
     }
 
     to {
-        opacity:
-            1;
+        opacity: 1;
 
         transform:
             translateY(0);
     }
-
 }
 
 
@@ -1196,124 +1033,87 @@ footer::before {
    MOBILE
 ========================================== */
 
-@media (max-width:700px) {
+@media (max-width: 700px) {
 
     .navbar {
-
         padding:
             14px 5%;
     }
 
     nav {
-
-        gap:
-            12px;
+        gap: 12px;
     }
 
     .views {
-
-        display:
-            none;
+        display: none;
     }
 
     .hero {
-
-        min-height:
-            auto;
+        min-height: auto;
 
         padding:
             0 0 10px;
     }
 
     .profile-wrapper {
-
-        width:
-            160px;
-
-        height:
-            160px;
+        width: 160px;
+        height: 160px;
     }
 
     .people-section {
-
         padding:
             5px 5% 40px;
     }
 
     .people-grid {
-
         grid-template-columns:
-            repeat(2,1fr);
+            repeat(2, 1fr);
 
         gap:
             18px 15px;
     }
 
     .person-avatar {
-
-        width:
-            90px;
-
-        height:
-            90px;
+        width: 90px;
+        height: 90px;
     }
 
     .person-card h3 {
-
-        font-size:
-            13px;
+        font-size: 13px;
     }
 
     .role-section {
-
-        margin-bottom:
-            40px;
+        margin-bottom: 40px;
     }
 
     .role-title {
-
-        margin-bottom:
-            18px;
+        margin-bottom: 18px;
     }
 
     .role-title::before,
     .role-title::after {
-
-        width:
-            40px;
+        width: 40px;
     }
 
     #members-list {
-
-        gap:
-            8px;
+        gap: 8px;
     }
 
-    #members-list
-    .member-scroll-row {
-
-        gap:
-            20px;
+    #members-list .member-scroll-row {
+        gap: 20px;
     }
 
-    #members-list
-    .scroll-member {
-
+    #members-list .scroll-member {
         flex-basis:
             120px !important;
 
-        width:
-            120px;
+        width: 120px;
 
-        min-width:
-            120px;
+        min-width: 120px;
     }
 
     footer {
-
         padding:
             20px 20px 30px;
     }
-
 }
-```
