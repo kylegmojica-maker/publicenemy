@@ -1,9 +1,7 @@
 /* ==========================================
    PUBLIC ENEMY
-   GUNS.LOL INSPIRED STYLE
+   CLEAN / TIGHT LAYOUT
 ========================================== */
-
-/* RESET */
 
 * {
     margin: 0;
@@ -46,6 +44,7 @@ body::before {
     z-index: -1;
 }
 
+
 /* ==========================================
    ENTER SCREEN
 ========================================== */
@@ -83,9 +82,7 @@ body::before {
 .enter-content {
     position: relative;
     z-index: 1000000;
-
     text-align: center;
-
     animation: fadeUp 1s ease;
 }
 
@@ -114,7 +111,6 @@ body::before {
     letter-spacing: 3px;
 
     cursor: pointer;
-
     user-select: none;
     -webkit-user-select: none;
 
@@ -138,6 +134,7 @@ body::before {
     transform: scale(0.96);
 }
 
+
 /* ==========================================
    NAVBAR
 ========================================== */
@@ -147,7 +144,7 @@ body::before {
     justify-content: space-between;
     align-items: center;
 
-    padding: 30px 8%;
+    padding: 22px 8%;
 }
 
 .nav-logo {
@@ -175,6 +172,7 @@ nav a:hover {
     opacity: 0.5;
 }
 
+
 /* ==========================================
    VIEWS
 ========================================== */
@@ -194,6 +192,7 @@ nav a:hover {
     font-weight: 600;
 }
 
+
 /* ==========================================
    HERO
 ========================================== */
@@ -207,12 +206,13 @@ nav a:hover {
 
     position: relative;
 
-    padding: 25px 0 40px;
+    padding: 20px 0 30px;
 }
 
 .hero-content {
     text-align: center;
 }
+
 
 /* ==========================================
    MAIN PROFILE
@@ -267,6 +267,7 @@ nav a:hover {
     z-index: 1;
 }
 
+
 /* ==========================================
    TITLE
 ========================================== */
@@ -274,6 +275,7 @@ nav a:hover {
 .main-title {
     display: none;
 }
+
 
 /* ==========================================
    DISCORD BUTTON
@@ -285,7 +287,7 @@ nav a:hover {
     justify-content: center;
     align-items: center;
 
-    margin-top: 18px;
+    margin-top: 16px;
 
     padding: 8px 16px;
 
@@ -314,13 +316,12 @@ nav a:hover {
 
     border-color: white;
 
-    background: rgba(255, 255, 255, 0.08);
-
     transform: translateY(-2px);
 
     box-shadow:
         0 0 25px rgba(255, 255, 255, 0.5);
 }
+
 
 /* ==========================================
    PEOPLE
@@ -332,7 +333,6 @@ nav a:hover {
 
 .role-section {
     width: 100%;
-
     margin-bottom: 55px;
 }
 
@@ -373,6 +373,7 @@ nav a:hover {
     background: rgba(255, 255, 255, 0.5);
 }
 
+
 /* ==========================================
    PEOPLE GRID
 ========================================== */
@@ -389,6 +390,7 @@ nav a:hover {
 
     width: 100%;
 }
+
 
 /* ==========================================
    PROFILE CARDS
@@ -422,13 +424,14 @@ nav a:hover {
     box-shadow: none !important;
 
     transform:
-        translateY(-10px)
+        translateY(-8px)
         scale(1.05);
 }
 
 .person-card:active {
     transform: scale(0.95);
 }
+
 
 /* ==========================================
    AVATAR
@@ -467,6 +470,7 @@ nav a:hover {
         0 0 25px rgba(255, 255, 255, 0.6);
 }
 
+
 /* ==========================================
    SELECTED PROFILE
 ========================================== */
@@ -481,6 +485,7 @@ nav a:hover {
     transform: scale(1.08);
 }
 
+
 /* ==========================================
    PROFILE NAME
 ========================================== */
@@ -494,6 +499,7 @@ nav a:hover {
 
     font-weight: 600;
 }
+
 
 /* ==========================================
    MEMBERS AUTO SCROLLER
@@ -510,12 +516,10 @@ nav a:hover {
     display: flex !important;
     flex-direction: column !important;
 
-    gap: 15px;
+    gap: 12px;
 
     padding: 10px 0 !important;
 }
-
-/* EACH ROW */
 
 #members-list .member-scroll-row {
     display: flex !important;
@@ -535,25 +539,17 @@ nav a:hover {
     will-change: transform;
 }
 
-/* ROW 1 */
-
 #members-list .member-row-1 {
     animation: membersScrollLeft 30s linear infinite;
 }
-
-/* ROW 2 */
 
 #members-list .member-row-2 {
     animation: membersScrollRight 30s linear infinite;
 }
 
-/* PAUSE */
-
 #members-list.scroll-paused .member-scroll-row {
     animation-play-state: paused !important;
 }
-
-/* MEMBER */
 
 #members-list .scroll-member {
     flex: 0 0 150px !important;
@@ -570,8 +566,9 @@ nav a:hover {
     transform: translateY(-6px) scale(1.04);
 }
 
+
 /* ==========================================
-   LOOP
+   SCROLL ANIMATIONS
 ========================================== */
 
 @keyframes membersScrollLeft {
@@ -593,6 +590,7 @@ nav a:hover {
         transform: translateX(0);
     }
 }
+
 
 /* ==========================================
    PROFILE MODAL
@@ -764,6 +762,7 @@ nav a:hover {
     font-weight: 500;
 }
 
+
 /* ==========================================
    CLOSE BUTTON
 ========================================== */
@@ -799,6 +798,7 @@ nav a:hover {
 
     transform: rotate(90deg);
 }
+
 
 /* ==========================================
    FOOTER
@@ -846,6 +846,7 @@ footer::before {
     letter-spacing: 1px;
 }
 
+
 /* ==========================================
    ANIMATIONS
 ========================================== */
@@ -869,16 +870,15 @@ footer::before {
 @keyframes fadeUp {
     from {
         opacity: 0;
-
         transform: translateY(30px);
     }
 
     to {
         opacity: 1;
-
         transform: translateY(0);
     }
 }
+
 
 /* ==========================================
    RESPONSIVE
@@ -887,12 +887,11 @@ footer::before {
 @media (max-width: 700px) {
 
     .navbar {
-        padding: 20px 5%;
+        padding: 18px 5%;
     }
 
     nav {
         gap: 12px;
-
         font-size: 11px;
     }
 
@@ -902,8 +901,7 @@ footer::before {
 
     .hero {
         min-height: 42vh;
-
-        padding: 20px 0 30px;
+        padding: 15px 0 25px;
     }
 
     .profile-wrapper {
@@ -912,7 +910,7 @@ footer::before {
     }
 
     .people-section {
-        padding: 25px 5% 45px;
+        padding: 30px 5% 50px;
     }
 
     .people-grid {
@@ -932,11 +930,11 @@ footer::before {
     }
 
     .role-section {
-        margin-bottom: 45px;
+        margin-bottom: 50px;
     }
 
     .role-title {
-        margin-bottom: 22px;
+        margin-bottom: 25px;
     }
 
     .role-title::before,
@@ -945,8 +943,7 @@ footer::before {
     }
 
     #members-list {
-        gap: 10px;
-        padding: 8px 0 !important;
+        gap: 8px;
     }
 
     #members-list .member-scroll-row {
@@ -957,10 +954,6 @@ footer::before {
         flex-basis: 120px !important;
         width: 120px;
         min-width: 120px;
-    }
-
-    .profile-modal-content {
-        padding: 40px 25px;
     }
 
     footer {
