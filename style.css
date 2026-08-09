@@ -46,28 +46,6 @@ body::before {
 
 
 /* ==========================================
-   PARTICLES
-   FIXED SO THEY CANNOT CREATE PAGE SPACE
-========================================== */
-
-#particles {
-    position: fixed;
-    top: 0;
-    left: 0;
-
-    width: 100vw;
-    height: 100vh;
-
-    margin: 0;
-    padding: 0;
-
-    pointer-events: none;
-
-    z-index: 0;
-}
-
-
-/* ==========================================
    ENTER SCREEN
 ========================================== */
 
@@ -601,6 +579,7 @@ nav a:hover {
 
 /* ==========================================
    MEMBERS
+   ONE CONTINUOUS TWO-LANE MARQUEE
 ========================================== */
 
 #members-list {
@@ -647,13 +626,13 @@ nav a:hover {
 #members-list .member-row-1 {
     animation:
         membersScrollLeft
-        30s linear infinite;
+        25s linear infinite;
 }
 
 #members-list .member-row-2 {
     animation:
         membersScrollRight
-        30s linear infinite;
+        25s linear infinite;
 }
 
 #members-list.scroll-paused .member-scroll-row {
