@@ -490,13 +490,14 @@ nav a:hover {
 }
 
 /* ==========================================
-   MEMBERS AUTO SCROLLER - TWO ROW FIX
+   MEMBERS AUTO SCROLLER
+   SMOOTH + SEAMLESS INFINITE LOOP
 ========================================== */
 
 #members-list {
     width: 100%;
-    max-height: none !important;
     height: auto !important;
+    max-height: none !important;
 
     overflow: hidden !important;
 
@@ -507,95 +508,77 @@ nav a:hover {
 
     padding: 20px 0 !important;
 
-    box-sizing: border-box;
+    position: relative;
 }
 
+
+/* EACH ROW */
 
 #members-list .member-scroll-row {
     display: flex !important;
 
     flex-direction: row !important;
-
     align-items: center;
 
     gap: 35px;
 
     width: max-content !important;
-
     min-width: max-content;
 
     margin: 0;
-
     padding: 5px 0;
 
+    flex-shrink: 0;
+
     will-change: transform;
-}
 
-
-/* FIRST ROW */
-
-#members-list .member-row-1 {
-    animation:
-        membersScrollLeft
-        28s
-        linear
-        infinite;
-}
-
-
-/* SECOND ROW */
-
-#members-list .member-row-2 {
-    animation:
-        membersScrollRight
-        32s
-        linear
-        infinite;
-}
-
-
-/* PAUSE BOTH ROWS */
-
-#members-list.scroll-paused .member-scroll-row {
-    animation-play-state: paused !important;
-}
-
-
-/* MEMBER CARD */
-
-#members-list .scroll-member {
-    flex: 0 0 auto !important;
-
-    width: 150px;
-
-    min-width: 150px;
-
-    cursor: pointer;
-
-    transition:
-        transform 0.25s ease;
-}
-
-
-#members-list .scroll-member:hover {
-    transform:
-        translateY(-5px)
-        scale(1.04);
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 
 /* ==========================================
-   TWO ROW ANIMATIONS
+   ROW 1
+========================================== */
+
+#members-list .member-row-1 {
+    animation:
+        membersScrollLeft
+        22s
+        linear
+        infinite;
+
+    animation-timing-function: linear;
+}
+
+
+/* ==========================================
+   ROW 2
+========================================== */
+
+#members-list .member-row-2 {
+    animation:
+        membersScrollRight
+        25s
+        linear
+        infinite;
+
+    animation-timing-function: linear;
+}
+
+
+/* ==========================================
+   SMOOTH INFINITE LOOP
 ========================================== */
 
 @keyframes membersScrollLeft {
 
     from {
-        transform: translateX(0);
+        transform: translate3d(0, 0, 0);
     }
 
     to {
-        transform: translateX(-50%);
+        transform: translate3d(-50%, 0, 0);
     }
 
 }
@@ -604,15 +587,72 @@ nav a:hover {
 @keyframes membersScrollRight {
 
     from {
-        transform: translateX(-50%);
+        transform: translate3d(-50%, 0, 0);
     }
 
     to {
-        transform: translateX(0);
+        transform: translate3d(0, 0, 0);
     }
 
 }
 
+
+/* ==========================================
+   MEMBER CARDS
+========================================== */
+
+#members-list .scroll-member {
+    flex: 0 0 auto !important;
+
+    width: 150px;
+    min-width: 150px;
+
+    cursor: pointer;
+
+    transform: translateZ(0);
+
+    transition:
+        transform 0.3s ease;
+}
+
+
+#members-list .scroll-member:hover {
+    transform:
+        translateY(-6px)
+        scale(1.04);
+}
+
+
+/* ==========================================
+   PAUSE WHEN HOVERING
+========================================== */
+
+#members-list.scroll-paused .member-scroll-row {
+    animation-play-state: paused !important;
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 700px) {
+
+    #members-list {
+        gap: 12px;
+        padding: 15px 0 !important;
+    }
+
+    #members-list .member-scroll-row {
+        gap: 22px;
+    }
+
+    #members-list .scroll-member {
+        width: 120px;
+        min-width: 120px;
+    }
+
+}
 
 /* ==========================================
    MOBILE
