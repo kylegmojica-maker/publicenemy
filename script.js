@@ -623,56 +623,29 @@ if (modal) {
    ENTER SCREEN
 ========================================== */
 
-const enterButton =
-    document.getElementById("enter-button");
+const enterButton = document.getElementById("enter-button");
+const enterScreen = document.getElementById("enter-screen");
+const website = document.getElementById("main-site");
 
-const enterScreen =
-    document.getElementById("enter-screen");
+if (enterButton && enterScreen && website) {
 
-const website =
-    document.getElementById("main-site");
+    enterButton.addEventListener("click", function () {
 
+        enterScreen.classList.add("hidden");
 
-if (enterButton) {
+        website.classList.add("visible");
 
-    enterButton.onclick = () => {
-
-        if (enterScreen) {
-
-            enterScreen.classList.add(
-                "hidden"
-            );
-
-        }
-
-
-        if (website) {
-
-            website.classList.add(
-                "visible"
-            );
-
-        }
-
-
-        const music =
-            document.getElementById(
-                "background-music"
-            );
-
+        const music = document.getElementById("background-music");
 
         if (music) {
-
             music.volume = 0.35;
 
-
-            music.play().catch(
-                () => {}
-            );
-
+            music.play().catch(function () {
+                console.log("Music could not autoplay.");
+            });
         }
 
-    };
+    });
 
 }
 
