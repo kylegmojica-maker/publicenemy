@@ -1,397 +1,385 @@
-<!DOCTYPE html>
-<html lang="en">
+<meta charset="UTF-8">
 
-<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta charset="UTF-8">
+<title>PUBLIC ENEMY</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style.css">
 
-    <title>PUBLIC ENEMY</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link rel="stylesheet" href="style.css">
+<link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
+<!-- ENTER SCREEN -->
 
-</head>
+<div id="enter-screen">
 
-<body>
+    <div class="enter-content">
 
-    <!-- ENTER SCREEN -->
-
-    <div id="enter-screen">
-
-        <div class="enter-content">
-
-            <div class="enter-label">
-                WELCOME
-            </div>
-
-            <button
-                id="enter-button"
-                type="button"
-            >
-                ENTER
-            </button>
-
+        <div class="enter-label">
+            WELCOME
         </div>
+
+        <button
+            id="enter-button"
+            type="button"
+        >
+            ENTER
+        </button>
 
     </div>
 
+</div>
 
-    <!-- BACKGROUND MUSIC -->
 
-    <audio
-        id="background-music"
-        loop
-        preload="auto"
+<!-- BACKGROUND MUSIC -->
+
+<audio
+    id="background-music"
+    loop
+    preload="auto"
+>
+
+    <source
+        src="https://raw.githubusercontent.com/pbe-wrld/publicenemy/main/lv_0_20260809194350.mp4"
+        type="video/mp4"
     >
 
-        <source
-            src="lv_0_20260809194350.mp4"
-            type="video/mp4"
-        >
+</audio>
 
-    </audio>
+<!-- MAIN SITE -->
 
-    <!-- MAIN SITE -->
-
-    <div id="main-site">
+<div id="main-site">
 
 
-        <!-- NAVIGATION -->
+    <!-- NAVIGATION -->
 
-        <header class="navbar">
+    <header class="navbar">
 
-            <div class="nav-logo">
-                PE
+        <div class="nav-logo">
+            PE
+        </div>
+
+        <nav>
+
+            <a href="#home">
+                HOME
+            </a>
+
+            <a
+                href="https://discord.gg/PJ6S48X5Qq"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                DISCORD
+            </a>
+
+            <div class="views">
+
+                <span>
+                    VIEWS
+                </span>
+
+                <strong id="view-count">
+                    0
+                </strong>
+
             </div>
 
-            <nav>
+        </nav>
 
-                <a href="#home">
-                    HOME
-                </a>
+    </header>
+
+
+    <!-- MAIN -->
+
+    <main>
+
+
+        <!-- HERO -->
+
+        <section
+            id="home"
+            class="hero"
+        >
+
+            <div class="hero-content">
+
+                <div class="profile-wrapper">
+
+                    <div class="profile-ring"></div>
+
+                    <img
+                        src="https://media.discordapp.net/attachments/1489145774569951332/1508056143463710870/image-56.png?ex=6a7900fa&is=6a77af7a&hm=18a90b56911f45264603c614bf2b86f73ee75059be7b3ee245390ac309b6bb9b&format=webp&quality=lossless&width=640&height=640"
+                        class="main-profile"
+                        alt="PUBLIC ENEMY"
+                    >
+
+                </div>
+
 
                 <a
                     href="https://discord.gg/PJ6S48X5Qq"
                     target="_blank"
                     rel="noopener noreferrer"
+                    class="discord-button"
                 >
-                    DISCORD
+                    JOIN SERVER
                 </a>
 
-                <div class="views">
+            </div>
 
-                    <span>
-                        VIEWS
-                    </span>
-
-                    <strong id="view-count">
-                        0
-                    </strong>
-
-                </div>
-
-            </nav>
-
-        </header>
+        </section>
 
 
-        <!-- MAIN -->
+        <!-- PEOPLE -->
 
-        <main>
-
-
-            <!-- HERO -->
-
-            <section
-                id="home"
-                class="hero"
-            >
-
-                <div class="hero-content">
-
-                    <div class="profile-wrapper">
-
-                        <div class="profile-ring"></div>
-
-                        <img
-                            src="https://media.discordapp.net/attachments/1489145774569951332/1508056143463710870/image-56.png?ex=6a7900fa&is=6a77af7a&hm=18a90b56911f45264603c614bf2b86f73ee75059be7b3ee245390ac309b6bb9b&format=webp&quality=lossless&width=640&height=640"
-                            class="main-profile"
-                            alt="PUBLIC ENEMY"
-                        >
-
-                    </div>
-
-
-                    <a
-                        href="https://discord.gg/PJ6S48X5Qq"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class="discord-button"
-                    >
-                        JOIN SERVER
-                    </a>
-
-                </div>
-
-            </section>
-
-
-            <!-- PEOPLE -->
-
-            <section
-                id="people"
-                class="people-section"
-            >
-
-
-                <!-- GODFATHER -->
-
-                <div class="role-section">
-
-                    <div class="role-title">
-                        GODFATHER
-                    </div>
-
-                    <div
-                        id="godfather-list"
-                        class="people-grid"
-                    ></div>
-
-                </div>
-
-
-                <!-- HIGHCOUNCIL -->
-
-                <div class="role-section">
-
-                    <div class="role-title">
-                        HIGHCOUNCIL
-                    </div>
-
-                    <div
-                        id="highcouncil-list"
-                        class="people-grid"
-                    ></div>
-
-                </div>
-
-
-                <!-- MEMBERS -->
-
-                <div class="role-section">
-
-                    <div class="role-title">
-                        MEMBERS
-                    </div>
-
-                    <div
-                        id="members-list"
-                        class="people-grid"
-                    ></div>
-
-                </div>
-
-
-            </section>
-
-
-        </main>
-
-
-        <!-- PROFILE MODAL -->
-
-        <div
-            id="profile-modal"
-            class="profile-modal hidden"
+        <section
+            id="people"
+            class="people-section"
         >
 
-            <div class="profile-modal-content">
 
-                <button
-                    id="close-profile"
-                    class="close-profile"
-                    type="button"
-                >
-                    ×
-                </button>
+            <!-- GODFATHER -->
 
+            <div class="role-section">
 
-                <img
-                    id="modal-avatar"
-                    class="modal-avatar"
-                    src=""
-                    alt="Discord Profile"
-                >
-
-
-                <h2 id="modal-name">
-                    Discord User
-                </h2>
-
-
-                <p id="modal-username">
-                    @username
-                </p>
-
-
-                <div
-                    id="modal-status"
-                    class="modal-status"
-                >
-
-                    <span class="status-dot"></span>
-
-                    <span>
-                        Offline
-                    </span>
-
+                <div class="role-title">
+                    GODFATHER
                 </div>
 
-
                 <div
-                    id="modal-activity"
-                    class="modal-activity"
+                    id="godfather-list"
+                    class="people-grid"
                 ></div>
 
+            </div>
 
-                <div class="modal-id">
 
-                    <span>
-                        Discord ID:
-                    </span>
+            <!-- HIGHCOUNCIL -->
 
-                    <strong id="modal-discord-id">
-                        -
-                    </strong>
+            <div class="role-section">
 
+                <div class="role-title">
+                    HIGHCOUNCIL
                 </div>
+
+                <div
+                    id="highcouncil-list"
+                    class="people-grid"
+                ></div>
+
+            </div>
+
+
+            <!-- MEMBERS -->
+
+            <div class="role-section">
+
+                <div class="role-title">
+                    MEMBERS
+                </div>
+
+                <div
+                    id="members-list"
+                    class="people-grid"
+                ></div>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+    <!-- PROFILE MODAL -->
+
+    <div
+        id="profile-modal"
+        class="profile-modal hidden"
+    >
+
+        <div class="profile-modal-content">
+
+            <button
+                id="close-profile"
+                class="close-profile"
+                type="button"
+            >
+                ×
+            </button>
+
+
+            <img
+                id="modal-avatar"
+                class="modal-avatar"
+                src=""
+                alt="Discord Profile"
+            >
+
+
+            <h2 id="modal-name">
+                Discord User
+            </h2>
+
+
+            <p id="modal-username">
+                @username
+            </p>
+
+
+            <div
+                id="modal-status"
+                class="modal-status"
+            >
+
+                <span class="status-dot"></span>
+
+                <span>
+                    Offline
+                </span>
+
+            </div>
+
+
+            <div
+                id="modal-activity"
+                class="modal-activity"
+            ></div>
+
+
+            <div class="modal-id">
+
+                <span>
+                    Discord ID:
+                </span>
+
+                <strong id="modal-discord-id">
+                    -
+                </strong>
 
             </div>
 
         </div>
 
-
-        <!-- FOOTER -->
-
-        <footer>
-
-            <div class="footer-threat">
-                THREAT TO EVERYONE
-            </div>
-
-            <div class="footer-copy">
-                PUBLIC ENEMY
-            </div>
-
-        </footer>
-
-
     </div>
 
 
-    <!-- ENTER BUTTON / MUSIC -->
+    <!-- FOOTER -->
 
-    <script>
+    <footer>
 
-        document.addEventListener(
-            "DOMContentLoaded",
-            function () {
+        <div class="footer-threat">
+            THREAT TO EVERYONE
+        </div>
 
-                const button =
-                    document.getElementById(
-                        "enter-button"
+        <div class="footer-copy">
+            PUBLIC ENEMY
+        </div>
+
+    </footer>
+
+
+</div>
+
+
+<!-- ENTER BUTTON / MUSIC -->
+
+<script>
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function () {
+
+            const button =
+                document.getElementById(
+                    "enter-button"
+                );
+
+            const screen =
+                document.getElementById(
+                    "enter-screen"
+                );
+
+            const music =
+                document.getElementById(
+                    "background-music"
+                );
+
+
+            if (!button || !screen) {
+
+                console.error(
+                    "ENTER BUTTON OR ENTER SCREEN NOT FOUND"
+                );
+
+                return;
+
+            }
+
+
+            button.addEventListener(
+                "click",
+                function () {
+
+                    console.log(
+                        "ENTER BUTTON CLICKED"
                     );
 
-                const screen =
-                    document.getElementById(
-                        "enter-screen"
-                    );
 
-                const music =
-                    document.getElementById(
-                        "background-music"
-                    );
+                    /* PLAY MUSIC */
 
+                    if (music) {
 
-                if (!button || !screen) {
+                        music.volume = 0.35;
 
-                    console.error(
-                        "ENTER BUTTON OR ENTER SCREEN NOT FOUND"
-                    );
+                        music.play().catch(
+                            function (error) {
 
-                    return;
+                                console.log(
+                                    "Music playback error:",
+                                    error
+                                );
 
-                }
-
-
-                button.addEventListener(
-                    "click",
-                    function () {
-
-                        console.log(
-                            "ENTER BUTTON CLICKED"
-                        );
-
-
-                        /* PLAY MUSIC */
-
-                        if (music) {
-
-                            music.volume = 0.35;
-
-                            music.play().catch(
-                                function (error) {
-
-                                    console.log(
-                                        "Music playback error:",
-                                        error
-                                    );
-
-                                }
-                            );
-
-                        }
-
-
-                        /* HIDE ENTER SCREEN */
-
-                        screen.classList.add(
-                            "hidden"
-                        );
-
-
-                        setTimeout(
-                            function () {
-
-                                screen.style.display =
-                                    "none";
-
-                            },
-                            700
+                            }
                         );
 
                     }
-                );
-
-            }
-        );
-
-    </script>
 
 
-    <!-- YOUR MAIN SCRIPT -->
+                    /* HIDE ENTER SCREEN */
 
-    <script src="script.js"></script>
+                    screen.classList.add(
+                        "hidden"
+                    );
 
-</body>
 
-</html>
+                    setTimeout(
+                        function () {
+
+                            screen.style.display =
+                                "none";
+
+                        },
+                        700
+                    );
+
+                }
+            );
+
+        }
+    );
+
+</script>
+
+
+<!-- YOUR MAIN SCRIPT -->
+
+<script src="script.js"></script>
