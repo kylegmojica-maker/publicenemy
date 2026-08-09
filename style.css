@@ -490,42 +490,51 @@ nav a:hover {
 }
 
 /* ==========================================
-   MEMBERS SCROLLER
+   MEMBERS AUTO SCROLLER - TWO ROW FIX
 ========================================== */
 
 #members-list {
     width: 100%;
+    max-height: none !important;
+    height: auto !important;
 
-    max-height: 350px;
+    overflow: hidden !important;
 
-    overflow: hidden;
+    display: flex !important;
+    flex-direction: column !important;
 
-    padding: 20px;
+    gap: 18px;
+
+    padding: 20px 0 !important;
+
+    box-sizing: border-box;
 }
 
-.members-scroller {
-    width: 100%;
 
-    overflow: hidden;
+#members-list .member-scroll-row {
+    display: flex !important;
 
-    position: relative;
+    flex-direction: row !important;
 
-    padding: 10px 0 20px;
-}
+    align-items: center;
 
-.member-scroll-row {
-    display: flex;
+    gap: 35px;
 
-    width: max-content;
+    width: max-content !important;
 
-    gap: 25px;
+    min-width: max-content;
 
-    margin: 12px 0;
+    margin: 0;
+
+    padding: 5px 0;
 
     will-change: transform;
 }
 
-.member-row-1 {
+
+/* FIRST ROW */
+
+#members-list .member-row-1 {
     animation:
         membersScrollLeft
         28s
@@ -533,7 +542,10 @@ nav a:hover {
         infinite;
 }
 
-.member-row-2 {
+
+/* SECOND ROW */
+
+#members-list .member-row-2 {
     animation:
         membersScrollRight
         32s
@@ -541,25 +553,91 @@ nav a:hover {
         infinite;
 }
 
-.members-scroller.scroll-paused
-.member-scroll-row {
-    animation-play-state: paused;
+
+/* PAUSE BOTH ROWS */
+
+#members-list.scroll-paused .member-scroll-row {
+    animation-play-state: paused !important;
 }
 
-.scroll-member {
-    flex: 0 0 auto;
+
+/* MEMBER CARD */
+
+#members-list .scroll-member {
+    flex: 0 0 auto !important;
+
+    width: 150px;
 
     min-width: 150px;
 
     cursor: pointer;
 
-    transition: transform 0.25s ease;
+    transition:
+        transform 0.25s ease;
 }
 
-.scroll-member:hover {
+
+#members-list .scroll-member:hover {
     transform:
         translateY(-5px)
         scale(1.04);
+}
+
+
+/* ==========================================
+   TWO ROW ANIMATIONS
+========================================== */
+
+@keyframes membersScrollLeft {
+
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+
+}
+
+
+@keyframes membersScrollRight {
+
+    from {
+        transform: translateX(-50%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 700px) {
+
+    #members-list {
+        gap: 10px;
+
+        padding: 15px 0 !important;
+    }
+
+
+    #members-list .member-scroll-row {
+        gap: 20px;
+    }
+
+
+    #members-list .scroll-member {
+        width: 120px;
+
+        min-width: 120px;
+    }
+
 }
 
 /* ==========================================
