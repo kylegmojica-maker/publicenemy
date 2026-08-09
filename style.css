@@ -47,6 +47,31 @@ body::before {
 
 
 /* ==========================================
+   PARTICLES
+   FIXED BACKGROUND — NO PAGE SPACE
+========================================== */
+
+#particles {
+    position: fixed !important;
+
+    top: 0 !important;
+    left: 0 !important;
+
+    width: 100vw !important;
+    height: 100vh !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    display: block !important;
+
+    pointer-events: none !important;
+
+    z-index: 0 !important;
+}
+
+
+/* ==========================================
    ENTER SCREEN
 ========================================== */
 
@@ -144,6 +169,10 @@ body::before {
 ========================================== */
 
 #main-site {
+    position: relative !important;
+
+    z-index: 1 !important;
+
     width: 100%;
     min-height: 100vh;
 
@@ -157,6 +186,9 @@ body::before {
 ========================================== */
 
 .navbar {
+    position: relative !important;
+    z-index: 2 !important;
+
     display: flex;
 
     justify-content: space-between;
@@ -221,10 +253,12 @@ nav a:hover {
 
 /* ==========================================
    HERO
-   EXTRA COMPACT
 ========================================== */
 
 .hero {
+    position: relative !important;
+    z-index: 2 !important;
+
     min-height: auto;
     height: auto;
 
@@ -234,12 +268,13 @@ nav a:hover {
 
     justify-content: center;
 
-    position: relative;
-
     padding: 0 0 12px;
 }
 
 .hero-content {
+    position: relative;
+    z-index: 3;
+
     text-align: center;
 }
 
@@ -269,7 +304,9 @@ nav a:hover {
 
     position: relative;
 
-    z-index: 2;
+    z-index: 3;
+
+    display: block;
 
     transition: 0.5s;
 
@@ -296,7 +333,7 @@ nav a:hover {
     animation:
         spin 8s linear infinite;
 
-    z-index: 1;
+    z-index: 2;
 }
 
 
@@ -305,6 +342,9 @@ nav a:hover {
 ========================================== */
 
 .discord-button {
+    position: relative;
+    z-index: 3;
+
     display: inline-flex;
 
     justify-content: center;
@@ -358,6 +398,9 @@ nav a:hover {
 ========================================== */
 
 .people-section {
+    position: relative !important;
+    z-index: 2 !important;
+
     padding:
         5px
         8%
@@ -365,6 +408,9 @@ nav a:hover {
 }
 
 .role-section {
+    position: relative;
+    z-index: 3;
+
     width: 100%;
 
     margin-bottom: 40px;
@@ -375,6 +421,9 @@ nav a:hover {
 }
 
 .role-title {
+    position: relative;
+    z-index: 3;
+
     text-align: center;
 
     font-size: 14px;
@@ -414,6 +463,9 @@ nav a:hover {
 ========================================== */
 
 .people-grid {
+    position: relative;
+    z-index: 3;
+
     display: grid;
 
     grid-template-columns:
@@ -435,6 +487,10 @@ nav a:hover {
 ========================================== */
 
 .person-card {
+    position: relative;
+
+    z-index: 4;
+
     background:
         transparent !important;
 
@@ -456,8 +512,6 @@ nav a:hover {
 
     transition:
         0.4s ease;
-
-    position: relative;
 }
 
 .person-card:hover {
@@ -509,6 +563,10 @@ nav a:hover {
 
     -webkit-clip-path:
         circle(50%);
+
+    position: relative;
+
+    z-index: 5;
 }
 
 .person-card img {
@@ -554,6 +612,9 @@ nav a:hover {
 ========================================== */
 
 .person-card h3 {
+    position: relative;
+    z-index: 5;
+
     margin-top: 10px;
 
     font-size: 15px;
@@ -569,6 +630,9 @@ nav a:hover {
 ========================================== */
 
 #members-list {
+    position: relative;
+    z-index: 3;
+
     width: 100%;
 
     height: auto !important;
@@ -593,6 +657,7 @@ nav a:hover {
 
 #members-list
 .member-scroll-row {
+
     display:
         flex !important;
 
@@ -620,6 +685,7 @@ nav a:hover {
 
 #members-list
 .member-row-1 {
+
     animation:
         membersScrollLeft
         30s linear infinite;
@@ -627,6 +693,7 @@ nav a:hover {
 
 #members-list
 .member-row-2 {
+
     animation:
         membersScrollRight
         30s linear infinite;
@@ -634,12 +701,14 @@ nav a:hover {
 
 #members-list.scroll-paused
 .member-scroll-row {
+
     animation-play-state:
         paused !important;
 }
 
 #members-list
 .scroll-member {
+
     flex:
         0 0 150px !important;
 
@@ -658,6 +727,7 @@ nav a:hover {
 
 #members-list
 .scroll-member:hover {
+
     transform:
         translateY(-6px)
         scale(1.04);
@@ -669,6 +739,7 @@ nav a:hover {
 ========================================== */
 
 @keyframes membersScrollLeft {
+
     from {
         transform:
             translateX(0);
@@ -678,9 +749,11 @@ nav a:hover {
         transform:
             translateX(-50%);
     }
+
 }
 
 @keyframes membersScrollRight {
+
     from {
         transform:
             translateX(-50%);
@@ -690,6 +763,7 @@ nav a:hover {
         transform:
             translateX(0);
     }
+
 }
 
 
@@ -698,6 +772,7 @@ nav a:hover {
 ========================================== */
 
 #profile-modal {
+
     position: fixed;
 
     inset: 0;
@@ -738,6 +813,7 @@ nav a:hover {
 }
 
 #profile-modal.hidden {
+
     opacity:
         0 !important;
 
@@ -749,6 +825,7 @@ nav a:hover {
 }
 
 .profile-modal-content {
+
     position:
         relative;
 
@@ -783,6 +860,7 @@ nav a:hover {
 }
 
 @keyframes modalIn {
+
     from {
         opacity:
             0;
@@ -800,9 +878,11 @@ nav a:hover {
             scale(1)
             translateY(0);
     }
+
 }
 
 .modal-avatar {
+
     width:
         140px;
 
@@ -831,6 +911,7 @@ nav a:hover {
 }
 
 #modal-name {
+
     margin-bottom:
         8px;
 
@@ -842,6 +923,7 @@ nav a:hover {
 }
 
 #modal-username {
+
     margin-bottom:
         18px;
 
@@ -853,6 +935,7 @@ nav a:hover {
 }
 
 .modal-status {
+
     display:
         flex;
 
@@ -876,6 +959,7 @@ nav a:hover {
 }
 
 .status-dot {
+
     width:
         8px;
 
@@ -893,6 +977,7 @@ nav a:hover {
 }
 
 .modal-activity {
+
     margin:
         15px 0;
 
@@ -904,6 +989,7 @@ nav a:hover {
 }
 
 .modal-id {
+
     margin-top:
         20px;
 
@@ -922,6 +1008,7 @@ nav a:hover {
 }
 
 .modal-id strong {
+
     margin-left:
         5px;
 
@@ -935,6 +1022,7 @@ nav a:hover {
 ========================================== */
 
 .close-profile {
+
     position:
         absolute;
 
@@ -976,6 +1064,7 @@ nav a:hover {
 }
 
 .close-profile:hover {
+
     opacity:
         1;
 
@@ -989,8 +1078,12 @@ nav a:hover {
 ========================================== */
 
 footer {
+
     position:
-        relative;
+        relative !important;
+
+    z-index:
+        2 !important;
 
     width:
         100%;
@@ -1009,6 +1102,7 @@ footer {
 }
 
 footer::before {
+
     content:
         "";
 
@@ -1029,6 +1123,7 @@ footer::before {
 }
 
 .footer-threat {
+
     font-size:
         14px;
 
@@ -1040,6 +1135,7 @@ footer::before {
 }
 
 .footer-copy {
+
     font-size:
         13px;
 
@@ -1053,6 +1149,7 @@ footer::before {
 ========================================== */
 
 @keyframes spin {
+
     from {
         transform:
             rotate(0deg);
@@ -1062,16 +1159,20 @@ footer::before {
         transform:
             rotate(360deg);
     }
+
 }
 
 @keyframes float {
+
     50% {
         transform:
             translateY(-10px);
     }
+
 }
 
 @keyframes fadeUp {
+
     from {
         opacity:
             0;
@@ -1087,6 +1188,7 @@ footer::before {
         transform:
             translateY(0);
     }
+
 }
 
 
@@ -1097,21 +1199,25 @@ footer::before {
 @media (max-width:700px) {
 
     .navbar {
+
         padding:
             14px 5%;
     }
 
     nav {
+
         gap:
             12px;
     }
 
     .views {
+
         display:
             none;
     }
 
     .hero {
+
         min-height:
             auto;
 
@@ -1120,6 +1226,7 @@ footer::before {
     }
 
     .profile-wrapper {
+
         width:
             160px;
 
@@ -1128,11 +1235,13 @@ footer::before {
     }
 
     .people-section {
+
         padding:
             5px 5% 40px;
     }
 
     .people-grid {
+
         grid-template-columns:
             repeat(2,1fr);
 
@@ -1141,6 +1250,7 @@ footer::before {
     }
 
     .person-avatar {
+
         width:
             90px;
 
@@ -1149,39 +1259,46 @@ footer::before {
     }
 
     .person-card h3 {
+
         font-size:
             13px;
     }
 
     .role-section {
+
         margin-bottom:
             40px;
     }
 
     .role-title {
+
         margin-bottom:
             18px;
     }
 
     .role-title::before,
     .role-title::after {
+
         width:
             40px;
     }
 
     #members-list {
+
         gap:
             8px;
     }
 
     #members-list
     .member-scroll-row {
+
         gap:
             20px;
     }
 
     #members-list
     .scroll-member {
+
         flex-basis:
             120px !important;
 
@@ -1193,25 +1310,10 @@ footer::before {
     }
 
     footer {
+
         padding:
             20px 20px 30px;
     }
-}
 
-#particles {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    display: block !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    pointer-events: none !important;
-    z-index: -1 !important;
 }
-
-#main-site {
-    position: relative !important;
-    z-index: 1 !important;
-}
+```
