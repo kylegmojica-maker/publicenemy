@@ -1197,4 +1197,21 @@ footer::before {
             20px 20px 30px;
     }
 }
-```
+
+#particles {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+
+    width: 100vw !important;
+    height: 100vh !important;
+
+    display: block !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    pointer-events: none !important;
+
+    z-index: 0 !important;
+}
