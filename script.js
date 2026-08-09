@@ -32,7 +32,7 @@ const godfather = [
     {
         username: "yoshiiixzz",
         id: "1393821550142296145",
-        avatar: "https://cdn.discordapp.com/embed/avatars/0.png"
+        avatar: "https://cdn.discordapp.com/avatars/1393821550142296145/2736dd55a6f4452ab9e89ed5f99aee9e.png?size=256"
     },
 
     {
@@ -49,7 +49,7 @@ const highcouncil = [
     {
         username: "anescheese",
         id: "1473659382800584855",
-        avatar: "https://cdn.discordapp.com/avatars/1473659382800584855/a4188f0f67fc0f897828e8cf2e842d02.png?size=256"
+        avatar: "https://cdn.discordapp.com/avatars/1473659382800584855/2ef3e43a4309d3f464453f6121ef0fd7.png?size=256"
     },
 
     {
