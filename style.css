@@ -1,3 +1,4 @@
+```css
 /* ==========================================
    PUBLIC ENEMY
    GUNS.LOL INSPIRED STYLE
@@ -46,93 +47,59 @@ body::before {
     z-index: -1;
 }
 
-
-/* ==========================================
-   MAIN WEBSITE
-========================================== */
-
-#main-site {
-    position: relative;
-    z-index: 2;
-}
-
-
-/* ==========================================
-   PARTICLES
-========================================== */
-
-#particles {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    pointer-events: none;
-}
-
-
-/* ==========================================
-   CURSOR
-========================================== */
-
-.cursor {
-    position: fixed;
-    width: 22px;
-    height: 22px;
-
-    border: 2px solid white;
-    border-radius: 50%;
-
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-
-    z-index: 9999;
-    transition: 0.1s;
-}
-
-
 /* ==========================================
    ENTER SCREEN
 ========================================== */
 
 #enter-screen {
-    position: fixed;
-    inset: 0;
+    position: fixed !important;
+    inset: 0 !important;
 
-    background: black;
+    width: 100vw !important;
+    height: 100vh !important;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: #000;
 
-    z-index: 9998;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
 
-    transition: 1s;
+    z-index: 999999 !important;
+
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+
+    transition:
+        opacity 0.6s ease,
+        visibility 0.6s ease;
 }
 
 #enter-screen.hidden {
-    opacity: 0;
-    transform: scale(1.1);
-    pointer-events: none;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
 }
 
 .enter-content {
-    text-align: center;
-    animation: fadeUp 1s ease;
-}
+    position: relative;
+    z-index: 1000000;
 
-.enter-content h1 {
-    font-family: "Oswald", sans-serif;
-    font-size: 80px;
-    letter-spacing: 10px;
+    text-align: center;
+
+    animation: fadeUp 1s ease;
 }
 
 .enter-label {
     letter-spacing: 8px;
     opacity: 0.6;
+    font-size: 13px;
 }
 
 #enter-button {
+    position: relative;
+    z-index: 1000001;
+
     margin-top: 30px;
 
     padding: 15px 50px;
@@ -142,9 +109,21 @@ body::before {
 
     color: white;
 
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 3px;
+
     cursor: pointer;
 
-    transition: 0.4s;
+    user-select: none;
+    -webkit-user-select: none;
+
+    transition:
+        background 0.4s ease,
+        color 0.4s ease,
+        box-shadow 0.4s ease,
+        transform 0.25s ease;
 }
 
 #enter-button:hover {
@@ -152,8 +131,13 @@ body::before {
     color: black;
 
     box-shadow: 0 0 30px white;
+
+    transform: translateY(-2px);
 }
 
+#enter-button:active {
+    transform: scale(0.96);
+}
 
 /* ==========================================
    NAVBAR
@@ -168,8 +152,8 @@ body::before {
 }
 
 .nav-logo {
-    font-family: "Oswald", sans-serif;
     font-size: 28px;
+    font-weight: 800;
     letter-spacing: 5px;
 }
 
@@ -182,13 +166,15 @@ nav {
 nav a {
     color: white;
     text-decoration: none;
+
+    font-size: 13px;
+
     transition: 0.3s;
 }
 
 nav a:hover {
     opacity: 0.5;
 }
-
 
 /* ==========================================
    VIEWS
@@ -209,9 +195,8 @@ nav a:hover {
     font-weight: 600;
 }
 
-
 /* ==========================================
-   HERO PROFILE
+   HERO
 ========================================== */
 
 .hero {
@@ -227,6 +212,10 @@ nav a:hover {
 .hero-content {
     text-align: center;
 }
+
+/* ==========================================
+   MAIN PROFILE
+========================================== */
 
 .profile-wrapper {
     width: 230px;
@@ -277,57 +266,17 @@ nav a:hover {
     z-index: 1;
 }
 
-
 /* ==========================================
    TITLE
 ========================================== */
 
-.main-title,
-.title-line {
+.main-title {
     display: none;
 }
-
-
-/* ==========================================
-   ANIMATIONS
-========================================== */
-
-@keyframes spin {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-@keyframes float {
-    50% {
-        transform: translateY(-15px);
-    }
-}
-
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 
 /* ==========================================
    DISCORD BUTTON
 ========================================== */
-
-.hero-actions {
-    margin-top: 20px;
-}
 
 .discord-button {
     display: inline-flex;
@@ -372,9 +321,8 @@ nav a:hover {
         0 0 25px rgba(255, 255, 255, 0.5);
 }
 
-
 /* ==========================================
-   DISCORD PEOPLE
+   PEOPLE
 ========================================== */
 
 .people-section {
@@ -383,7 +331,6 @@ nav a:hover {
 
 .role-section {
     width: 100%;
-
     margin-bottom: 90px;
 }
 
@@ -420,7 +367,6 @@ nav a:hover {
     background: rgba(255, 255, 255, 0.5);
 }
 
-
 /* ==========================================
    PEOPLE GRID
 ========================================== */
@@ -438,9 +384,8 @@ nav a:hover {
     width: 100%;
 }
 
-
 /* ==========================================
-   DISCORD PROFILE CARDS
+   PROFILE CARDS
 ========================================== */
 
 .person-card {
@@ -470,13 +415,14 @@ nav a:hover {
 
     box-shadow: none !important;
 
-    transform: translateY(-10px) scale(1.05);
+    transform:
+        translateY(-10px)
+        scale(1.05);
 }
 
 .person-card:active {
     transform: scale(0.95);
 }
-
 
 /* ==========================================
    AVATAR
@@ -499,7 +445,6 @@ nav a:hover {
     transition: 0.4s ease;
 
     clip-path: circle(50%);
-
     -webkit-clip-path: circle(50%);
 }
 
@@ -516,7 +461,6 @@ nav a:hover {
         0 0 25px rgba(255, 255, 255, 0.6);
 }
 
-
 /* ==========================================
    SELECTED PROFILE
 ========================================== */
@@ -530,7 +474,6 @@ nav a:hover {
 
     transform: scale(1.08);
 }
-
 
 /* ==========================================
    PROFILE NAME
@@ -546,47 +489,82 @@ nav a:hover {
     font-weight: 600;
 }
 
-
 /* ==========================================
-   MEMBERS SCROLL
+   MEMBERS SCROLLER
 ========================================== */
 
 #members-list {
+    width: 100%;
+
     max-height: 350px;
 
-    overflow-y: auto;
+    overflow: hidden;
 
     padding: 20px;
+}
 
-    scrollbar-width: thin;
-
+.members-scroller {
     width: 100%;
+
+    overflow: hidden;
+
+    position: relative;
+
+    padding: 10px 0 20px;
 }
 
-#members-list::-webkit-scrollbar {
-    width: 6px;
+.member-scroll-row {
+    display: flex;
+
+    width: max-content;
+
+    gap: 25px;
+
+    margin: 12px 0;
+
+    will-change: transform;
 }
 
-#members-list::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.5);
-
-    border-radius: 10px;
+.member-row-1 {
+    animation:
+        membersScrollLeft
+        28s
+        linear
+        infinite;
 }
 
-#members-list::-webkit-scrollbar-track {
-    background: transparent;
+.member-row-2 {
+    animation:
+        membersScrollRight
+        32s
+        linear
+        infinite;
 }
 
+.members-scroller.scroll-paused
+.member-scroll-row {
+    animation-play-state: paused;
+}
+
+.scroll-member {
+    flex: 0 0 auto;
+
+    min-width: 150px;
+
+    cursor: pointer;
+
+    transition: transform 0.25s ease;
+}
+
+.scroll-member:hover {
+    transform:
+        translateY(-5px)
+        scale(1.04);
+}
 
 /* ==========================================
    PROFILE MODAL
 ========================================== */
-
-/*
-   IMPORTANT:
-   Your HTML uses #profile-modal,
-   .profile-modal-content and .close-profile.
-*/
 
 #profile-modal {
     position: fixed;
@@ -618,32 +596,13 @@ nav a:hover {
         visibility 0.3s ease;
 }
 
-
-/* Hidden state */
-
 #profile-modal.hidden {
-    opacity: 0;
+    opacity: 0 !important;
 
-    visibility: hidden;
+    visibility: hidden !important;
 
-    pointer-events: none;
+    pointer-events: none !important;
 }
-
-
-/* Also support JS display:none if used */
-
-#profile-modal[style*="display: none"] {
-    opacity: 0;
-
-    visibility: hidden;
-
-    pointer-events: none;
-}
-
-
-/* ==========================================
-   MODAL CONTENT
-========================================== */
 
 .profile-modal-content {
     position: relative;
@@ -686,11 +645,6 @@ nav a:hover {
     }
 }
 
-
-/* ==========================================
-   MODAL AVATAR
-========================================== */
-
 .modal-avatar {
     width: 140px;
     height: 140px;
@@ -709,11 +663,6 @@ nav a:hover {
         0 0 50px rgba(255, 255, 255, 0.25);
 }
 
-
-/* ==========================================
-   MODAL TEXT
-========================================== */
-
 #modal-name {
     margin-bottom: 8px;
 
@@ -729,11 +678,6 @@ nav a:hover {
 
     font-size: 14px;
 }
-
-
-/* ==========================================
-   MODAL STATUS
-========================================== */
 
 .modal-status {
     display: flex;
@@ -762,11 +706,6 @@ nav a:hover {
     display: inline-block;
 }
 
-
-/* ==========================================
-   MODAL ACTIVITY
-========================================== */
-
 .modal-activity {
     margin: 15px 0;
 
@@ -774,11 +713,6 @@ nav a:hover {
 
     opacity: 0.7;
 }
-
-
-/* ==========================================
-   DISCORD ID
-========================================== */
 
 .modal-id {
     margin-top: 20px;
@@ -797,7 +731,6 @@ nav a:hover {
 
     font-weight: 500;
 }
-
 
 /* ==========================================
    CLOSE BUTTON
@@ -835,7 +768,6 @@ nav a:hover {
     transform: rotate(90deg);
 }
 
-
 /* ==========================================
    FOOTER
 ========================================== */
@@ -853,9 +785,6 @@ footer {
 
     margin-top: 20px;
 }
-
-
-/* The divider that was missing */
 
 footer::before {
     content: "";
@@ -885,79 +814,59 @@ footer::before {
     letter-spacing: 1px;
 }
 
-
 /* ==========================================
-   INFO BOXES
+   ANIMATIONS
 ========================================== */
 
-.info-panel {
-    display: flex;
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
 
-    justify-content: center;
-
-    flex-wrap: wrap;
-
-    gap: 25px;
+    to {
+        transform: rotate(360deg);
+    }
 }
 
-.info-box {
-    width: 270px;
-    height: 170px;
-
-    padding: 30px;
-
-    text-align: center;
-
-    background: rgba(0, 0, 0, 0.45);
-
-    border: 1px solid rgba(255, 255, 255, 0.2);
-
-    backdrop-filter: blur(15px);
-
-    transition: 0.4s;
-
-    display: flex;
-
-    flex-direction: column;
-
-    justify-content: center;
-
-    align-items: center;
+@keyframes float {
+    50% {
+        transform: translateY(-15px);
+    }
 }
 
-.info-box:hover {
-    transform: translateY(-10px);
+@keyframes fadeUp {
+    from {
+        opacity: 0;
 
-    border-color: white;
+        transform: translateY(30px);
+    }
 
-    box-shadow:
-        0 20px 50px rgba(0, 0, 0, 0.5);
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
 }
 
-.info-label {
-    letter-spacing: 4px;
+@keyframes membersScrollLeft {
+    from {
+        transform: translateX(0);
+    }
 
-    opacity: 0.6;
+    to {
+        transform: translateX(-50%);
+    }
 }
 
-.info-box h3 {
-    margin-top: 10px;
+@keyframes membersScrollRight {
+    from {
+        transform: translateX(-50%);
+    }
 
-    font-size: 22px;
-
-    letter-spacing: 2px;
+    to {
+        transform: translateX(0);
+    }
 }
-
-.status-display {
-    margin-top: 15px;
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-}
-
 
 /* ==========================================
    RESPONSIVE
@@ -1021,144 +930,4 @@ footer::before {
         padding-bottom: 40px;
     }
 }
-
-/* ==========================================
-   MEMBERS AUTO SCROLLER
-========================================== */
-
-.members-scroller {
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-    padding: 10px 0 20px;
-}
-
-.member-scroll-row {
-    display: flex;
-    width: max-content;
-    gap: 25px;
-    margin: 12px 0;
-    will-change: transform;
-}
-
-.member-row-1 {
-    animation: membersScrollLeft 28s linear infinite;
-}
-
-.member-row-2 {
-    animation: membersScrollRight 32s linear infinite;
-}
-
-.members-scroller.scroll-paused .member-scroll-row {
-    animation-play-state: paused;
-}
-
-.scroll-member {
-    flex: 0 0 auto;
-    min-width: 150px;
-    cursor: pointer;
-    transition: transform 0.25s ease;
-}
-
-.scroll-member:hover {
-    transform: translateY(-5px) scale(1.04);
-}
-
-@keyframes membersScrollLeft {
-
-    from {
-        transform: translateX(0);
-    }
-
-    to {
-        transform: translateX(-50%);
-    }
-
-}
-
-@keyframes membersScrollRight {
-
-    from {
-        transform: translateX(-50%);
-    }
-
-    to {
-        transform: translateX(0);
-    }
-
-}
 ```
-```css
-/* ==========================================
-   ENTER SCREEN FIX
-========================================== */
-
-#enter-screen {
-    position: fixed;
-    inset: 0;
-    z-index: 99999;
-    pointer-events: auto;
-}
-
-#enter-screen .enter-content {
-    position: relative;
-    z-index: 100000;
-    pointer-events: auto;
-}
-
-#enter-button {
-    position: relative;
-    z-index: 100001;
-    pointer-events: auto;
-    cursor: pointer;
-}
-
-#enter-screen.hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
-```
-/* ENTER SCREEN FINAL FIX */
-
-#enter-screen {
-    position: fixed !important;
-    inset: 0 !important;
-    z-index: 999999 !important;
-    pointer-events: auto !important;
-}
-
-#enter-button {
-    position: relative !important;
-    z-index: 1000000 !important;
-    pointer-events: auto !important;
-    cursor: pointer !important;
-}
-
-#enter-screen.hidden {
-    opacity: 0 !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
-}
-
-#main-site {
-    pointer-events: auto;
-}
-
-/* ==========================================
-   PROFILE MODAL FIX
-========================================== */
-
-.profile-modal.hidden {
-    display: none !important;
-    opacity: 0 !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
-}
-
-.profile-modal:not(.hidden) {
-    display: flex !important;
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-}
