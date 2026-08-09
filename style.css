@@ -1148,4 +1148,27 @@ footer {
 
     border-radius: 10px;
 
+} 
+
+.hero-actions {
+    margin-top: 20px;
+}
+
+.discord-button {
+    display: inline-block;
+    padding: 8px 16px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 6px;
+    color: #aaa;
+    text-decoration: none;
+    font-size: 8px;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
+}
+
+.discord-button:hover {
+    color: #fff;
+    border-color: #fff;
+    background: rgba(255,255,255,0.08);
+    transform: translateY(-2px);
 }
