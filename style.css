@@ -1144,3 +1144,21 @@ footer::before {
 #main-site {
     pointer-events: auto;
 }
+
+/* ==========================================
+   PROFILE MODAL FIX
+========================================== */
+
+.profile-modal.hidden {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+.profile-modal:not(.hidden) {
+    display: flex !important;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
