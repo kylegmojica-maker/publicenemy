@@ -1022,70 +1022,6 @@ footer::before {
     }
 }
 
-```css
-/* ==========================================
-   AUTO SCROLLING MEMBERS
-========================================== */
-
-.members-scroller {
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-    padding: 10px 0 20px;
-}
-
-.member-scroll-row {
-    display: flex;
-    width: max-content;
-    gap: 25px;
-    margin: 12px 0;
-    will-change: transform;
-}
-
-.member-row-1 {
-    animation: membersScrollLeft 28s linear infinite;
-}
-
-.member-row-2 {
-    animation: membersScrollRight 32s linear infinite;
-}
-
-.members-scroller.scroll-paused .member-scroll-row {
-    animation-play-state: paused;
-}
-
-.scroll-member {
-    flex: 0 0 auto;
-    min-width: 150px;
-    cursor: pointer;
-    transition: transform 0.25s ease;
-}
-
-.scroll-member:hover {
-    transform: translateY(-5px) scale(1.04);
-}
-
-@keyframes membersScrollLeft {
-    from {
-        transform: translateX(0);
-    }
-
-    to {
-        transform: translateX(-50%);
-    }
-}
-
-@keyframes membersScrollRight {
-    from {
-        transform: translateX(-50%);
-    }
-
-    to {
-        transform: translateX(0);
-    }
-}
-
-```css
 /* ==========================================
    MEMBERS AUTO SCROLLER
 ========================================== */
@@ -1150,6 +1086,37 @@ footer::before {
         transform: translateX(0);
     }
 
+}
+```
+```css
+/* ==========================================
+   ENTER SCREEN FIX
+========================================== */
+
+#enter-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    pointer-events: auto;
+}
+
+#enter-screen .enter-content {
+    position: relative;
+    z-index: 100000;
+    pointer-events: auto;
+}
+
+#enter-button {
+    position: relative;
+    z-index: 100001;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+#enter-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 }
 ```
 
