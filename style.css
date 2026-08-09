@@ -46,6 +46,22 @@ body::before {
 }
 
 /* ==========================================
+   MAIN SITE
+========================================== */
+
+#main-site {
+    position: relative;
+
+    width: 100%;
+    min-height: 100vh;
+
+    opacity: 1;
+    visibility: visible;
+
+    z-index: 1;
+}
+
+/* ==========================================
    ENTER SCREEN
 ========================================== */
 
@@ -138,22 +154,6 @@ body::before {
 }
 
 /* ==========================================
-   MAIN SITE
-========================================== */
-
-#main-site {
-    position: relative;
-
-    width: 100%;
-    min-height: 100vh;
-
-    opacity: 1;
-    visibility: visible;
-
-    z-index: 1;
-}
-
-/* ==========================================
    NAVBAR
 ========================================== */
 
@@ -229,8 +229,7 @@ nav a:hover {
     position: relative;
     z-index: 2;
 
-    min-height: 0;
-    height: auto;
+    width: 100%;
 
     display: flex;
 
@@ -238,12 +237,14 @@ nav a:hover {
 
     justify-content: center;
 
-    padding: 0 0 20px;
+    padding: 0 0 25px;
 }
 
 .hero-content {
     position: relative;
     z-index: 5;
+
+    width: 100%;
 
     text-align: center;
 }
@@ -359,6 +360,7 @@ nav a:hover {
 
 /* ==========================================
    PEOPLE SECTION
+   ALIGNED WITH MAIN PROFILE
 ========================================== */
 
 .people-section {
@@ -386,9 +388,15 @@ nav a:hover {
     margin-bottom: 0;
 }
 
+/* ==========================================
+   ROLE TITLE
+========================================== */
+
 .role-title {
     position: relative;
     z-index: 5;
+
+    width: 100%;
 
     text-align: center;
 
@@ -444,6 +452,10 @@ nav a:hover {
     justify-items: center;
 
     width: 100%;
+
+    max-width: 1100px;
+
+    margin: 0 auto;
 }
 
 /* ==========================================
@@ -513,6 +525,7 @@ nav a:hover {
     -webkit-clip-path: circle(50%);
 
     position: relative;
+
     z-index: 7;
 }
 
@@ -553,6 +566,7 @@ nav a:hover {
 
 .person-card h3 {
     position: relative;
+
     z-index: 7;
 
     margin-top: 10px;
@@ -566,6 +580,7 @@ nav a:hover {
 
 /* ==========================================
    MEMBERS
+   TWO-LANE CONTINUOUS MARQUEE
 ========================================== */
 
 #members-list {
@@ -573,10 +588,6 @@ nav a:hover {
     z-index: 5;
 
     width: 100%;
-
-    height: auto !important;
-
-    max-height: none !important;
 
     overflow: hidden !important;
 
@@ -587,14 +598,14 @@ nav a:hover {
     gap: 8px;
 
     padding: 5px 0 !important;
-}
 
-/*
-   IMPORTANT:
-   Each row contains two identical copies.
-   The row itself is twice the visible content
-   width, allowing the animation to loop.
-*/
+    /*
+       IMPORTANT:
+       Do not use grid here.
+       The JavaScript creates the
+       two scrolling rows.
+    */
+}
 
 #members-list .member-scroll-row {
     display: flex !important;
@@ -614,44 +625,32 @@ nav a:hover {
     flex-shrink: 0;
 
     will-change: transform;
-
-    transform: translate3d(0, 0, 0);
-
-    backface-visibility: hidden;
 }
 
 /* ==========================================
-   SMOOTH MEMBER ANIMATION
+   SMOOTH MEMBER MOVEMENT
 ========================================== */
 
 #members-list .member-row-1 {
     animation:
         membersScrollLeft
-        22s
+        25s
         linear
         infinite;
-
-    animation-fill-mode: both;
 }
 
 #members-list .member-row-2 {
     animation:
         membersScrollRight
-        22s
+        25s
         linear
         infinite;
-
-    animation-fill-mode: both;
 }
 
 #members-list.scroll-paused .member-scroll-row {
-    animation-play-state: paused !important;
+    animation-play-state:
+        paused !important;
 }
-
-/*
-   Member cards have a fixed width so the
-   duplicated content stays perfectly aligned.
-*/
 
 #members-list .scroll-member {
     flex:
@@ -660,8 +659,6 @@ nav a:hover {
     width: 150px;
 
     min-width: 150px;
-
-    margin: 0;
 
     cursor: pointer;
 
@@ -676,32 +673,19 @@ nav a:hover {
 }
 
 /* ==========================================
-   SEAMLESS LOOP
+   CONTINUOUS LOOP
 ========================================== */
-
-/*
-   Because script.js creates:
-   
-   [members][members]
-
-   moving exactly half of the row puts the
-   second copy in the exact position of the
-   first copy.
-
-   The animation restarts at an identical
-   visual position, so there is no jump.
-*/
 
 @keyframes membersScrollLeft {
 
     from {
         transform:
-            translate3d(0, 0, 0);
+            translateX(0);
     }
 
     to {
         transform:
-            translate3d(-50%, 0, 0);
+            translateX(-50%);
     }
 }
 
@@ -709,12 +693,12 @@ nav a:hover {
 
     from {
         transform:
-            translate3d(-50%, 0, 0);
+            translateX(-50%);
     }
 
     to {
         transform:
-            translate3d(0, 0, 0);
+            translateX(0);
     }
 }
 
@@ -945,6 +929,7 @@ nav a:hover {
 
 footer {
     position: relative;
+
     z-index: 5;
 
     width: 100%;
@@ -1051,8 +1036,6 @@ footer::before {
     }
 
     .hero {
-        min-height: auto;
-
         padding:
             0 0 10px;
     }
@@ -1106,8 +1089,8 @@ footer::before {
     }
 
     #members-list .scroll-member {
-        flex-basis:
-            120px !important;
+        flex:
+            0 0 120px !important;
 
         width: 120px;
 
